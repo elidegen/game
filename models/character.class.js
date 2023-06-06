@@ -117,7 +117,7 @@ class Character extends MovingObjects {
     JUMP_SOUND = new Audio('audio/jump.mp3');
 
     constructor() {
-        super().loadImage('img/2_character_pepe/2_walk/W-21.png');
+        super().loadImage('img/characters/Paladin_1/PNG/PNG Sequences/Idle/0_Paladin_Idle_000.png');
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_JUMPING);
         this.loadImages(this.IMAGES_DYING);

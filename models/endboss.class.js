@@ -17,6 +17,32 @@ class Endboss extends MovingObjects {
         bottom: 30,
     };
     IMAGES_WALKING = [
+        'img/enemies/Orc/PNG/PNG Sequences/Walking/0_Orc_Walking_000.png',
+        'img/enemies/Orc/PNG/PNG Sequences/Walking/0_Orc_Walking_001.png',
+        'img/enemies/Orc/PNG/PNG Sequences/Walking/0_Orc_Walking_002.png',
+        'img/enemies/Orc/PNG/PNG Sequences/Walking/0_Orc_Walking_003.png',
+        'img/enemies/Orc/PNG/PNG Sequences/Walking/0_Orc_Walking_004.png',
+        'img/enemies/Orc/PNG/PNG Sequences/Walking/0_Orc_Walking_005.png',
+        'img/enemies/Orc/PNG/PNG Sequences/Walking/0_Orc_Walking_006.png',
+        'img/enemies/Orc/PNG/PNG Sequences/Walking/0_Orc_Walking_007.png',
+        'img/enemies/Orc/PNG/PNG Sequences/Walking/0_Orc_Walking_008.png',
+        'img/enemies/Orc/PNG/PNG Sequences/Walking/0_Orc_Walking_009.png',
+        'img/enemies/Orc/PNG/PNG Sequences/Walking/0_Orc_Walking_010.png',
+        'img/enemies/Orc/PNG/PNG Sequences/Walking/0_Orc_Walking_011.png',
+        'img/enemies/Orc/PNG/PNG Sequences/Walking/0_Orc_Walking_012.png',
+        'img/enemies/Orc/PNG/PNG Sequences/Walking/0_Orc_Walking_013.png',
+        'img/enemies/Orc/PNG/PNG Sequences/Walking/0_Orc_Walking_014.png',
+        'img/enemies/Orc/PNG/PNG Sequences/Walking/0_Orc_Walking_015.png',
+        'img/enemies/Orc/PNG/PNG Sequences/Walking/0_Orc_Walking_016.png',
+        'img/enemies/Orc/PNG/PNG Sequences/Walking/0_Orc_Walking_017.png',
+        'img/enemies/Orc/PNG/PNG Sequences/Walking/0_Orc_Walking_018.png',
+        'img/enemies/Orc/PNG/PNG Sequences/Walking/0_Orc_Walking_019.png',
+        'img/enemies/Orc/PNG/PNG Sequences/Walking/0_Orc_Walking_020.png',
+        'img/enemies/Orc/PNG/PNG Sequences/Walking/0_Orc_Walking_021.png',
+        'img/enemies/Orc/PNG/PNG Sequences/Walking/0_Orc_Walking_022.png',
+        'img/enemies/Orc/PNG/PNG Sequences/Walking/0_Orc_Walking_023.png',
+    ];
+    IMAGES_RUNNING = [
         'img/enemies/Orc/PNG/PNG Sequences/Running/0_Orc_Running_000.png',
         'img/enemies/Orc/PNG/PNG Sequences/Running/0_Orc_Running_001.png',
         'img/enemies/Orc/PNG/PNG Sequences/Running/0_Orc_Running_002.png',
@@ -30,7 +56,7 @@ class Endboss extends MovingObjects {
         'img/enemies/Orc/PNG/PNG Sequences/Running/0_Orc_Running_010.png',
         'img/enemies/Orc/PNG/PNG Sequences/Running/0_Orc_Running_011.png',
     ];
-    IMAGES_ALERT = [
+    IMAGES_IDLE = [
         'img/enemies/Orc/PNG/PNG Sequences/Idle/0_Orc_Idle_000.png',
         'img/enemies/Orc/PNG/PNG Sequences/Idle/0_Orc_Idle_001.png',
         'img/enemies/Orc/PNG/PNG Sequences/Idle/0_Orc_Idle_002.png',
@@ -97,9 +123,9 @@ class Endboss extends MovingObjects {
     ];
 
     constructor() {
-        super().loadImage(this.IMAGES_ALERT[0]);
+        super().loadImage(this.IMAGES_IDLE[0]);
         this.loadImages(this.IMAGES_WALKING);
-        this.loadImages(this.IMAGES_ALERT);
+        this.loadImages(this.IMAGES_IDLE);
         this.loadImages(this.IMAGES_ATTACK);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_DEAD);
@@ -123,7 +149,7 @@ class Endboss extends MovingObjects {
             } else if (this.isDead()) {
                 this.loadImage('img/enemies/Orc/PNG/PNG Sequences/Dying/0_Orc_Dying_014.png');
             } else if (this.recentlyTriggered()) {
-                this.playAnimation(this.IMAGES_ALERT);
+                this.playAnimation(this.IMAGES_IDLE);
             } else if (this.playerNearby()) {
                 this.playAnimation(this.IMAGES_ATTACK);
             } else if (this.isHurt()) {
