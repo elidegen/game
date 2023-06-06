@@ -9,9 +9,9 @@ class Character extends MovingObjects {
     health = this.MAX_HEALTH;
     damage = 50;
     offset = {
-        top: 50,
-        right: 65,
-        left: 55,
+        top: 100,
+        right: 70,
+        left: 65,
         bottom: 35,
     };
     IMAGES_WALKING = [

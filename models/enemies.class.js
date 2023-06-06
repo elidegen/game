@@ -7,9 +7,9 @@ class Enemies extends MovingObjects {
     otherDirection = 1;
     alreadyCollided = 0;
     offset = {
-        top: 50,
-        right: 20,
-        left: 55,
+        top: 100,
+        right: 70,
+        left: 65,
         bottom: 35,
     };
     IMAGES_ATTACK;

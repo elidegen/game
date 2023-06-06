@@ -4,17 +4,17 @@ class Endboss extends MovingObjects {
     height = 500;
     width = 500;
     speed = 15;
-    y = -30;
+    y = this.y - this.height + 100;
     startTime;
     bossActivated = 0;
     MAX_HEALTH = 200;
     health = this.MAX_HEALTH;
     otherDirection = 1;
     offset = {
-        top: 100,
-        right: 30,
-        left: 60,
-        bottom: 30,
+        top: 280,
+        right: 180,
+        left: 150,
+        bottom: 80,
     };
     IMAGES_WALKING = [
         'img/enemies/Orc/PNG/PNG Sequences/Walking/0_Orc_Walking_000.png',
