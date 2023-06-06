@@ -14,15 +14,19 @@ class Enemies extends MovingObjects {
     };
     IMAGES_ATTACK;
     IMAGES_WALKING;
+    IMAGES_HURT;
     IMAGE_DEAD;
 
     animate() {
         setStoppableInterval(() => {
+            if(!this.isDead())
             this.moveLeft();
         }, 1000 / 60);
 
         setStoppableInterval(() => {
-            if (this.recentAttack()) {
+            if (this.isHurt()) {
+                this.playAnimation(this.IMAGES_HURT);
+            } else if (this.recentAttack()) {
                 this.playAnimation(this.IMAGES_ATTACK);
             } else if (!this.isDead()) {
                 this.playAnimation(this.IMAGES_WALKING);

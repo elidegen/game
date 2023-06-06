@@ -40,6 +40,20 @@ class Ogre extends Enemies {
         'img/enemies/Ogre/PNG/PNG Sequences/Slashing/0_Ogre_Slashing_010.png',
         'img/enemies/Ogre/PNG/PNG Sequences/Slashing/0_Ogre_Slashing_011.png',
     ];
+    IMAGES_HURT = [
+        'img/enemies/Ogre/PNG/PNG Sequences/Hurt/0_Ogre_Hurt_000.png',
+        'img/enemies/Ogre/PNG/PNG Sequences/Hurt/0_Ogre_Hurt_001.png',
+        'img/enemies/Ogre/PNG/PNG Sequences/Hurt/0_Ogre_Hurt_002.png',
+        'img/enemies/Ogre/PNG/PNG Sequences/Hurt/0_Ogre_Hurt_003.png',
+        'img/enemies/Ogre/PNG/PNG Sequences/Hurt/0_Ogre_Hurt_004.png',
+        'img/enemies/Ogre/PNG/PNG Sequences/Hurt/0_Ogre_Hurt_005.png',
+        'img/enemies/Ogre/PNG/PNG Sequences/Hurt/0_Ogre_Hurt_006.png',
+        'img/enemies/Ogre/PNG/PNG Sequences/Hurt/0_Ogre_Hurt_007.png',
+        'img/enemies/Ogre/PNG/PNG Sequences/Hurt/0_Ogre_Hurt_008.png',
+        'img/enemies/Ogre/PNG/PNG Sequences/Hurt/0_Ogre_Hurt_009.png',
+        'img/enemies/Ogre/PNG/PNG Sequences/Hurt/0_Ogre_Hurt_010.png',
+        'img/enemies/Ogre/PNG/PNG Sequences/Hurt/0_Ogre_Hurt_011.png',
+    ];
     IMAGE_DEAD = 'img/enemies/Ogre/PNG/PNG Sequences/Dying/0_Ogre_Dying_014.png';
 
     constructor() {
@@ -47,6 +61,7 @@ class Ogre extends Enemies {
         this.x = 500 + Math.random() * 2500; //math.random = zahl zwischen 0 und 1
         this.speed = 0.25 + Math.random() * 0.5;
         this.loadImages(this.IMAGES_WALKING);
+        this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_ATTACK);
         this.animate();
     }

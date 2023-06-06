@@ -39,6 +39,20 @@ class Goblin extends Enemies {
         'img/enemies/Goblin/PNG/PNG Sequences/Slashing/0_Goblin_Slashing_010.png',
         'img/enemies/Goblin/PNG/PNG Sequences/Slashing/0_Goblin_Slashing_011.png',
     ];
+    IMAGES_HURT = [
+        'img/enemies/Goblin/PNG/PNG Sequences/Hurt/0_Goblin_Hurt_000.png',
+        'img/enemies/Goblin/PNG/PNG Sequences/Hurt/0_Goblin_Hurt_001.png',
+        'img/enemies/Goblin/PNG/PNG Sequences/Hurt/0_Goblin_Hurt_002.png',
+        'img/enemies/Goblin/PNG/PNG Sequences/Hurt/0_Goblin_Hurt_003.png',
+        'img/enemies/Goblin/PNG/PNG Sequences/Hurt/0_Goblin_Hurt_004.png',
+        'img/enemies/Goblin/PNG/PNG Sequences/Hurt/0_Goblin_Hurt_005.png',
+        'img/enemies/Goblin/PNG/PNG Sequences/Hurt/0_Goblin_Hurt_006.png',
+        'img/enemies/Goblin/PNG/PNG Sequences/Hurt/0_Goblin_Hurt_007.png',
+        'img/enemies/Goblin/PNG/PNG Sequences/Hurt/0_Goblin_Hurt_008.png',
+        'img/enemies/Goblin/PNG/PNG Sequences/Hurt/0_Goblin_Hurt_009.png',
+        'img/enemies/Goblin/PNG/PNG Sequences/Hurt/0_Goblin_Hurt_010.png',
+        'img/enemies/Goblin/PNG/PNG Sequences/Hurt/0_Goblin_Hurt_011.png',
+    ];
     IMAGE_DEAD = 'img/enemies/Goblin/PNG/PNG Sequences/Dying/0_Goblin_Dying_014.png'
 
     constructor() {
@@ -48,6 +62,7 @@ class Goblin extends Enemies {
         this.speed = 0.25 + Math.random() * 0.5;
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_ATTACK);
+        this.loadImages(this.IMAGES_HURT);
         this.animate();
     }
 }
