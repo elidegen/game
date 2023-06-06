@@ -5,6 +5,7 @@ class Enemies extends MovingObjects {
     MAX_HEALTH = 10;
     health = this.MAX_HEALTH;
     otherDirection = 1;
+    alreadyCollided = 0;
     offset = {
         top: 50,
         right: 0,
