@@ -2,13 +2,13 @@ class Enemies extends MovingObjects {
     height = 200;
     width = 200;
     i = 1;
-    MAX_HEALTH = 10;
+    MAX_HEALTH = 100;
     health = this.MAX_HEALTH;
     otherDirection = 1;
     alreadyCollided = 0;
     offset = {
         top: 50,
-        right: 0,
+        right: 20,
         left: 55,
         bottom: 35,
     };

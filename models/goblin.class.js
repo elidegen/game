@@ -43,8 +43,8 @@ class Goblin extends Enemies {
 
     constructor() {
         super().loadImage('img/enemies/Goblin/PNG/PNG Sequences/Walking/0_Goblin_Walking_000.png');
-        this.x = 500 + Math.random() * 2500; //math.random = zahl zwischen 0 und 1    
-        this.y = 120 + Math.random() * 460;
+        this.x = 500 + Math.random() * 2000; //math.random = zahl zwischen 0 und 1    
+        this.y = 120 + Math.random() * 340;
         this.speed = 0.25 + Math.random() * 0.5;
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_ATTACK);

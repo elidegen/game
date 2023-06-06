@@ -105,6 +105,9 @@ class World {
         if (enemy == this.level.enemies[0]) {
             this.character.takeDamage(this.bossDamage);
         } else {
+            if(world.character.recentAttack()){
+                enemy.takeDamage(this.character.damage);
+            }
             enemy.lastAttack = new Date().getTime();
             world.character.takeDamage(this.enemyDamage);
         }

@@ -124,8 +124,4 @@ class MovingObjects extends DrawableObject {
         let timepassed = new Date().getTime() - this.lastAttack;
         return timepassed < 1000;
     }
-
-    enemyAttack() {
-
-    }
 }
