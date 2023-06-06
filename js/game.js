@@ -2,7 +2,7 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 let allInterval = [];
-let pause = false;
+let pause = true;
 let startScreen = new Image();
 startScreen.src = 'img/9_intro_outro_screens/start/startscreen_1.png';
 

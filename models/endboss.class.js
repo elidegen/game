@@ -126,17 +126,13 @@ class Endboss extends MovingObjects {
                 this.playAnimation(this.IMAGES_ALERT);
             } else if (this.playerNearby()) {
                 this.playAnimation(this.IMAGES_ATTACK);
-            } else if (this.bossIsHurt()) {
+            } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
             } else if (!this.isDead()) {
                 this.playAnimation(this.IMAGES_WALKING);
                 this.moveLeft();
             }
         }, 100);
-    }
-
-    bossIsHurt() {
-        return 500 > (new Date().getTime() - this.world.lastBossHit);
     }
 
     recentlyTriggered() {
