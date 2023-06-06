@@ -104,6 +104,9 @@ class World {
     collideEnemy(enemy) {
         if (enemy == this.level.enemies[0]) {
             this.character.takeDamage(this.bossDamage);
+            if(world.character.recentAttack()){
+                enemy.takeDamage(this.character.damage);
+            }
         } else {
             if(world.character.recentAttack()){
                 enemy.takeDamage(this.character.damage);

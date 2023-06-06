@@ -110,7 +110,7 @@ class Endboss extends MovingObjects {
     startEndboss() {
         if (this.bossActivated == 0) {
             this.animate();
-            this.checkCharacterPosition();
+            this.moveEnemy();
             this.startTime = new Date().getTime();
             this.bossActivated = 1;
         }
@@ -118,35 +118,25 @@ class Endboss extends MovingObjects {
 
     animate() {
         setStoppableInterval(() => {
-            if (this.recentlyTriggered() && !this.isDead()) {
+            if (this.isDead() && this.isHurt()) {
+                this.playAnimation(this.IMAGES_DEAD);
+            } else if (this.isDead()) {
+                this.loadImage('img/enemies/Orc/PNG/PNG Sequences/Dying/0_Orc_Dying_014.png');
+            } else if (this.recentlyTriggered()) {
                 this.playAnimation(this.IMAGES_ALERT);
-            } else if (this.playerNearby() && !this.isDead()) {
+            } else if (this.playerNearby()) {
                 this.playAnimation(this.IMAGES_ATTACK);
-            } else if (this.bossIsHurt() && !this.isDead()) {
+            } else if (this.bossIsHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
             } else if (!this.isDead()) {
                 this.playAnimation(this.IMAGES_WALKING);
                 this.moveLeft();
-            } else {
-                this.playAnimation(this.IMAGES_DEAD);
             }
         }, 100);
     }
 
     bossIsHurt() {
         return 500 > (new Date().getTime() - this.world.lastBossHit);
-    }
-
-    checkCharacterPosition() {
-        setStoppableInterval(() => {
-            if (this.x < world.character.x) {
-                this.speed = -15;
-                this.otherDirection = false;
-            } else {
-                this.speed = 15;
-                this.otherDirection = true;
-            }
-        }, 300);
     }
 
     recentlyTriggered() {

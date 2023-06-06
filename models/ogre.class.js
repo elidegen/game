@@ -1,5 +1,4 @@
 class Ogre extends Enemies {
-    
     IMAGES_WALKING = [
         'img/enemies/Ogre/PNG/PNG Sequences/Walking/0_Ogre_Walking_000.png',
         'img/enemies/Ogre/PNG/PNG Sequences/Walking/0_Ogre_Walking_001.png',
@@ -58,8 +57,6 @@ class Ogre extends Enemies {
 
     constructor() {
         super().loadImage('img/enemies/Ogre/PNG/PNG Sequences/Walking/0_Ogre_Walking_000.png');
-        this.x = 500 + Math.random() * 2500; //math.random = zahl zwischen 0 und 1
-        this.speed = 0.25 + Math.random() * 0.5;
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_ATTACK);

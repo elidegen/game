@@ -65,10 +65,12 @@ class MovingObjects extends DrawableObject {
 
     moveRight() {
         this.x += this.speed;
+        this.otherDirection = false;
     }
 
     moveLeft() {
         this.x -= this.speed;
+        this.otherDirection = true;
     }
 
     moveUp() {
@@ -123,5 +125,31 @@ class MovingObjects extends DrawableObject {
     recentAttack() {
         let timepassed = new Date().getTime() - this.lastAttack;
         return timepassed < 1000;
+    }
+
+    moveEnemy() {
+        setStoppableInterval(() => {
+            if (!this.isDead()) {
+                this.followCharacter()
+            }
+        }, 100);
+
+    }
+
+    followCharacter() {
+        if (this.x < world.character.x) {
+            this.moveRight();
+        }
+        if (this.x > world.character.x) {
+            this.moveLeft();
+        }
+        if ((this.x - world.character.x) < 300) {
+            if (this.y < world.character.y) {
+                this.moveDown();
+            }
+            if (this.y > world.character.y) {
+                this.moveUp();
+            }
+        }
     }
 }

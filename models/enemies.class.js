@@ -17,12 +17,15 @@ class Enemies extends MovingObjects {
     IMAGES_HURT;
     IMAGE_DEAD;
 
-    animate() {
-        setStoppableInterval(() => {
-            if(!this.isDead())
-            this.moveLeft();
-        }, 1000 / 60);
+    constructor(){
+        super();
+        this.x = 500 + Math.random() * 2000; //math.random = zahl zwischen 0 und 1    
+        this.y = 120 + Math.random() * 340;
+        this.speed = 1 + Math.random() * 4;
+        this.moveEnemy();
+    }
 
+    animate() {
         setStoppableInterval(() => {
             if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
