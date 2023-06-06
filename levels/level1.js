@@ -1,0 +1,42 @@
+const level1 = new Level(
+    [
+        new Endboss(),
+        new Goblin(),
+        new Goblin(),
+        new Goblin(),
+        new Goblin(),
+        new Ogre(),
+        new Ogre(),
+        new Ogre(),
+        new Ogre(),
+    ],
+    [
+        new Cloud(),
+    ],
+    [
+        new BackgroundObject('img/backgrounds/PNG/game_background_2/game_background_2.png', 0),
+        new BackgroundObject('img/backgrounds/PNG/game_background_2/game_background_2.png', 719),
+        new BackgroundObject('img/backgrounds/PNG/game_background_2/game_background_2.png', 719*2),
+        new BackgroundObject('img/backgrounds/PNG/game_background_2/game_background_2.png', 719*3),
+        new BackgroundObject('img/backgrounds/PNG/game_background_2/game_background_2.png', 719*4),
+        new BackgroundObject('img/backgrounds/PNG/game_background_2/game_background_2.png', 719*5),
+    ],
+    [
+        new Coin(),
+        new Coin(),
+        new Coin(),
+        new Coin(),
+        new Coin(),
+        new Coin(),
+        new Coin(),
+    ],
+    [
+        new Salsa(),
+        new Salsa(),
+        new Salsa(),
+        new Salsa(),
+        new Salsa(),
+        new Salsa(),
+        new Salsa(),
+    ],
+);

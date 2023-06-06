@@ -1,0 +1,143 @@
+@font-face {
+    font-family: 'zabras';
+    src: url('/fonts/Zabars.ttf') format('truetype');
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-image: url('img/desert3.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'zabras', Arial, Helvetica, sans-serif;
+}
+
+canvas {
+    background-color: black;
+    display: block;
+    border-radius: 20px;
+    box-shadow: 0 2px 5px 5px rgba(0, 0, 0, 0.4);
+}
+
+.rotate {
+    display: none;
+}
+
+.container {
+    position: relative;
+}
+
+.button {
+    position: absolute;
+    top: 15px;
+    height: 50px;
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    background-color: #f4dc00;
+    border: 2px solid black;
+    transition: 200ms;
+    box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.5);
+}
+
+.button img {
+    height: 30px;
+    width: 30px;
+}
+
+.button:hover {
+    cursor: pointer;
+    background-color: #ff9600;
+    transform: scale(1.1);
+    transition: 200ms;
+}
+
+#fullscreen {
+    right: 15px;
+}
+
+#sound {
+    right: 84px;
+}
+
+#settings {
+    right: 153px;
+}
+
+#pause {
+    right: 291px;
+}
+
+#play {
+    right: 222px;
+}
+
+#play img{
+    margin-left: 6px;
+}
+
+@media(max-width: 1280px) {
+    canvas {
+        width: 100vw;
+        border-radius: 0;
+    }
+}
+
+@media(max-width: 660px) {
+    canvas {
+        display: none;
+    }
+
+    h1 {
+        display: none;
+    }
+
+    .rotate {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: white;
+        border-radius: 100%;
+        width: 30vw;
+        height: 30vw;
+        padding: 20px;
+    }
+
+    .rotate img {
+        height: 50%;
+        width: 50%;
+    }
+
+    .rotate p {
+        font-size: 5vw;
+        text-align: center;
+        margin: auto 0;
+    }
+}
+
+@media(max-height: 480px) {
+    canvas {
+        height: 100vh;
+    }
+}
+
+@media(max-height: 620px) {
+    h1 {
+        display: none;
+    }
+}
+
+h1 {
+    font-size: 60px;
+    letter-spacing: 3px;
+    text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.4);
+    color: #a0220a;
+}

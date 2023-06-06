@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El pollo loco</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="img/3_enemies_chicken/chicken_small/1_walk/1_w.png">
+    <script src="models/keyboard.class.js"></script>
+
+    <script src="js/game.js"></script>
+    <script src="models/world.class.js"></script>
+    <script src="models/drawableObject.class.js"></script>
+    <script src="models/movingObjects.class.js"></script>
+    <script src="models/healthBar.class.js"></script>
+    <script src="models/coinBar.class.js"></script>
+    <script src="models/salsaBar.class.js"></script>
+    <script src="models/endbossHealthBar.class.js"></script>
+    <script src="models/throwable.class.js"></script>
+    <script src="models/cloud.class.js"></script>
+    <script src="models/character.class.js"></script>
+    <script src="models/backgroundObject.class.js"></script>
+    <script src="models/goblin.class.js"></script>
+    <script src="models/ogre.class.js"></script>
+    <script src="models/level.class.js"></script>
+    <script src="models/endboss.class.js"></script>
+    <script src="models/coin.class.js"></script>
+    <script src="models/salsa.class.js"></script>
+    <script src="levels/level1.js"></script>
+</head>
+
+<body onload="init()">
+
+    <h1>El Paladin Loco</h1>
+    <div class="container">
+        <div class="button" id="fullscreen" onclick="enterFullscreen()">
+            <img src="./img/fullscreen.png" alt="">
+        </div>
+        <div class="button" id="sound" onclick="toggleMute()">
+            <img src="./img/sound.png" alt="">
+        </div>
+        <div class="button" id="settings" onclick="toggleMute()">
+            <img src="./img/joystick.png" alt="">
+        </div>
+        <div class="button" id="play" onclick="startGame()">
+            <img src="./img/playBlack.png">
+        </div>
+        <div class="button" id="pause" onclick="pauseGame()">
+            <img src="./img/pause.png">
+        </div>
+
+        <canvas id="canvas" width="1280" height="720">
+        </canvas>
+    </div>
+    <div class="rotate">
+        <img src="img/rotate.png">
+        <p>Please rotate your</br> device!</p>
+    </div>
+
+</body>
+
+</html>
