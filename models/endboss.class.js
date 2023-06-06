@@ -10,6 +10,7 @@ class Endboss extends MovingObjects {
     MAX_HEALTH = 200;
     health = this.MAX_HEALTH;
     otherDirection = 1;
+    range = 160;
     offset = {
         top: 280,
         right: 180,
