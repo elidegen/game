@@ -22,13 +22,15 @@ class DrawableObject {
             this.imageCache[path] = img;
         });
     }
-    
+
     drawFrame(ctx) {
         if (this instanceof Character || this instanceof Goblin || this instanceof Ogre || this instanceof Coin || this instanceof Salsa || this instanceof Endboss) {
             ctx.beginPath();
             ctx.linewidth = '5';
             ctx.strokeStyle = 'black';
             ctx.rect(this.x + this.offset.left, this.y + this.offset.top, this.width - (this.offset.right + this.offset.left), this.height - (this.offset.bottom + this.offset.top));
+            ctx.moveTo(this.x + this.width - this.offset.right + this.range, this.y + this.offset.top);
+            ctx.lineTo(this.x + this.width - this.offset.right + this.range, this.y + this.height - this.offset.bottom);
             ctx.stroke();
         }
     }
@@ -38,7 +40,7 @@ class DrawableObject {
         let path = this.IMAGES[this.resolveImageIndex()];
         this.img = this.imageCache[path];
     }
-    
+
     resolveImageIndex() {
         if (this.percentage > 80) {
             return 5;

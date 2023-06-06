@@ -9,7 +9,7 @@ class MovingObjects extends DrawableObject {
     MAX_HEALTH;
     health;
     offset;
-    range = 150;
+    range;
     lastAttack = 0;
 
     applyGravity() {

@@ -8,6 +8,7 @@ class Character extends MovingObjects {
     MAX_HEALTH = 1000;
     health = this.MAX_HEALTH;
     damage = 50;
+    range = 70;
     offset = {
         top: 100,
         right: 70,
