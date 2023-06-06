@@ -164,10 +164,11 @@ class Character extends MovingObjects {
             if (this.world.keyboard.DOWN && this.y < this.world.level.level_bottom_y) {
                 this.moveDown();
             }
-            // if (!this.isAboveGround() && this.world.keyboard.UP) {
-            //     this.currentImage = 0;
-            //     this.jump();
-            // }
+            if(this.world.keyboard.HIT){
+                this.world.level.enemies.forEach(enemy => {
+                    this.isCollidingWithAttack(enemy);
+                });
+            }
             this.world.camera_x = -this.x + 100;
         }, 1000 / 60);
     }

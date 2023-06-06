@@ -68,17 +68,20 @@ class World {
     }
 
     checkCollisions() {
-        this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy) && (enemy.health > 0)) {
-                this.collideEnemy(enemy);
+        this.level.enemies.forEach(enemy => {
+            // if (this.character.isColliding(enemy) && (enemy.health > 0)) {
+            //     this.collideEnemy(enemy);
+            // }
+            if (this.hittingEnemy(enemy)) {
+                enemy.takeDamage(this.characterDamage);
             }
         });
-        this.level.coins.forEach((coin) => {
+        this.level.coins.forEach(coin => {
             if (this.character.isColliding(coin)) {
                 this.collectCoin(coin);
             }
         });
-        this.level.salsa.forEach((salsa) => {
+        this.level.salsa.forEach(salsa => {
             if (this.character.isColliding(salsa)) {
                 this.collectSalsa(salsa);
             }
@@ -89,6 +92,10 @@ class World {
                 this.hurtEndboss();
             }
         });
+    }
+
+    hittingEnemy(enemy){
+        return this.character.isCollidingWithAttack(enemy) && enemy.health > 0 && this.character.recentAttack();
     }
 
     hurtEndboss() {
@@ -104,11 +111,11 @@ class World {
     collideEnemy(enemy) {
         if (enemy == this.level.enemies[0]) {
             this.character.takeDamage(this.bossDamage);
-            if(world.character.recentAttack()){
+            if (world.character.recentAttack()) {
                 enemy.takeDamage(this.character.damage);
             }
         } else {
-            if(world.character.recentAttack()){
+            if (world.character.recentAttack()) {
                 enemy.takeDamage(this.character.damage);
             }
             enemy.lastAttack = new Date().getTime();
