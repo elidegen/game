@@ -10,6 +10,7 @@ class MovingObjects extends DrawableObject {
     health;
     offset;
     range = 150;
+    lastAttack = 0;
 
     applyGravity() {
         setStoppableInterval(() => {
@@ -92,7 +93,7 @@ class MovingObjects extends DrawableObject {
     }
 
     isDead() {
-        return this.health <= 0;
+        return this.health < 1;
     }
 
     isHurt() {
@@ -117,6 +118,11 @@ class MovingObjects extends DrawableObject {
 
     shortIdle() {
         return this.idle < 50;
+    }
+
+    recentAttack() {
+        let timepassed = new Date().getTime() - this.lastAttack;
+        return timepassed < 1000;
     }
 
     enemyAttack() {

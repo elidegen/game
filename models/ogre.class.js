@@ -1,17 +1,5 @@
-class Ogre extends MovingObjects {
-    height = 200;
-    width = 200;
-    y = this.y - (this.height);
-    i = 1;
-    MAX_HEALTH = 10;
-    health = this.MAX_HEALTH;
-    otherDirection = 1;
-    offset = {
-        top: 50,
-        right: 0,
-        left: 55,
-        bottom: 35,
-    };
+class Ogre extends Enemies {
+    
     IMAGES_WALKING = [
         'img/enemies/Ogre/PNG/PNG Sequences/Walking/0_Ogre_Walking_000.png',
         'img/enemies/Ogre/PNG/PNG Sequences/Walking/0_Ogre_Walking_001.png',
@@ -52,25 +40,14 @@ class Ogre extends MovingObjects {
         'img/enemies/Ogre/PNG/PNG Sequences/Slashing/0_Ogre_Slashing_010.png',
         'img/enemies/Ogre/PNG/PNG Sequences/Slashing/0_Ogre_Slashing_011.png',
     ];
+    IMAGE_DEAD = 'img/enemies/Ogre/PNG/PNG Sequences/Dying/0_Ogre_Dying_014.png';
 
     constructor() {
-        super().loadImage('img/3_enemies_chicken/chicken_small/1_walk/1_w.png');
+        super().loadImage('img/enemies/Ogre/PNG/PNG Sequences/Walking/0_Ogre_Walking_000.png');
         this.x = 500 + Math.random() * 2500; //math.random = zahl zwischen 0 und 1
         this.speed = 0.25 + Math.random() * 0.5;
         this.loadImages(this.IMAGES_WALKING);
+        this.loadImages(this.IMAGES_ATTACK);
         this.animate();
-    }
-    animate() {
-        setStoppableInterval(() => {
-            this.moveLeft();
-        }, 1000 / 60);
-
-        setStoppableInterval(() => {
-            if (!this.isDead()) {
-                this.playAnimation(this.IMAGES_WALKING);
-            } else {
-                this.loadImage('img/3_enemies_chicken/chicken_small/2_dead/dead.png');
-            }
-        }, 130);
     }
 }

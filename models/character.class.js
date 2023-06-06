@@ -8,7 +8,6 @@ class Character extends MovingObjects {
     MAX_HEALTH = 1000;
     health = this.MAX_HEALTH;
     idle = 0;
-    lastMelee = 0;
     offset = {
         top: 50,
         right: 65,
@@ -132,7 +131,7 @@ class Character extends MovingObjects {
 
     async animate() {
         setStoppableInterval(() => {
-            if (this.recentHit()) {
+            if (this.recentAttack()) {
                 this.playAnimation(this.IMAGES_HIT);
             } else if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DYING);
@@ -146,11 +145,6 @@ class Character extends MovingObjects {
                 this.playAnimation(this.IMAGES_IDLE);
             }
         }, 100);
-    }
-
-    recentHit() {
-        let timepassed = new Date().getTime() - this.lastMelee;
-        return timepassed < 1000;
     }
 
     moveCharacter() {

@@ -38,7 +38,7 @@ window.addEventListener("keydown", (e) => {
     }
     if (e.keyCode == 75) {
         keyboard.HIT = true;
-        world.character.lastMelee = new Date().getTime();
+        world.character.lastAttack = new Date().getTime();
         world.character.currentImage = 0;
     }
     if (e.keyCode == 76) {

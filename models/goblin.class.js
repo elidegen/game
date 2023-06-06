@@ -1,17 +1,4 @@
-class Goblin extends MovingObjects {
-    height = 200;
-    width = 200;
-    y = this.y - (this.height);
-    i = 1;
-    MAX_HEALTH = 1;
-    health = this.MAX_HEALTH;
-    otherDirection = 1;
-    offset = {
-        top: 50,
-        right: 0,
-        left: 55,
-        bottom: 35,
-    };
+class Goblin extends Enemies {
     IMAGES_WALKING = [
         'img/enemies/Goblin/PNG/PNG Sequences/Walking/0_Goblin_Walking_000.png',
         'img/enemies/Goblin/PNG/PNG Sequences/Walking/0_Goblin_Walking_001.png',
@@ -38,25 +25,29 @@ class Goblin extends MovingObjects {
         'img/enemies/Goblin/PNG/PNG Sequences/Walking/0_Goblin_Walking_022.png',
         'img/enemies/Goblin/PNG/PNG Sequences/Walking/0_Goblin_Walking_023.png',
     ];
+    IMAGES_ATTACK = [
+        'img/enemies/Goblin/PNG/PNG Sequences/Slashing/0_Goblin_Slashing_000.png',
+        'img/enemies/Goblin/PNG/PNG Sequences/Slashing/0_Goblin_Slashing_001.png',
+        'img/enemies/Goblin/PNG/PNG Sequences/Slashing/0_Goblin_Slashing_002.png',
+        'img/enemies/Goblin/PNG/PNG Sequences/Slashing/0_Goblin_Slashing_003.png',
+        'img/enemies/Goblin/PNG/PNG Sequences/Slashing/0_Goblin_Slashing_004.png',
+        'img/enemies/Goblin/PNG/PNG Sequences/Slashing/0_Goblin_Slashing_005.png',
+        'img/enemies/Goblin/PNG/PNG Sequences/Slashing/0_Goblin_Slashing_006.png',
+        'img/enemies/Goblin/PNG/PNG Sequences/Slashing/0_Goblin_Slashing_007.png',
+        'img/enemies/Goblin/PNG/PNG Sequences/Slashing/0_Goblin_Slashing_008.png',
+        'img/enemies/Goblin/PNG/PNG Sequences/Slashing/0_Goblin_Slashing_009.png',
+        'img/enemies/Goblin/PNG/PNG Sequences/Slashing/0_Goblin_Slashing_010.png',
+        'img/enemies/Goblin/PNG/PNG Sequences/Slashing/0_Goblin_Slashing_011.png',
+    ];
+    IMAGE_DEAD = 'img/enemies/Goblin/PNG/PNG Sequences/Dying/0_Goblin_Dying_014.png'
 
     constructor() {
-        super().loadImage('img/3_enemies_chicken/chicken_normal/1_walk/1_w.png');
-        this.x = 500 + Math.random() * 2500; //math.random = zahl zwischen 0 und 1
+        super().loadImage('img/enemies/Goblin/PNG/PNG Sequences/Walking/0_Goblin_Walking_000.png');
+        this.x = 500 + Math.random() * 2500; //math.random = zahl zwischen 0 und 1    
+        this.y = 120 + Math.random() * 460;
         this.speed = 0.25 + Math.random() * 0.5;
         this.loadImages(this.IMAGES_WALKING);
+        this.loadImages(this.IMAGES_ATTACK);
         this.animate();
-    }
-    animate() {
-        setStoppableInterval(() => {
-            this.moveLeft();
-        }, 1000 / 60);
-
-        setStoppableInterval(() => {
-            if (this.health > 0) {
-                this.playAnimation(this.IMAGES_WALKING);
-            } else {
-                this.loadImage('img/3_enemies_chicken/chicken_normal/2_dead/dead.png');
-            }
-        }, 130);
     }
 }

@@ -21,6 +21,7 @@ class World {
     maxCoins;
     maxSalsa;
     volume = false;
+    alreadyCollided = 0;
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -105,7 +106,11 @@ class World {
         if (enemy == this.level.enemies[0]) {
             this.character.takeDamage(this.bossDamage);
         } else {
-            enemy.enemyAttack();
+            if(this.alreadyCollided = 0){
+                this.alreadyCollided = 1;
+                enemy.currentImage = 0;
+            }
+            enemy.lastAttack = new Date().getTime();
         }
     }
 
