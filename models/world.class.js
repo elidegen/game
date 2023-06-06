@@ -106,6 +106,7 @@ class World {
             this.character.takeDamage(this.bossDamage);
         } else {
             enemy.lastAttack = new Date().getTime();
+            world.character.takeDamage(this.enemyDamage);
         }
     }
 
