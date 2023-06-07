@@ -13,12 +13,12 @@ class World {
     throwable = [];
     lastThrow = 0;
     lastBossHit = 0;
-    collectedCoins = 0;
+    collectedBlessing = 0;
     collectedSalsa = 0;
     bossDamage = 100;
     enemyDamage = 20;
     characterDamage = 40;
-    maxCoins;
+    maxBlessings;
     maxSalsa;
     volume = false;
 
@@ -26,7 +26,7 @@ class World {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.keyboard = keyboard;
-        this.maxCoins = this.level.coins.length;
+        this.maxBlessings = this.level.blessings.length;
         this.maxSalsa = this.level.salsa.length;
         this.setWorld();
         this.draw();
@@ -69,18 +69,17 @@ class World {
 
     checkCollisions() {
         this.level.enemies.forEach(enemy => {
-            if (enemy.isCollidingWithAttack(this.character)) {
-                // this.collideEnemy(enemy);
-                console.log('hittt');
+            if (enemy.isCollidingWithAttack(this.character) && enemy.health > 0) {
+                this.collideEnemy(enemy);
             }
             if (this.hittingEnemy(enemy)) {
                 enemy.takeDamage(this.characterDamage);
                 enemy.lastHit = new Date().getTime();
             }
         });
-        this.level.coins.forEach(coin => {
-            if (this.character.isColliding(coin)) {
-                this.collectCoin(coin);
+        this.level.blessings.forEach(blessing => {
+            if (this.character.isColliding(blessing)) {
+                this.collectBlessing(blessing);
             }
         });
         this.level.salsa.forEach(salsa => {
@@ -117,9 +116,6 @@ class World {
                 enemy.takeDamage(this.character.damage);
             }
         } else {
-            if (world.character.recentAttack()) {
-                enemy.takeDamage(this.character.damage);
-            }
             enemy.lastAttack = new Date().getTime();
             world.character.takeDamage(this.enemyDamage);
         }
@@ -146,14 +142,14 @@ class World {
         return (this.collectedSalsa / this.maxSalsa * 100);
     }
 
-    collectCoin(coin) {
-        this.level.coins.splice(this.level.coins.indexOf(coin), 1);
-        this.collectedCoins += 1;
-        this.coinbar.setPercentage(this.calcCoins());
+    collectBlessing(blessing) {
+        this.level.blessings.splice(this.level.blessings.indexOf(blessing), 1);
+        this.collectedBlessing += 1;
+        this.coinbar.setPercentage(this.calcBlessing());
     }
 
-    calcCoins() {
-        return (this.collectedCoins / this.maxCoins * 100);
+    calcBlessing() {
+        return (this.collectedBlessing / this.maxBlessings * 100);
     }
 
     draw() {
@@ -166,7 +162,7 @@ class World {
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.enemies);
         this.addToMap(this.character);
-        this.addObjectsToMap(this.level.coins);
+        this.addObjectsToMap(this.level.blessings);
         this.addObjectsToMap(this.level.salsa);
 
         this.ctx.translate(-this.camera_x, 0); //fixed objects after this line

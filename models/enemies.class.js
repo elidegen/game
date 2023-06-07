@@ -32,9 +32,9 @@ class Enemies extends MovingObjects {
         setStoppableInterval(() => {
             if(this.isDead() && this.isHurt()){
                 this.playAnimation(this.IMAGES_DYING);
-            } else if (this.isHurt()) {
+            } else if (!this.isDead() && this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
-            } else if (this.recentAttack()) {
+            } else if (!this.isDead() && this.recentAttack()) {
                 this.playAnimation(this.IMAGES_ATTACK);
             } else if (!this.isDead()) {
                 this.playAnimation(this.IMAGES_WALKING);
