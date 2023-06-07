@@ -23,7 +23,7 @@ class Enemies extends MovingObjects {
         this.x = 500 + Math.random() * 2000; //math.random = zahl zwischen 0 und 1    
         this.y = 120 + Math.random() * 340;
         this.speed = 1 + Math.random() * 4;
-        this.moveEnemy();
+        //this.moveEnemy();
     }
 
     animate() {

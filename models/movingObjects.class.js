@@ -119,10 +119,17 @@ class MovingObjects extends DrawableObject {
     }
 
     isCollidingWithAttack(mo) {
-        return this.x + this.width - this.offset.right + this.range > mo.x + mo.offset.right &&
-            this.y + this.height - this.offset.bottom > mo.y + mo.offset.top &&
-            this.x + this.offset.left < mo.x + mo.width - mo.offset.right &&
-            this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom
+        if (this.otherDirection == 0) {
+            return this.x + this.width - this.offset.right + this.range > mo.x + mo.offset.left &&
+                this.y + this.height - this.offset.bottom > mo.y + mo.offset.top &&
+                this.x + this.offset.left + this.range < mo.x + mo.width - mo.offset.right &&
+                this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom
+        } else {
+            return this.x + this.width - this.offset.right - this.range > mo.x + mo.offset.left &&
+                this.y + this.height - this.offset.bottom > mo.y + mo.offset.top &&
+                this.x + this.offset.left - this.range < mo.x + mo.width - mo.offset.right &&
+                this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom
+        }
     }
 
     shortIdle() {

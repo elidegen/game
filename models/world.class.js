@@ -69,9 +69,10 @@ class World {
 
     checkCollisions() {
         this.level.enemies.forEach(enemy => {
-            // if (this.character.isColliding(enemy) && (enemy.health > 0)) {
-            //     this.collideEnemy(enemy);
-            // }
+            if (enemy.isCollidingWithAttack(this.character)) {
+                // this.collideEnemy(enemy);
+                console.log('hittt');
+            }
             if (this.hittingEnemy(enemy)) {
                 enemy.takeDamage(this.characterDamage);
             }
