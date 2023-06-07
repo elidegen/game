@@ -53,13 +53,30 @@ class Goblin extends Enemies {
         'img/enemies/Goblin/PNG/PNG Sequences/Hurt/0_Goblin_Hurt_010.png',
         'img/enemies/Goblin/PNG/PNG Sequences/Hurt/0_Goblin_Hurt_011.png',
     ];
+    IMAGES_DYING = [
+        'img/enemies/Goblin/PNG/PNG Sequences/Dying/0_Goblin_Dying_000.png',
+        'img/enemies/Goblin/PNG/PNG Sequences/Dying/0_Goblin_Dying_001.png',
+        'img/enemies/Goblin/PNG/PNG Sequences/Dying/0_Goblin_Dying_002.png',
+        'img/enemies/Goblin/PNG/PNG Sequences/Dying/0_Goblin_Dying_003.png',
+        'img/enemies/Goblin/PNG/PNG Sequences/Dying/0_Goblin_Dying_004.png',
+        'img/enemies/Goblin/PNG/PNG Sequences/Dying/0_Goblin_Dying_005.png',
+        'img/enemies/Goblin/PNG/PNG Sequences/Dying/0_Goblin_Dying_006.png',
+        'img/enemies/Goblin/PNG/PNG Sequences/Dying/0_Goblin_Dying_007.png',
+        'img/enemies/Goblin/PNG/PNG Sequences/Dying/0_Goblin_Dying_008.png',
+        'img/enemies/Goblin/PNG/PNG Sequences/Dying/0_Goblin_Dying_009.png',
+        'img/enemies/Goblin/PNG/PNG Sequences/Dying/0_Goblin_Dying_010.png',
+        'img/enemies/Goblin/PNG/PNG Sequences/Dying/0_Goblin_Dying_011.png',
+        'img/enemies/Goblin/PNG/PNG Sequences/Dying/0_Goblin_Dying_012.png',
+        'img/enemies/Goblin/PNG/PNG Sequences/Dying/0_Goblin_Dying_013.png',
+        'img/enemies/Goblin/PNG/PNG Sequences/Dying/0_Goblin_Dying_014.png',
+    ];
     IMAGE_DEAD = 'img/enemies/Goblin/PNG/PNG Sequences/Dying/0_Goblin_Dying_014.png'
 
     constructor() {
         super().loadImage('img/enemies/Goblin/PNG/PNG Sequences/Walking/0_Goblin_Walking_000.png');
         this.loadImages(this.IMAGES_WALKING);
-        this.loadImages(this.IMAGES_ATTACK);
         this.loadImages(this.IMAGES_HURT);
-        this.animate();
+        this.loadImages(this.IMAGES_ATTACK);
+        this.loadImages(this.IMAGES_DYING);
     }
 }

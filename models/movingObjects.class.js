@@ -5,7 +5,7 @@ class MovingObjects extends DrawableObject {
     otherDirection = false;
     speedY = 0;
     acceleration = 2.5;
-    lastHit = new Date().getTime();
+    lastHit = 0;
     MAX_HEALTH;
     health;
     offset;

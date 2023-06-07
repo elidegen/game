@@ -16,6 +16,7 @@ class Enemies extends MovingObjects {
     IMAGES_ATTACK;
     IMAGES_WALKING;
     IMAGES_HURT;
+    IMAGES_DYING;
     IMAGE_DEAD;
 
     constructor(){
@@ -23,18 +24,21 @@ class Enemies extends MovingObjects {
         this.x = 500 + Math.random() * 2000; //math.random = zahl zwischen 0 und 1    
         this.y = 120 + Math.random() * 340;
         this.speed = 1 + Math.random() * 4;
-        //this.moveEnemy();
+        this.animate();
+        this.moveEnemy();
     }
 
     animate() {
         setStoppableInterval(() => {
-            if (this.isHurt()) {
+            if(this.isDead() && this.isHurt()){
+                this.playAnimation(this.IMAGES_DYING);
+            } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
             } else if (this.recentAttack()) {
                 this.playAnimation(this.IMAGES_ATTACK);
             } else if (!this.isDead()) {
                 this.playAnimation(this.IMAGES_WALKING);
-            } else {
+            }  else {
                 this.loadImage(this.IMAGE_DEAD);
             }
         }, 130);

@@ -75,6 +75,7 @@ class World {
             }
             if (this.hittingEnemy(enemy)) {
                 enemy.takeDamage(this.characterDamage);
+                enemy.lastHit = new Date().getTime();
             }
         });
         this.level.coins.forEach(coin => {
