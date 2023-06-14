@@ -98,11 +98,11 @@ class World {
     hurtEndboss() {
         this.level.enemies[0].health -= this.characterDamage;
         this.lastBossHit = new Date().getTime();
-        this.endbosshealthbar.setPercentage(this.calcBossLife());
+        this.endbosshealthbar.setPercentage(this.calcHealth(world.level.enemies[0]));
     }
 
-    calcBossLife() {
-        return (this.level.enemies[0].health / this.level.enemies[0].MAX_HEALTH * 100);
+    calcHealth(object) {
+        return (object.health / object.MAX_HEALTH * 100);
     }
 
     collideEnemy(enemy) {
