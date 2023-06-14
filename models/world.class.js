@@ -15,12 +15,12 @@ class World {
     lastBossHit = 0;
     lastBlessing = 0;
     collectedBlessing = 0;
-    collectedSalsa = 0;
+    collectedBomb = 0;
     bossDamage = 100;
     enemyDamage = 20;
     characterDamage = 40;
     maxBlessings;
-    maxSalsa;
+    maxBomb;
     volume = false;
 
     constructor(canvas, keyboard) {
@@ -28,7 +28,7 @@ class World {
         this.canvas = canvas;
         this.keyboard = keyboard;
         this.maxBlessings = this.level.blessings.length;
-        this.maxSalsa = this.level.salsa.length;
+        this.maxBomb = this.level.bomb.length;
         this.setWorld();
         this.draw();
         this.run();
@@ -48,12 +48,12 @@ class World {
     }
 
     checkThrowPress() {
-        if (this.keyboard.SPACE && this.recentAction(this.lastThrow) && this.collectedSalsa > 0) {
+        if (this.keyboard.SPACE && this.recentAction(this.lastThrow) && this.collectedBomb > 0) {
             let bottle = new Throwable(this.character.x + 40, this.character.y + 130);
             this.throwable.push(bottle);
             this.lastThrow = new Date().getTime();
-            this.collectedSalsa -= 1;
-            this.salsabar.setPercentage(this.calcSalsa());
+            this.collectedBomb -= 1;
+            this.salsabar.setPercentage(this.calcBomb());
         }
     }
 
@@ -78,9 +78,9 @@ class World {
                 this.collectBlessing(blessing);
             }
         });
-        this.level.salsa.forEach(salsa => {
-            if (this.character.isColliding(salsa)) {
-                this.collectSalsa(salsa);
+        this.level.bomb.forEach(bomb => {
+            if (this.character.isColliding(bomb)) {
+                this.collectBomb(bomb);
             }
         });
         this.throwable.forEach(bottle => {
@@ -122,14 +122,14 @@ class World {
         }, 50);
     }
 
-    collectSalsa(salsa) {
-        this.level.salsa.splice(this.level.salsa.indexOf(salsa), 1);
-        this.collectedSalsa += 1;
-        this.salsabar.setPercentage(this.calcSalsa());
+    collectBomb(bomb) {
+        this.level.bomb.splice(this.level.bomb.indexOf(bomb), 1);
+        this.collectedBomb += 1;
+        this.salsabar.setPercentage(this.calcBomb());
     }
 
-    calcSalsa() {
-        return (this.collectedSalsa / this.maxSalsa * 100);
+    calcBomb() {
+        return (this.collectedBomb / this.maxBomb * 100);
     }
 
     collectBlessing(blessing) {
@@ -153,7 +153,7 @@ class World {
         this.addObjectsToMap(this.level.enemies);
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.blessings);
-        this.addObjectsToMap(this.level.salsa);
+        this.addObjectsToMap(this.level.bomb);
 
         this.ctx.translate(-this.camera_x, 0); //fixed objects after this line
 

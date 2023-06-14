@@ -3,17 +3,17 @@ class Level {
     clouds;
     background;
     blessings;
-    salsa;
+    bomb;
     level_start_x = 100;
     level_end_x = 2500;
     level_top_y = 120;
     level_bottom_y = 460;
 
-    constructor(enemies, clouds, background, blessings, salsa){
+    constructor(enemies, clouds, background, blessings, bomb){
         this.enemies = enemies;
         this.background = background;
         this.clouds = clouds;
         this.blessings = blessings;
-        this.salsa = salsa;
+        this.bomb = bomb;
     }
 }
