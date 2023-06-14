@@ -9,8 +9,8 @@ class World {
     lastThrow = 0;
     lastBossHit = 0;
     lastBlessing = 0;
-    collectedBlessing = 0;
-    collectedBomb = 0;
+    collectedBlessings = 0;
+    collectedBombs = 0;
     bossDamage = 100;
     enemyDamage = 20;
     characterDamage = 40;
@@ -43,12 +43,12 @@ class World {
     }
 
     checkThrowPress() {
-        if (this.keyboard.SPACE && this.recentAction(this.lastThrow) && this.collectedBomb > 0) {
+        if (this.keyboard.SPACE && this.recentAction(this.lastThrow) && this.collectedBombs > 0) {
             let bottle = new Throwable(this.character.x + 40, this.character.y + 130);
             this.throwable.push(bottle);
             this.lastThrow = new Date().getTime();
-            this.collectedBomb -= 1;
-            this.salsabar.setPercentage(this.calcPercentage(this.collectedBomb, this.MAX_BOMB));
+            this.collectedBombs -= 1;
+            this.salsabar.setPercentage(this.calcPercentage(this.collectedBombs, this.MAX_BOMB));
         }
     }
 
@@ -75,7 +75,7 @@ class World {
         });
         this.level.bomb.forEach(bomb => {
             if (this.character.isColliding(bomb)) {
-                this.collectBomb(bomb);
+                this.collectItem(this.level.bomb, bomb, bombBar, this.collectedBombs);
             }
         });
         this.throwable.forEach(bottle => {
@@ -113,10 +113,18 @@ class World {
         }, 50);
     }
 
+    collectItem(itemPath, item, barID, collectedVar) {
+        itemPath.splice(itemPath.indexOf(item), 1);
+        collectedVar += 1;
+        // this.salsabar.setPercentage(this.calcPercentage(this.collectedBombs, this.MAX_BOMB));
+        barID.style = `width: 100%;`
+    }
+
     collectBomb(bomb) {
         this.level.bomb.splice(this.level.bomb.indexOf(bomb), 1);
-        this.collectedBomb += 1;
-        this.salsabar.setPercentage(this.calcPercentage(this.collectedBomb, this.MAX_BOMB));
+        this.collectedBombs += 1;
+        // this.salsabar.setPercentage(this.calcPercentage(this.collectedBombs, this.MAX_BOMB));
+        bombBar.style = "width: 100%;"
     }
 
     calcPercentage(current, max) {
@@ -125,7 +133,7 @@ class World {
 
     collectBlessing(blessing) {
         this.level.blessings.splice(this.level.blessings.indexOf(blessing), 1);
-        this.collectedBlessing += 1;
+        this.collectedBlessings += 1;
         this.lastBlessing = new Date().getTime();
     }
 
@@ -143,13 +151,6 @@ class World {
         this.addObjectsToMap(this.level.bomb);
 
         this.ctx.translate(-this.camera_x, 0); //fixed objects after this line
-
-        // this.addToMap(this.salsabar);
-        // this.addToMap(this.coinbar);
-        // this.addToMap(this.healthbar);
-        // this.addToMap(this.endbosshealthbar);
-        // this.addToMap(this.endbosshealthbarIcon);
-
 
         //draw wird immer wieder aufgerufen. innerhalb der funktion funktioniert 'this' nicht.
         let self = this;
