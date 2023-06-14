@@ -92,7 +92,7 @@ class World {
     }
 
     hittingEnemy(enemy){
-        return this.character.isCollidingWithAttack(enemy) && enemy.health > 0 && this.character.recentAction(this.lastHit);
+        return this.character.isCollidingWithAttack(enemy) && enemy.health > 0 && this.character.recentAction(this.lastAttack);
     }
 
     hurtEndboss() {
@@ -108,7 +108,7 @@ class World {
     collideEnemy(enemy) {
         if (enemy == this.level.enemies[0]) {
             this.character.takeDamage(this.bossDamage);
-            if (world.character.recentAction(this.lastHit)) {
+            if (world.character.recentAction(this.lastAttack)) {
                 enemy.takeDamage(this.character.damage);
             }
         } else {
