@@ -80,8 +80,52 @@ canvas {
     right: 222px;
 }
 
-#play img{
+#play img {
     margin-left: 6px;
+}
+
+/* status bars */
+.status {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px;
+    display: flex;
+    backdrop-filter: blur(3px);
+    border-radius: 0 0 20px 0;
+}
+.statusBarImgs {
+    display: flex;
+    flex-direction: column;
+    z-index: 5;
+}
+
+.statusBarImgs img {
+    height: 40px;
+    width: 40px;
+}
+
+.statusBars {
+    display: flex;
+    flex-direction: column;
+    margin-left: -40px;
+}
+
+.barSleeve {
+    width: 20vw;
+    height: 20px;
+    border: 1px solid black;
+    border-radius: 20px;
+    background-color: rgb(202, 202, 202);
+    margin: 10px;
+}
+
+.bar {
+    background: linear-gradient(to bottom, rgb(255, 230, 0), orange);
+    width: 90%;
+    height: 100%;
+    border-radius: 20px;
+    border-right: 1px solid black;
 }
 
 @media(max-width: 1280px) {

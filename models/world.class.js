@@ -149,7 +149,7 @@ class World {
 
         this.addObjectsToMap(this.level.background);
         this.addObjectsToMap(this.throwable);
-        this.addObjectsToMap(this.level.clouds);
+        // this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.enemies);
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.blessings);
@@ -157,11 +157,11 @@ class World {
 
         this.ctx.translate(-this.camera_x, 0); //fixed objects after this line
 
-        this.addToMap(this.salsabar);
-        this.addToMap(this.coinbar);
-        this.addToMap(this.healthbar);
-        this.addToMap(this.endbosshealthbar);
-        this.addToMap(this.endbosshealthbarIcon);
+        // this.addToMap(this.salsabar);
+        // this.addToMap(this.coinbar);
+        // this.addToMap(this.healthbar);
+        // this.addToMap(this.endbosshealthbar);
+        // this.addToMap(this.endbosshealthbarIcon);
 
 
         //draw wird immer wieder aufgerufen. innerhalb der funktion funktioniert 'this' nicht.
