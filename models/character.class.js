@@ -115,6 +115,38 @@ class Character extends MovingObjects {
         'img/characters/Paladin_1/PNG/PNG Sequences/Slashing/0_Paladin_Slashing_010.png',
         'img/characters/Paladin_1/PNG/PNG Sequences/Slashing/0_Paladin_Slashing_011.png',
     ];
+    IMAGES_BLESSED = [
+        'img/characters/Paladin_1/PNG/PNG Sequences/Blessed/0_Paladin_Blessed_000.png',
+        'img/characters/Paladin_1/PNG/PNG Sequences/Blessed/0_Paladin_Blessed_001.png',
+        'img/characters/Paladin_1/PNG/PNG Sequences/Blessed/0_Paladin_Blessed_002.png',
+        'img/characters/Paladin_1/PNG/PNG Sequences/Blessed/0_Paladin_Blessed_003.png',
+        'img/characters/Paladin_1/PNG/PNG Sequences/Blessed/0_Paladin_Blessed_004.png',
+        'img/characters/Paladin_1/PNG/PNG Sequences/Blessed/0_Paladin_Blessed_005.png',
+        'img/characters/Paladin_1/PNG/PNG Sequences/Blessed/0_Paladin_Blessed_006.png',
+        'img/characters/Paladin_1/PNG/PNG Sequences/Blessed/0_Paladin_Blessed_007.png',
+        'img/characters/Paladin_1/PNG/PNG Sequences/Blessed/0_Paladin_Blessed_008.png',
+        'img/characters/Paladin_1/PNG/PNG Sequences/Blessed/0_Paladin_Blessed_009.png',
+        'img/characters/Paladin_1/PNG/PNG Sequences/Blessed/0_Paladin_Blessed_010.png',
+        'img/characters/Paladin_1/PNG/PNG Sequences/Blessed/0_Paladin_Blessed_011.png',
+        'img/characters/Paladin_1/PNG/PNG Sequences/Blessed/0_Paladin_Blessed_012.png',
+        'img/characters/Paladin_1/PNG/PNG Sequences/Blessed/0_Paladin_Blessed_013.png',
+        'img/characters/Paladin_1/PNG/PNG Sequences/Blessed/0_Paladin_Blessed_014.png',
+        'img/characters/Paladin_1/PNG/PNG Sequences/Blessed/0_Paladin_Blessed_015.png',
+        'img/characters/Paladin_1/PNG/PNG Sequences/Blessed/0_Paladin_Blessed_016.png',
+        'img/characters/Paladin_1/PNG/PNG Sequences/Blessed/0_Paladin_Blessed_017.png',
+        'img/characters/Paladin_1/PNG/PNG Sequences/Blessed/0_Paladin_Blessed_018.png',
+        'img/characters/Paladin_1/PNG/PNG Sequences/Blessed/0_Paladin_Blessed_019.png',
+        'img/characters/Paladin_1/PNG/PNG Sequences/Blessed/0_Paladin_Blessed_020.png',
+        'img/characters/Paladin_1/PNG/PNG Sequences/Blessed/0_Paladin_Blessed_021.png',
+        'img/characters/Paladin_1/PNG/PNG Sequences/Blessed/0_Paladin_Blessed_022.png',
+        'img/characters/Paladin_1/PNG/PNG Sequences/Blessed/0_Paladin_Blessed_023.png',
+        'img/characters/Paladin_1/PNG/PNG Sequences/Blessed/0_Paladin_Blessed_024.png',
+        'img/characters/Paladin_1/PNG/PNG Sequences/Blessed/0_Paladin_Blessed_025.png',
+        'img/characters/Paladin_1/PNG/PNG Sequences/Blessed/0_Paladin_Blessed_026.png',
+        'img/characters/Paladin_1/PNG/PNG Sequences/Blessed/0_Paladin_Blessed_027.png',
+        'img/characters/Paladin_1/PNG/PNG Sequences/Blessed/0_Paladin_Blessed_028.png',
+        'img/characters/Paladin_1/PNG/PNG Sequences/Blessed/0_Paladin_Blessed_029.png',
+    ];
     JUMP_SOUND = new Audio('audio/jump.mp3');
 
     constructor() {
@@ -132,7 +164,7 @@ class Character extends MovingObjects {
 
     async animate() {
         setStoppableInterval(() => {
-            if (this.recentAttack()) {
+            if (this.recentAction(this.lastAttack)) {
                 this.playAnimation(this.IMAGES_HIT);
             } else if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DYING);

@@ -34,7 +34,7 @@ class Enemies extends MovingObjects {
                 this.playAnimation(this.IMAGES_DYING);
             } else if (!this.isDead() && this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
-            } else if (!this.isDead() && this.recentAttack()) {
+            } else if (!this.isDead() && this.recentAction(this.lastAttack)) {
                 this.playAnimation(this.IMAGES_ATTACK);
             } else if (!this.isDead()) {
                 this.playAnimation(this.IMAGES_WALKING);

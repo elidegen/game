@@ -132,18 +132,14 @@ class MovingObjects extends DrawableObject {
         }
     }
 
-    shortIdle() {
-        return this.idle < 50;
-    }
-
-    recentAttack() {
-        let timepassed = new Date().getTime() - this.lastAttack;
-        return timepassed < 1000;
+    recentAction(action) {
+        let timepassed = new Date().getTime() - action;
+        return timepassed < 500;
     }
 
     moveEnemy() {
         setStoppableInterval(() => {
-            if (!this.isDead() && !this.recentAttack()) {
+            if (!this.isDead() && !this.recentAction(this.lastAttack)) {
                 this.followCharacter()
             }
         }, 100);

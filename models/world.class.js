@@ -13,6 +13,7 @@ class World {
     throwable = [];
     lastThrow = 0;
     lastBossHit = 0;
+    lastBlessing = 0;
     collectedBlessing = 0;
     collectedSalsa = 0;
     bossDamage = 100;
@@ -47,7 +48,7 @@ class World {
     }
 
     checkThrowPress() {
-        if (this.keyboard.SPACE && this.recentThrow() && this.collectedSalsa > 0) {
+        if (this.keyboard.SPACE && this.recentAction(this.lastThrow) && this.collectedSalsa > 0) {
             let bottle = new Throwable(this.character.x + 40, this.character.y + 130);
             this.throwable.push(bottle);
             this.lastThrow = new Date().getTime();
@@ -60,11 +61,6 @@ class World {
         sound.volume = this.volume;
         sound.currentTime = 0;
         sound.play();
-    }
-
-    recentThrow() {
-        let timepassed = new Date().getTime() - this.lastThrow;
-        return timepassed > 500;
     }
 
     checkCollisions() {
@@ -96,7 +92,7 @@ class World {
     }
 
     hittingEnemy(enemy){
-        return this.character.isCollidingWithAttack(enemy) && enemy.health > 0 && this.character.recentAttack();
+        return this.character.isCollidingWithAttack(enemy) && enemy.health > 0 && this.character.recentAction(this.lastHit);
     }
 
     hurtEndboss() {
@@ -112,7 +108,7 @@ class World {
     collideEnemy(enemy) {
         if (enemy == this.level.enemies[0]) {
             this.character.takeDamage(this.bossDamage);
-            if (world.character.recentAttack()) {
+            if (world.character.recentAction(this.lastHit)) {
                 enemy.takeDamage(this.character.damage);
             }
         } else {
@@ -145,7 +141,7 @@ class World {
     collectBlessing(blessing) {
         this.level.blessings.splice(this.level.blessings.indexOf(blessing), 1);
         this.collectedBlessing += 1;
-        this.coinbar.setPercentage(this.calcBlessing());
+        this.lastBlessing = new Date().getTime();
     }
 
     calcBlessing() {

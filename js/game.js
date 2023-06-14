@@ -17,7 +17,6 @@ function init() {
 }
 
 window.addEventListener("keydown", (e) => {
-    world.character.idle = 0;
     if (e.keyCode == 13) {
         keyboard.ENTER = true;
     }
