@@ -91,8 +91,8 @@ class World {
         });
     }
 
-    hittingEnemy(enemy){
-        return this.character.isCollidingWithAttack(enemy) && enemy.health > 0 && this.character.recentAction(this.lastAttack);
+    hittingEnemy(enemy) {
+        return this.character.isCollidingWithAttack(enemy) && enemy.health > 0 && this.character.recentAction(this.character.lastAttack);
     }
 
     hurtEndboss() {
@@ -108,12 +108,9 @@ class World {
     collideEnemy(enemy) {
         if (enemy == this.level.enemies[0]) {
             this.character.takeDamage(this.bossDamage);
-            if (world.character.recentAction(this.lastAttack)) {
-                enemy.takeDamage(this.character.damage);
-            }
         } else {
             enemy.lastAttack = new Date().getTime();
-            world.character.takeDamage(this.enemyDamage);
+            this.character.takeDamage(this.enemyDamage);
         }
     }
 
@@ -123,9 +120,6 @@ class World {
             enemy.speed = 0;
             enemy.y += 20;
         }, 50);
-        setTimeout(() => {
-            this.character.jump();
-        }, 100);
     }
 
     collectSalsa(salsa) {

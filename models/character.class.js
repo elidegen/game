@@ -198,7 +198,9 @@ class Character extends MovingObjects {
             }
             if(this.world.keyboard.HIT){
                 this.world.level.enemies.forEach(enemy => {
-                    this.isCollidingWithAttack(enemy);
+                    if(this.isCollidingWithAttack(enemy)){
+                        
+                    }
                 });
             }
             this.world.camera_x = -this.x + 100;

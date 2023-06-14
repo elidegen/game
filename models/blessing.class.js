@@ -11,6 +11,6 @@ class Blessing extends MovingObjects {
     constructor() {
         super().loadImage(this.IMAGE_COIN);
         this.x = 300 + Math.random() * 2000;
-        this.y = 120 + Math.random() * 340;
+        this.y = 230 + Math.random() * 350;
     }
 }
