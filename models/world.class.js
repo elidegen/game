@@ -5,11 +5,6 @@ class World {
     ctx;
     keyboard;
     camera_x = 0;
-    healthbar = new Healthbar();
-    coinbar = new Coinbar();
-    salsabar = new Salsabar();
-    endbosshealthbar = new EndbossHealthbar();
-    endbosshealthbarIcon = new EndbossHealthbarIcon();
     throwable = [];
     lastThrow = 0;
     lastBossHit = 0;
@@ -19,16 +14,16 @@ class World {
     bossDamage = 100;
     enemyDamage = 20;
     characterDamage = 40;
-    maxBlessings;
-    maxBomb;
+    MAX_BLESSINGS;
+    MAX_BOMB;
     volume = false;
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.keyboard = keyboard;
-        this.maxBlessings = this.level.blessings.length;
-        this.maxBomb = this.level.bomb.length;
+        this.MAX_BLESSINGS = this.level.blessings.length;
+        this.MAX_BOMB = this.level.bomb.length;
         this.setWorld();
         this.draw();
         this.run();
@@ -53,7 +48,7 @@ class World {
             this.throwable.push(bottle);
             this.lastThrow = new Date().getTime();
             this.collectedBomb -= 1;
-            this.salsabar.setPercentage(this.calcBomb());
+            this.salsabar.setPercentage(this.calcPercentage(this.collectedBomb, this.MAX_BOMB));
         }
     }
 
@@ -98,11 +93,7 @@ class World {
     hurtEndboss() {
         this.level.enemies[0].health -= this.characterDamage;
         this.lastBossHit = new Date().getTime();
-        this.endbosshealthbar.setPercentage(this.calcHealth(world.level.enemies[0]));
-    }
-
-    calcHealth(object) {
-        return (object.health / object.MAX_HEALTH * 100);
+        this.endbosshealthbar.setPercentage(this.calcPercentage(this.level.enemies[0].health, this.level.enemies[0].MAX_HEALTH));
     }
 
     collideEnemy(enemy) {
@@ -125,21 +116,17 @@ class World {
     collectBomb(bomb) {
         this.level.bomb.splice(this.level.bomb.indexOf(bomb), 1);
         this.collectedBomb += 1;
-        this.salsabar.setPercentage(this.calcBomb());
+        this.salsabar.setPercentage(this.calcPercentage(this.collectedBomb, this.MAX_BOMB));
     }
 
-    calcBomb() {
-        return (this.collectedBomb / this.maxBomb * 100);
+    calcPercentage(current, max) {
+        return (current / max * 100);
     }
 
     collectBlessing(blessing) {
         this.level.blessings.splice(this.level.blessings.indexOf(blessing), 1);
         this.collectedBlessing += 1;
         this.lastBlessing = new Date().getTime();
-    }
-
-    calcBlessing() {
-        return (this.collectedBlessing / this.maxBlessings * 100);
     }
 
     draw() {

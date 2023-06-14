@@ -42,7 +42,7 @@ canvas {
     justify-content: center;
     align-items: center;
     border-radius: 100%;
-    background-color: #f4dc00;
+    background: linear-gradient(to bottom, rgb(255, 230, 0), orange);
     border: 2px solid black;
     transition: 200ms;
     box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.5);
@@ -55,7 +55,6 @@ canvas {
 
 .button:hover {
     cursor: pointer;
-    background-color: #ff9600;
     transform: scale(1.1);
     transition: 200ms;
 }
