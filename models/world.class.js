@@ -23,7 +23,7 @@ class World {
         this.canvas = canvas;
         this.keyboard = keyboard;
         this.MAX_BLESSINGS = this.level.blessings.length;
-        this.MAX_BOMB = this.level.bomb.length;
+        this.MAX_BOMB = this.level.bombs.length;
         this.setWorld();
         this.draw();
         this.run();
@@ -70,12 +70,14 @@ class World {
         });
         this.level.blessings.forEach(blessing => {
             if (this.character.isColliding(blessing)) {
-                this.collectBlessing(blessing);
+                this.collectItem(this.level.blessings, blessing, blessingBar);
+                this.collectedBlessings += 1;
             }
         });
-        this.level.bomb.forEach(bomb => {
+        this.level.bombs.forEach(bomb => {
             if (this.character.isColliding(bomb)) {
-                this.collectItem(this.level.bomb, bomb, bombBar, this.collectedBombs);
+                this.collectItem(this.level.bombs, bomb, bombBar);
+                this.collectedBombs += 1;
             }
         });
         this.throwable.forEach(bottle => {
@@ -113,9 +115,8 @@ class World {
         }, 50);
     }
 
-    collectItem(itemPath, item, barID, collectedVar) {
+    collectItem(itemPath, item, barID) {
         itemPath.splice(itemPath.indexOf(item), 1);
-        collectedVar += 1;
         // this.salsabar.setPercentage(this.calcPercentage(this.collectedBombs, this.MAX_BOMB));
         barID.style = `width: 100%;`
     }
@@ -148,7 +149,7 @@ class World {
         this.addObjectsToMap(this.level.enemies);
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.blessings);
-        this.addObjectsToMap(this.level.bomb);
+        this.addObjectsToMap(this.level.bombs);
 
         this.ctx.translate(-this.camera_x, 0); //fixed objects after this line
 
