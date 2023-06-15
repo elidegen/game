@@ -48,7 +48,6 @@ class World {
             this.throwable.push(bottle);
             this.lastThrow = new Date().getTime();
             this.collectedBombs -= 1;
-            this.salsabar.setPercentage(this.calcPercentage(this.collectedBombs, this.MAX_BOMB));
         }
     }
 
@@ -95,7 +94,6 @@ class World {
     hurtEndboss() {
         this.level.enemies[0].health -= this.characterDamage;
         this.lastBossHit = new Date().getTime();
-        this.endbosshealthbar.setPercentage(this.calcPercentage(this.level.enemies[0].health, this.level.enemies[0].MAX_HEALTH));
     }
 
     collideEnemy(enemy) {

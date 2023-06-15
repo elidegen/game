@@ -16,6 +16,5 @@ class Coinbar extends DrawableObject {
     constructor() {
         super();
         this.loadImages(this.IMAGES);
-        this.setPercentage(0);
     }
 }
