@@ -115,7 +115,7 @@ canvas {
     height: 15px;
     border: 1px solid black;
     border-radius: 20px;
-    background-color: rgb(202, 202, 202);
+    background: linear-gradient(to top, lightgrey, grey);
     margin: 8px 23px;
 }
 

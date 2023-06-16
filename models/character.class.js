@@ -5,7 +5,7 @@ class Character extends MovingObjects {
     speed = 8;
     y = this.y - this.height; //435 -350 = 
     world;
-    MAX_HEALTH = 10;
+    MAX_HEALTH = 100;
     health = this.MAX_HEALTH;
     damage = 50;
     range = 70;
@@ -162,7 +162,7 @@ class Character extends MovingObjects {
         this.moveCharacter();
     }
 
-    async animate() {
+    animate() {
         setStoppableInterval(() => {
             if (this.isDead() && this.isHurt()) {
                 this.playAnimation(this.IMAGES_DYING);
