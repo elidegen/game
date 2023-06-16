@@ -20,27 +20,27 @@ window.addEventListener("keydown", (e) => {
     if (e.keyCode == 13) {
         keyboard.ENTER = true;
     }
-    if (e.keyCode == 87) {
+    if (e.keyCode == 87) { //W
         keyboard.UP = true;
     }
-    if (e.keyCode == 65) {
+    if (e.keyCode == 65) { //A
         keyboard.LEFT = true;
     }
-    if (e.keyCode == 83) {
+    if (e.keyCode == 83) { //S
         keyboard.DOWN = true;
     }
-    if (e.keyCode == 68) {
+    if (e.keyCode == 68) { //D
         keyboard.RIGHT = true;
     }
     if (e.keyCode == 32) {
         keyboard.SPACE = true;
     }
-    if (e.keyCode == 75) {
+    if (e.keyCode == 75) { //K
         keyboard.HIT = true;
         world.character.lastAttack = new Date().getTime();
         world.character.currentImage = 0;
     }
-    if (e.keyCode == 76) {
+    if (e.keyCode == 76) { //L
         keyboard.THROW = true;
     }
 });

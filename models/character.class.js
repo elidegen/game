@@ -168,7 +168,7 @@ class Character extends MovingObjects {
                 this.playAnimation(this.IMAGES_DYING);
             } else if (this.isDead()) {
                 this.loadImage('img/characters/Paladin_1/PNG/PNG Sequences/Dying/0_Paladin_Dying_014.png');
-            } else if (this.recentAction(this.lastAttack)) {
+            } else if (world.recentAction(this.lastAttack)) {
                 this.playAnimation(this.IMAGES_HIT);
             } else if (this.isHurt() && this.health < this.MAX_HEALTH) {
                 this.playAnimation(this.IMAGES_HURT);

@@ -27,7 +27,7 @@ class MovingObjects extends DrawableObject {
     }
 
     isAboveGround() {
-        if (this instanceof Throwable) {
+        if (this instanceof ThrowedBomb) {
             return true; //throwable object will fall through ground
         } else {
             return this.y < 90;
@@ -131,14 +131,9 @@ class MovingObjects extends DrawableObject {
         }
     }
 
-    recentAction(action) {
-        let timepassed = new Date().getTime() - action;
-        return timepassed < 500;
-    }
-
     moveEnemy() {
         setStoppableInterval(() => {
-            if (!this.isDead() && !this.recentAction(this.lastAttack)) {
+            if (!this.isDead() && !world.recentAction(this.lastAttack)) {
                 this.followCharacter()
             }
         }, 100);

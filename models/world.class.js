@@ -6,16 +6,20 @@ class World {
     keyboard;
     camera_x = 0;
     throwable = [];
-    lastThrow = 0;
+
+    lastThrow = new Date().getTime();
     lastBossHit = 0;
     lastBlessing = 0;
+
     collectedBlessings = 0;
     collectedBombs = 0;
+    MAX_BLESSINGS;
+    MAX_BOMB;
+
     bossDamage = 100;
     enemyDamage = 20;
     characterDamage = 40;
-    MAX_BLESSINGS;
-    MAX_BOMB;
+
     volume = false;
 
     constructor(canvas, keyboard) {
@@ -45,13 +49,23 @@ class World {
         }, 50);
     }
 
+    recentAction(action) {
+        let timepassed = new Date().getTime() - action;
+        return timepassed < 500;
+    }
+
     checkThrowPress() {
-        if (this.keyboard.SPACE && this.recentAction(this.lastThrow) && this.collectedBombs > 0) {
-            let bottle = new Throwable(this.character.x + 40, this.character.y + 130);
-            this.throwable.push(bottle);
-            this.lastThrow = new Date().getTime();
-            this.collectedBombs -= 1;
+        if (this.keyboard.THROW && !this.recentAction(this.lastThrow) && this.collectedBombs > 0) {
+            this.throwBomb();
         }
+    }
+
+    throwBomb() {
+        let bomb = new ThrowedBomb(this.character.x, this.character.y);
+        this.throwable.push(bomb);
+        this.collectedBombs -= 1;
+        this.lastThrow = new Date().getTime();
+        this.setBombBar();
     }
 
     playSound(sound) {
@@ -93,7 +107,7 @@ class World {
     }
 
     hittingEnemy(enemy) {
-        return this.character.isCollidingWithAttack(enemy) && enemy.health > 0 && this.character.recentAction(this.character.lastAttack);
+        return this.character.isCollidingWithAttack(enemy) && enemy.health > 0 && world.recentAction(this.character.lastAttack);
     }
 
     hurtEndboss() {
@@ -112,15 +126,15 @@ class World {
         }
     }
 
-    setHealthBar(){
+    setHealthBar() {
         healthBar.style = `width: ${this.character.health / this.character.MAX_HEALTH * 100}%;`;
     }
 
-    setBlessingBar(){
+    setBlessingBar() {
         blessingBar.style = `width: ${this.collectedBlessings / this.MAX_BLESSINGS * 100}%;`;
     }
 
-    setBombBar(){
+    setBombBar() {
         bombBar.style = `width: ${this.collectedBombs / this.MAX_BOMB * 100}%;`;
     }
 
