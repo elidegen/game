@@ -153,21 +153,16 @@ class MovingObjects extends DrawableObject {
             this.moveLeft();
         }
         if (this.playerNearby()) {
-            if (this.speed < 3) {
-                this.speed += 3;
-            }
-            if (this.y < world.character.y) {
+            if (this.y + this.height - this.offset.bottom < world.character.y + world.character.height - world.character.offset.bottom) {
                 this.moveDown();
             }
-            if (this.y > world.character.y) {
+            if (this.y + this.height - this.offset.bottom > world.character.y + world.character.height - world.character.offset.bottom) {
                 this.moveUp();
             }
-        } else if(this.speed > 3) {
-            this.speed -= 3;
         }
     }
 
-    playerNearby(){
-        return (this.x - world.character.x) < 300;
+    playerNearby() {
+        return (this.x - world.character.x) < 500;
     }
 }

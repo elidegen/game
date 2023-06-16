@@ -3,9 +3,7 @@ class Endboss extends MovingObjects {
     world;
     height = 500;
     width = 500;
-    speed = 15;
     y = this.y - this.height + 100;
-    startTime;
     bossActivated = 0;
     MAX_HEALTH = 200;
     health = this.MAX_HEALTH;
@@ -15,7 +13,7 @@ class Endboss extends MovingObjects {
         top: 280,
         right: 180,
         left: 150,
-        bottom: 80,
+        bottom: 90,
     };
     IMAGES_WALKING = [
         'img/enemies/Orc/PNG/PNG Sequences/Walking/0_Orc_Walking_000.png',
@@ -105,7 +103,7 @@ class Endboss extends MovingObjects {
         'img/enemies/Orc/PNG/PNG Sequences/Hurt/0_Orc_Hurt_010.png',
         'img/enemies/Orc/PNG/PNG Sequences/Hurt/0_Orc_Hurt_011.png',
     ];
-    IMAGES_DEAD = [
+    IMAGES_DYING = [
         'img/enemies/Orc/PNG/PNG Sequences/Dying/0_Orc_Dying_000.png',
         'img/enemies/Orc/PNG/PNG Sequences/Dying/0_Orc_Dying_001.png',
         'img/enemies/Orc/PNG/PNG Sequences/Dying/0_Orc_Dying_002.png',
@@ -126,51 +124,40 @@ class Endboss extends MovingObjects {
     constructor() {
         super().loadImage(this.IMAGES_IDLE[0]);
         this.loadImages(this.IMAGES_WALKING);
+        this.loadImages(this.IMAGES_RUNNING);
         this.loadImages(this.IMAGES_IDLE);
         this.loadImages(this.IMAGES_ATTACK);
         this.loadImages(this.IMAGES_HURT);
-        this.loadImages(this.IMAGES_DEAD);
+        this.loadImages(this.IMAGES_DYING);
         //this.x = this.world.level.level_end_x;
         this.x = 2500;
+        this.animate();
     }
 
     startEndboss() {
         if (this.bossActivated == 0) {
-            this.animate();
             this.moveEnemy();
-            this.startTime = new Date().getTime();
             this.bossActivated = 1;
         }
     }
 
     animate() {
         setStoppableInterval(() => {
-            if (this.isDead() && this.isHurt()) {
-                this.playAnimation(this.IMAGES_DEAD);
+            this.speed = 3;
+            if (this.bossActivated == 0) {
+                this.playAnimation(this.IMAGES_IDLE);
+            } else if (this.isDead() && this.isHurt()) {
+                this.playAnimation(this.IMAGES_DYING);
             } else if (this.isDead()) {
                 this.loadImage('img/enemies/Orc/PNG/PNG Sequences/Dying/0_Orc_Dying_014.png');
-            } else if (this.recentlyTriggered()) {
-                this.playAnimation(this.IMAGES_IDLE);
-            } else if (this.playerNearby()) {
-                this.playAnimation(this.IMAGES_ATTACK);
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
-            } else if (!this.isDead()) {
+            } else if (this.playerNearby()) {
+                this.speed = 15;
+                this.playAnimation(this.IMAGES_RUNNING);
+            } else {
                 this.playAnimation(this.IMAGES_WALKING);
-                this.moveLeft();
             }
-        }, 100);
-    }
-
-    recentlyTriggered() {
-        return 1000 > (new Date().getTime() - this.startTime);
-    }
-
-    playerNearby() {
-        if (this.x >= world.character.x) {
-            return 70 > (this.x - world.character.x);
-        } else {
-            return 100 < ((this.x + this.width) - world.character.x);
-        }
+        }, 130);
     }
 }
