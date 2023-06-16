@@ -98,11 +98,13 @@ class World {
                 this.setBombBar();
             }
         });
-        this.throwable.forEach(bottle => {
-            if (this.level.enemies[0].isColliding(bottle) && bottle.hit == 0) {
-                bottle.hit = 1;
-                this.hurtEndboss();
-            }
+        this.throwable.forEach(bomb => {
+            this.level.enemies.forEach(enemy => {
+                if (enemy.isColliding(bomb) && bomb.hit == 0) {
+                    bomb.hit = 1;
+                    enemy.takeDamage(100);
+                }
+            });
         });
     }
 

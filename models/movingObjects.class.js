@@ -28,7 +28,7 @@ class MovingObjects extends DrawableObject {
 
     isAboveGround() {
         if (this instanceof ThrowedBomb) {
-            return true; //throwable object will fall through ground
+            return this.y < this.bomb_floor; //throwable object will fall to height where character throwed
         } else {
             return this.y < 90;
         }
