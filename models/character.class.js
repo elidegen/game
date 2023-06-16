@@ -184,26 +184,28 @@ class Character extends MovingObjects {
 
     moveCharacter() {
         setStoppableInterval(() => {
-            if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
-                this.moveRight();
-                this.otherDirection = false;
-            }
-            if (this.world.keyboard.LEFT && this.x > this.world.level.level_start_x) {
-                this.moveLeft();
-                this.otherDirection = true;
-            }
-            if (this.world.keyboard.UP && this.y > this.world.level.level_top_y) {
-                this.moveUp();
-            }
-            if (this.world.keyboard.DOWN && this.y < this.world.level.level_bottom_y) {
-                this.moveDown();
-            }
-            if (this.world.keyboard.HIT) {
-                this.world.level.enemies.forEach(enemy => {
-                    if (this.isCollidingWithAttack(enemy)) {
+            if (!this.isDead()) {
+                if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
+                    this.moveRight();
+                    this.otherDirection = false;
+                }
+                if (this.world.keyboard.LEFT && this.x > this.world.level.level_start_x) {
+                    this.moveLeft();
+                    this.otherDirection = true;
+                }
+                if (this.world.keyboard.UP && this.y > this.world.level.level_top_y) {
+                    this.moveUp();
+                }
+                if (this.world.keyboard.DOWN && this.y < this.world.level.level_bottom_y) {
+                    this.moveDown();
+                }
+                if (this.world.keyboard.HIT) {
+                    this.world.level.enemies.forEach(enemy => {
+                        if (this.isCollidingWithAttack(enemy)) {
 
-                    }
-                });
+                        }
+                    });
+                }
             }
             this.world.camera_x = -this.x + 100;
         }, 1000 / 60);

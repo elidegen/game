@@ -18,12 +18,12 @@ const level1 = new Level(
     [
         new Blessing(),
         new Blessing(),
-        new Blessing(),
-        new Blessing(),
-        new Blessing(),
-        new Blessing(),
     ],
     [
+        new Bomb(),
+        new Bomb(),
+        new Bomb(),
+        new Bomb(),
         new Bomb(),
         new Bomb(),
         new Bomb(),

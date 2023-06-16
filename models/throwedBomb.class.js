@@ -10,7 +10,6 @@ class ThrowedBomb extends MovingObjects {
     };
     hit = 0;
     bomb_floor;
-    explode = 0;
     i = 0;
 
     IMAGES_THROW = [
@@ -41,29 +40,23 @@ class ThrowedBomb extends MovingObjects {
         this.loadImages(this.IMAGES_EXPLOSION);
         this.speed = this.setSpeed();
         this.bomb_floor = world.character.y + world.character.height - world.character.offset.bottom - this.height;
+        this.applyGravity();
     }
 
     throw() {
-        this.applyGravity();
         setStoppableInterval(() => {
             if (this.isAboveGround()) {
                 this.x += this.speed;
                 this.playAnimation(this.IMAGES_THROW);
             } else {
-                if (this.i == 0) {
-                    this.currentImage = 0;
-                }
-                if (this.i < 9) {
-                    this.height = 100;
-                    this.width = 100;
-                    this.loadImage(this.IMAGES_EXPLOSION[this.i]);
-                    this.i += 1;
-                } else {
-                    world.throwable.splice(0,1);
-                    this.i = 0;
-                }
+                this.IMAGES_EXPLOSION.forEach((image, index) => {
+                    setTimeout(() => {
+                        this.loadImage(image);
+                    }, 200 * index);
+                });
+                world.throwable.splice(0, 1);
             }
-        }, 50);
+        }, 300);
     }
 
     setSpeed() {
