@@ -90,7 +90,6 @@ class MovingObjects extends DrawableObject {
                 this.lastHit = new Date().getTime();
             }
             console.log(this.health);
-            world.healthbar.setPercentage(world.character.health / world.character.MAX_HEALTH * 100);
         }
     }
 

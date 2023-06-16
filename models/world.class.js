@@ -28,6 +28,9 @@ class World {
         this.draw();
         this.run();
         this.checkCharacterPosition();
+        this.setBlessingBar();
+        this.setBombBar();
+        this.setHealthBar();
     }
 
     setWorld() {
@@ -71,12 +74,14 @@ class World {
             if (this.character.isColliding(blessing)) {
                 this.collectItem(this.level.blessings, blessing, blessingBar);
                 this.collectedBlessings += 1;
+                this.setBlessingBar();
             }
         });
         this.level.bombs.forEach(bomb => {
             if (this.character.isColliding(bomb)) {
                 this.collectItem(this.level.bombs, bomb, bombBar);
                 this.collectedBombs += 1;
+                this.setBombBar();
             }
         });
         this.throwable.forEach(bottle => {
@@ -99,10 +104,24 @@ class World {
     collideEnemy(enemy) {
         if (enemy == this.level.enemies[0]) {
             this.character.takeDamage(this.bossDamage);
+            this.setHealthBar();
         } else {
             enemy.lastAttack = new Date().getTime();
             this.character.takeDamage(this.enemyDamage);
+            this.setHealthBar();
         }
+    }
+
+    setHealthBar(){
+        healthBar.style = `width: ${this.character.health / this.character.MAX_HEALTH * 100}%;`;
+    }
+
+    setBlessingBar(){
+        blessingBar.style = `width: ${this.collectedBlessings / this.MAX_BLESSINGS * 100}%;`;
+    }
+
+    setBombBar(){
+        bombBar.style = `width: ${this.collectedBombs / this.MAX_BOMB * 100}%;`;
     }
 
     killChicken(enemy) {

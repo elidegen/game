@@ -5,7 +5,7 @@ class Character extends MovingObjects {
     speed = 8;
     y = this.y - this.height; //435 -350 = 
     world;
-    MAX_HEALTH = 1000;
+    MAX_HEALTH = 10;
     health = this.MAX_HEALTH;
     damage = 50;
     range = 70;
@@ -164,10 +164,12 @@ class Character extends MovingObjects {
 
     async animate() {
         setStoppableInterval(() => {
-            if (this.recentAction(this.lastAttack)) {
-                this.playAnimation(this.IMAGES_HIT);
-            } else if (this.isDead()) {
+            if (this.isDead() && this.isHurt()) {
                 this.playAnimation(this.IMAGES_DYING);
+            } else if (this.isDead()) {
+                this.loadImage('img/characters/Paladin_1/PNG/PNG Sequences/Dying/0_Paladin_Dying_014.png');
+            } else if (this.recentAction(this.lastAttack)) {
+                this.playAnimation(this.IMAGES_HIT);
             } else if (this.isHurt() && this.health < this.MAX_HEALTH) {
                 this.playAnimation(this.IMAGES_HURT);
             } else if (this.isAboveGround()) {
@@ -196,10 +198,10 @@ class Character extends MovingObjects {
             if (this.world.keyboard.DOWN && this.y < this.world.level.level_bottom_y) {
                 this.moveDown();
             }
-            if(this.world.keyboard.HIT){
+            if (this.world.keyboard.HIT) {
                 this.world.level.enemies.forEach(enemy => {
-                    if(this.isCollidingWithAttack(enemy)){
-                        
+                    if (this.isCollidingWithAttack(enemy)) {
+
                     }
                 });
             }
