@@ -152,13 +152,22 @@ class MovingObjects extends DrawableObject {
         if (this.x > world.character.x) {
             this.moveLeft();
         }
-        if ((this.x - world.character.x) < 300) {
+        if (this.playerNearby()) {
+            if (this.speed < 3) {
+                this.speed += 3;
+            }
             if (this.y < world.character.y) {
                 this.moveDown();
             }
             if (this.y > world.character.y) {
                 this.moveUp();
             }
+        } else if(this.speed > 3) {
+            this.speed -= 3;
         }
+    }
+
+    playerNearby(){
+        return (this.x - world.character.x) < 300;
     }
 }

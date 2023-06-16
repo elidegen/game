@@ -70,6 +70,20 @@ class Ogre extends Enemies {
         'img/enemies/Ogre/PNG/PNG Sequences/Dying/0_Ogre_Dying_013.png',
         'img/enemies/Ogre/PNG/PNG Sequences/Dying/0_Ogre_Dying_014.png',
     ];
+    IMAGES_RUNNING = [
+        'img/enemies/Ogre/PNG/PNG Sequences/Running/0_Ogre_Running_000.png',
+        'img/enemies/Ogre/PNG/PNG Sequences/Running/0_Ogre_Running_001.png',
+        'img/enemies/Ogre/PNG/PNG Sequences/Running/0_Ogre_Running_002.png',
+        'img/enemies/Ogre/PNG/PNG Sequences/Running/0_Ogre_Running_003.png',
+        'img/enemies/Ogre/PNG/PNG Sequences/Running/0_Ogre_Running_004.png',
+        'img/enemies/Ogre/PNG/PNG Sequences/Running/0_Ogre_Running_005.png',
+        'img/enemies/Ogre/PNG/PNG Sequences/Running/0_Ogre_Running_006.png',
+        'img/enemies/Ogre/PNG/PNG Sequences/Running/0_Ogre_Running_007.png',
+        'img/enemies/Ogre/PNG/PNG Sequences/Running/0_Ogre_Running_008.png',
+        'img/enemies/Ogre/PNG/PNG Sequences/Running/0_Ogre_Running_009.png',
+        'img/enemies/Ogre/PNG/PNG Sequences/Running/0_Ogre_Running_010.png',
+        'img/enemies/Ogre/PNG/PNG Sequences/Running/0_Ogre_Running_011.png',
+    ];
     IMAGE_DEAD = 'img/enemies/Ogre/PNG/PNG Sequences/Dying/0_Ogre_Dying_014.png';
 
     constructor() {
@@ -78,5 +92,6 @@ class Ogre extends Enemies {
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_ATTACK);
         this.loadImages(this.IMAGES_DYING);
+        this.loadImages(this.IMAGES_RUNNING);
     }
 }

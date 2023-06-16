@@ -5,7 +5,7 @@ class Character extends MovingObjects {
     speed = 8;
     y = this.y - this.height; //435 -350 = 
     world;
-    MAX_HEALTH = 100;
+    MAX_HEALTH = 1000;
     health = this.MAX_HEALTH;
     damage = 50;
     range = 70;

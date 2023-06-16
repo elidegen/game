@@ -18,12 +18,13 @@ class Enemies extends MovingObjects {
     IMAGES_HURT;
     IMAGES_DYING;
     IMAGE_DEAD;
+    IMAGES_RUNNING;
 
     constructor(){
         super();
         this.x = 500 + Math.random() * 2000; //math.random = zahl zwischen 0 und 1    
         this.y = 120 + Math.random() * 340;
-        this.speed = 1 + Math.random() * 4;
+        this.speed = 0.5 + Math.random() * 2;
         this.animate();
         this.moveEnemy();
     }
@@ -36,7 +37,9 @@ class Enemies extends MovingObjects {
                 this.playAnimation(this.IMAGES_HURT);
             } else if (!this.isDead() && this.recentAction(this.lastAttack)) {
                 this.playAnimation(this.IMAGES_ATTACK);
-            } else if (!this.isDead()) {
+            } else if (!this.isDead() && this.playerNearby()) {
+                this.playAnimation(this.IMAGES_RUNNING);
+            }else if (!this.isDead()) {
                 this.playAnimation(this.IMAGES_WALKING);
             }  else {
                 this.loadImage(this.IMAGE_DEAD);
