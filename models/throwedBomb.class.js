@@ -49,14 +49,11 @@ class ThrowedBomb extends MovingObjects {
                 this.x += this.speed;
                 this.playAnimation(this.IMAGES_THROW);
             } else {
-                this.IMAGES_EXPLOSION.forEach((image, index) => {
-                    setTimeout(() => {
-                        this.loadImage(image);
-                    }, 200 * index);
-                });
-                world.throwable.splice(0, 1);
+                this.height = 100;
+                this.width = 100;
+                this.playAnimation(this.IMAGES_EXPLOSION);
             }
-        }, 300);
+        }, 50);
     }
 
     setSpeed() {
