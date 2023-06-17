@@ -12,7 +12,7 @@ class World {
     lastBlessing = 0;
 
     collectedBlessings = 0;
-    collectedBombs = 0;
+    collectedBombs = 10;
     MAX_BLESSINGS;
     MAX_BOMB;
 
@@ -100,9 +100,10 @@ class World {
         });
         this.throwable.forEach(bomb => {
             this.level.enemies.forEach(enemy => {
-                if (enemy.isColliding(bomb) && bomb.hit == 0) {
-                    bomb.hit = 1;
+                if (enemy.isColliding(bomb) && bomb.explode == true && enemy.bombHit == false) {
+                    enemy.bombHit = true;
                     enemy.takeDamage(100);
+                    enemy.bombHit = false;
                 }
             });
         });

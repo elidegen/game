@@ -8,9 +8,9 @@ class ThrowedBomb extends MovingObjects {
         left: 4,
         bottom: 0,
     };
+    explode = false;
     hit = 0;
     bomb_floor;
-    i = 0;
 
     IMAGES_THROW = [
         'img/distance combat/bomb/bomb_00.png',
@@ -44,14 +44,18 @@ class ThrowedBomb extends MovingObjects {
     }
 
     throw() {
+        let i = 0;
         setStoppableInterval(() => {
             if (this.isAboveGround()) {
                 this.x += this.speed;
                 this.playAnimation(this.IMAGES_THROW);
-            } else {
+                console.log(this.IMAGES_EXPLOSION[2])
+            } else if (i < 9) {
+                this.explode = 1;
                 this.height = 100;
                 this.width = 100;
                 this.playAnimation(this.IMAGES_EXPLOSION);
+                i++;
             }
         }, 50);
     }
