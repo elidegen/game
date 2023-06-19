@@ -45,17 +45,20 @@ class ThrowedBomb extends MovingObjects {
 
     throw() {
         let i = 0;
-        setStoppableInterval(() => {
+        let bombInterval = setStoppableInterval(() => {
             if (this.isAboveGround()) {
                 this.x += this.speed;
                 this.playAnimation(this.IMAGES_THROW);
-                console.log(this.IMAGES_EXPLOSION[2])
+
             } else if (i < 9) {
                 this.explode = 1;
                 this.height = 100;
                 this.width = 100;
                 this.playAnimation(this.IMAGES_EXPLOSION);
                 i++;
+            } else if (i >= 9) {
+                world.throwable.splice(0, 1);
+                i = 0;
             }
         }, 50);
     }
