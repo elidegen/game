@@ -101,7 +101,7 @@ class Character extends MovingObjects {
         'img/characters/Paladin_1/PNG/PNG Sequences/Idle/0_Paladin_Idle_016.png',
         'img/characters/Paladin_1/PNG/PNG Sequences/Idle/0_Paladin_Idle_017.png',
     ];
-    IMAGES_HIT = [
+    IMAGES_ATTACK = [
         'img/characters/Paladin_1/PNG/PNG Sequences/Slashing/0_Paladin_Slashing_000.png',
         'img/characters/Paladin_1/PNG/PNG Sequences/Slashing/0_Paladin_Slashing_001.png',
         'img/characters/Paladin_1/PNG/PNG Sequences/Slashing/0_Paladin_Slashing_002.png',
@@ -114,6 +114,20 @@ class Character extends MovingObjects {
         'img/characters/Paladin_1/PNG/PNG Sequences/Slashing/0_Paladin_Slashing_009.png',
         'img/characters/Paladin_1/PNG/PNG Sequences/Slashing/0_Paladin_Slashing_010.png',
         'img/characters/Paladin_1/PNG/PNG Sequences/Slashing/0_Paladin_Slashing_011.png',
+    ];
+    IMAGES_RUN_ATTACK = [
+        'img/characters/Paladin_1/PNG/PNG Sequences/Run Slashing/0_Paladin_Run Slashing_000.png',
+        'img/characters/Paladin_1/PNG/PNG Sequences/Run Slashing/0_Paladin_Run Slashing_001.png',
+        'img/characters/Paladin_1/PNG/PNG Sequences/Run Slashing/0_Paladin_Run Slashing_002.png',
+        'img/characters/Paladin_1/PNG/PNG Sequences/Run Slashing/0_Paladin_Run Slashing_003.png',
+        'img/characters/Paladin_1/PNG/PNG Sequences/Run Slashing/0_Paladin_Run Slashing_004.png',
+        'img/characters/Paladin_1/PNG/PNG Sequences/Run Slashing/0_Paladin_Run Slashing_005.png',
+        'img/characters/Paladin_1/PNG/PNG Sequences/Run Slashing/0_Paladin_Run Slashing_006.png',
+        'img/characters/Paladin_1/PNG/PNG Sequences/Run Slashing/0_Paladin_Run Slashing_007.png',
+        'img/characters/Paladin_1/PNG/PNG Sequences/Run Slashing/0_Paladin_Run Slashing_008.png',
+        'img/characters/Paladin_1/PNG/PNG Sequences/Run Slashing/0_Paladin_Run Slashing_009.png',
+        'img/characters/Paladin_1/PNG/PNG Sequences/Run Slashing/0_Paladin_Run Slashing_010.png',
+        'img/characters/Paladin_1/PNG/PNG Sequences/Run Slashing/0_Paladin_Run Slashing_011.png',
     ];
     IMAGES_BLESSED = [
         'img/characters/Paladin_1/PNG/PNG Sequences/Blessed/0_Paladin_Blessed_000.png',
@@ -156,7 +170,8 @@ class Character extends MovingObjects {
         this.loadImages(this.IMAGES_DYING);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_IDLE);
-        this.loadImages(this.IMAGES_HIT);
+        this.loadImages(this.IMAGES_ATTACK);
+        this.loadImages(this.IMAGES_RUN_ATTACK);
         this.animate();
         this.applyGravity();
         this.moveCharacter();
@@ -168,8 +183,10 @@ class Character extends MovingObjects {
                 this.playAnimation(this.IMAGES_DYING);
             } else if (this.isDead()) {
                 this.loadImage('img/characters/Paladin_1/PNG/PNG Sequences/Dying/0_Paladin_Dying_014.png');
+            } else if (world.recentAction(this.lastAttack) && (this.world.keyboard.RIGHT || this.world.keyboard.LEFT)) {
+                this.playAnimation(this.IMAGES_RUN_ATTACK);
             } else if (world.recentAction(this.lastAttack)) {
-                this.playAnimation(this.IMAGES_HIT);
+                this.playAnimation(this.IMAGES_ATTACK);
             } else if (this.isHurt() && this.health < this.MAX_HEALTH) {
                 this.playAnimation(this.IMAGES_HURT);
             } else if (this.isAboveGround()) {
