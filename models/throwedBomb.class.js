@@ -11,6 +11,7 @@ class ThrowedBomb extends MovingObjects {
     explode = false;
     hit = 0;
     bomb_floor;
+    alreadySpliced = false;
 
     IMAGES_THROW = [
         'img/distance combat/bomb/bomb_00.png',
@@ -45,20 +46,19 @@ class ThrowedBomb extends MovingObjects {
 
     throw() {
         let i = 0;
-        let bombInterval = setStoppableInterval(() => {
+        setStoppableInterval(() => {
             if (this.isAboveGround()) {
                 this.x += this.speed;
                 this.playAnimation(this.IMAGES_THROW);
-
             } else if (i < 9) {
                 this.explode = 1;
                 this.height = 100;
                 this.width = 100;
                 this.playAnimation(this.IMAGES_EXPLOSION);
                 i++;
-            } else if (i >= 9) {
+            } else if (i >= 9 && !this.alreadySpliced) {
                 world.throwable.splice(0, 1);
-                clearInterval(bombInterval);
+                this.alreadySpliced = true;
             }
         }, 50);
     }
