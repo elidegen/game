@@ -19,6 +19,7 @@ class World {
     bossDamage = 100;
     enemyDamage = 20;
     characterDamage = 40;
+    bombDamage = 100;
 
     volume = false;
 
@@ -102,8 +103,11 @@ class World {
             this.level.enemies.forEach(enemy => {
                 if (enemy.isColliding(bomb) && bomb.explode == true && enemy.bombHit == false) {
                     enemy.bombHit = true;
-                    enemy.takeDamage(100);
+                    enemy.takeDamage(this.bombDamage);
                     enemy.bombHit = false;
+                }
+                if (this.character.isColliding(bomb) && bomb.explode == true){
+                    this.character.takeDamage(this.bombDamage);
                 }
             });
         });
