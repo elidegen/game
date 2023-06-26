@@ -58,7 +58,7 @@ class ThrowedBomb extends MovingObjects {
                 i++;
             } else if (i >= 9) {
                 world.throwable.splice(0, 1);
-                i = 0;
+                clearInterval(bombInterval);
             }
         }, 50);
     }
