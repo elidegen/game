@@ -221,7 +221,7 @@ class World {
 
     checkCharacterPosition() {
         setStoppableInterval(() => {
-            if (this.character.x > 2200) {
+            if (this.character.x > 1500) {
                 this.level.enemies[0].startEndboss();
             }
         }, 200);

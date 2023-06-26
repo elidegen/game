@@ -161,6 +161,20 @@ class Character extends MovingObjects {
         'img/characters/Paladin_1/PNG/PNG Sequences/Blessed/0_Paladin_Blessed_028.png',
         'img/characters/Paladin_1/PNG/PNG Sequences/Blessed/0_Paladin_Blessed_029.png',
     ];
+    IMAGES_THROWING = [
+        'img/characters/Paladin_1/PNG/PNG Sequences/Throwing/0_Paladin_Throwing_000.png',
+        'img/characters/Paladin_1/PNG/PNG Sequences/Throwing/0_Paladin_Throwing_001.png',
+        'img/characters/Paladin_1/PNG/PNG Sequences/Throwing/0_Paladin_Throwing_002.png',
+        'img/characters/Paladin_1/PNG/PNG Sequences/Throwing/0_Paladin_Throwing_003.png',
+        'img/characters/Paladin_1/PNG/PNG Sequences/Throwing/0_Paladin_Throwing_004.png',
+        'img/characters/Paladin_1/PNG/PNG Sequences/Throwing/0_Paladin_Throwing_005.png',
+        'img/characters/Paladin_1/PNG/PNG Sequences/Throwing/0_Paladin_Throwing_006.png',
+        'img/characters/Paladin_1/PNG/PNG Sequences/Throwing/0_Paladin_Throwing_007.png',
+        'img/characters/Paladin_1/PNG/PNG Sequences/Throwing/0_Paladin_Throwing_008.png',
+        'img/characters/Paladin_1/PNG/PNG Sequences/Throwing/0_Paladin_Throwing_009.png',
+        'img/characters/Paladin_1/PNG/PNG Sequences/Throwing/0_Paladin_Throwing_010.png',
+        'img/characters/Paladin_1/PNG/PNG Sequences/Throwing/0_Paladin_Throwing_011.png',
+    ];
     JUMP_SOUND = new Audio('audio/jump.mp3');
 
     constructor() {
@@ -172,6 +186,8 @@ class Character extends MovingObjects {
         this.loadImages(this.IMAGES_IDLE);
         this.loadImages(this.IMAGES_ATTACK);
         this.loadImages(this.IMAGES_RUN_ATTACK);
+        this.loadImages(this.IMAGES_BLESSED);
+        this.loadImages(this.IMAGES_THROWING);
         this.animate();
         this.applyGravity();
         this.moveCharacter();
@@ -183,6 +199,8 @@ class Character extends MovingObjects {
                 this.playAnimation(this.IMAGES_DYING);
             } else if (this.isDead()) {
                 this.loadImage('img/characters/Paladin_1/PNG/PNG Sequences/Dying/0_Paladin_Dying_014.png');
+            } else if(this.world.recentAction(world.lastThrow)) {
+                this.playAnimation(this.IMAGES_THROWING);
             } else if (world.recentAction(this.lastAttack) && (this.world.keyboard.RIGHT || this.world.keyboard.LEFT)) {
                 this.playAnimation(this.IMAGES_RUN_ATTACK);
             } else if (world.recentAction(this.lastAttack)) {
@@ -191,7 +209,7 @@ class Character extends MovingObjects {
                 this.playAnimation(this.IMAGES_HURT);
             } else if (this.isAboveGround()) {
                 this.playAnimation(this.IMAGES_JUMPING);
-            } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
+            } else if (world.keyboard.RIGHT || this.world.keyboard.LEFT) {
                 this.playAnimation(this.IMAGES_WALKING);
             } else {
                 this.playAnimation(this.IMAGES_IDLE);
@@ -215,13 +233,6 @@ class Character extends MovingObjects {
                 }
                 if (this.world.keyboard.DOWN && this.y < this.world.level.level_bottom_y) {
                     this.moveDown();
-                }
-                if (this.world.keyboard.HIT) {
-                    this.world.level.enemies.forEach(enemy => {
-                        if (this.isCollidingWithAttack(enemy)) {
-
-                        }
-                    });
                 }
             }
             this.world.camera_x = -this.x + 100;

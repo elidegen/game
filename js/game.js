@@ -41,6 +41,7 @@ window.addEventListener("keydown", (e) => {
         world.character.currentImage = 0;
     }
     if (e.keyCode == 76) { //L
+        console.log('throw');
         keyboard.THROW = true;
     }
 });
