@@ -39,7 +39,7 @@ class ThrowedBomb extends MovingObjects {
         this.throw()
         this.loadImages(this.IMAGES_THROW);
         this.loadImages(this.IMAGES_EXPLOSION);
-        this.speed = this.setSpeed();
+        this.speed = 0;// this.setSpeed();
         this.bomb_floor = world.character.y + world.character.height - world.character.offset.bottom - this.height;
         this.applyGravity();
     }
@@ -65,9 +65,9 @@ class ThrowedBomb extends MovingObjects {
 
     setSpeed() {
         if (world.character.otherDirection == 1) {
-            return -30;
+            return -25;
         } else {
-            return 30;
+            return 25;
         }
     }
 }

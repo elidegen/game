@@ -199,7 +199,7 @@ class Character extends MovingObjects {
                 this.playAnimation(this.IMAGES_DYING);
             } else if (this.isDead()) {
                 this.loadImage('img/characters/Paladin_1/PNG/PNG Sequences/Dying/0_Paladin_Dying_014.png');
-            } else if(this.world.recentAction(world.lastThrow)) {
+            } else if (this.world.recentAction(world.lastThrow)) {
                 this.playAnimation(this.IMAGES_THROWING);
             } else if (world.recentAction(this.lastAttack) && (this.world.keyboard.RIGHT || this.world.keyboard.LEFT)) {
                 this.playAnimation(this.IMAGES_RUN_ATTACK);
@@ -207,14 +207,12 @@ class Character extends MovingObjects {
                 this.playAnimation(this.IMAGES_ATTACK);
             } else if (this.isHurt() && this.health < this.MAX_HEALTH) {
                 this.playAnimation(this.IMAGES_HURT);
-            } else if (this.isAboveGround()) {
-                this.playAnimation(this.IMAGES_JUMPING);
-            } else if (world.keyboard.RIGHT || this.world.keyboard.LEFT) {
+            } else if (world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.DOWN) {
                 this.playAnimation(this.IMAGES_WALKING);
             } else {
                 this.playAnimation(this.IMAGES_IDLE);
             }
-        }, 100);
+        }, 50);
     }
 
     moveCharacter() {

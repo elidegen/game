@@ -62,11 +62,21 @@ class World {
     }
 
     throwBomb() {
-        let bomb = new ThrowedBomb(this.character.x, this.character.y);
-        this.throwable.push(bomb);
         this.collectedBombs -= 1;
         this.lastThrow = new Date().getTime();
         this.setBombBar();
+        setTimeout(() => {
+            let bomb = new ThrowedBomb(this.character.x + this.setBombPos(), this.character.y);
+            this.throwable.push(bomb);
+        }, 400);
+    }
+
+    setBombPos() {
+        if (world.character.otherDirection == 1) {
+            return 20;
+        } else {
+            return 120;
+        }
     }
 
     playSound(sound) {
@@ -106,7 +116,7 @@ class World {
                     enemy.takeDamage(this.bombDamage);
                     enemy.bombHit = false;
                 }
-                if (this.character.isColliding(bomb) && bomb.explode == true){
+                if (this.character.isColliding(bomb) && bomb.explode == true) {
                     this.character.takeDamage(this.bombDamage);
                 }
             });
