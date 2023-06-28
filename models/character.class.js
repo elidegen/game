@@ -5,7 +5,7 @@ class Character extends MovingObjects {
     speed = 8;
     y = this.y - this.height; //435 -350 = 
     world;
-    MAX_HEALTH = 1000;
+    MAX_HEALTH = 10000;
     health = this.MAX_HEALTH;
     damage = 50;
     range = 70;
@@ -218,11 +218,11 @@ class Character extends MovingObjects {
     moveCharacter() {
         setStoppableInterval(() => {
             if (!this.isDead()) {
-                if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
+                if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x + this.offset.right) {
                     this.moveRight();
                     this.otherDirection = false;
                 }
-                if (this.world.keyboard.LEFT && this.x > this.world.level.level_start_x) {
+                if (this.world.keyboard.LEFT && this.x > this.world.level.level_start_x - this.offset.left) {
                     this.moveLeft();
                     this.otherDirection = true;
                 }
@@ -233,6 +233,7 @@ class Character extends MovingObjects {
                     this.moveDown();
                 }
             }
+            if(this.x < this.world.level.level_end_x && this.x > 100)
             this.world.camera_x = -this.x + 100;
         }, 1000 / 60);
     }

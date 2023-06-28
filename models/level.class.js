@@ -4,8 +4,8 @@ class Level {
     background;
     blessings;
     bombs;
-    level_start_x = 100;
-    level_end_x = 2500;
+    level_start_x = 0;
+    level_end_x = 3000;
     level_top_y = 120;
     level_bottom_y = 460;
 
