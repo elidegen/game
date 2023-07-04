@@ -178,7 +178,7 @@ class Character extends MovingObjects {
     JUMP_SOUND = new Audio('audio/jump.mp3');
 
     constructor() {
-        super().loadImage('img/characters/Paladin_2/PNG/PNG Sequences/Idle/0_Paladin_Idle_000.png');
+        super().loadImage('img/characters/Paladin_1/PNG/PNG Sequences/Idle/0_Paladin_Idle_000.png');
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_JUMPING);
         this.loadImages(this.IMAGES_DYING);
@@ -218,7 +218,7 @@ class Character extends MovingObjects {
     moveCharacter() {
         setStoppableInterval(() => {
             if (!this.isDead()) {
-                if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x + this.offset.right) {
+                if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x - this.width) {
                     this.moveRight();
                     this.otherDirection = false;
                 }
@@ -233,8 +233,8 @@ class Character extends MovingObjects {
                     this.moveDown();
                 }
             }
-            if(this.x < this.world.level.level_end_x && this.x > 100)
-            this.world.camera_x = -this.x + 100;
+            if(this.x < this.world.level.level_end_x - canvas.width + 100 && this.x > 100)
+            this.world.camera_x = -this.x + 150;
         }, 1000 / 60);
     }
 }
