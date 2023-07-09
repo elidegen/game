@@ -84,6 +84,7 @@ class MovingObjects extends DrawableObject {
     takeDamage(damage) {
         if (!this.isHurt()) {
             this.health -= damage;
+            world.blood.push(new Blood(this.x + this.width/2, this.y + this.height/2));
             if (this.health < 0) {
                 this.health = 0;
             } else {

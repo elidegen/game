@@ -6,6 +6,7 @@ class World {
     keyboard;
     camera_x = 0;
     throwable = [];
+    blood = [];
 
     lastThrow = new Date().getTime();
     lastBossHit = 0;
@@ -195,6 +196,7 @@ class World {
         this.addObjectsToMap(this.throwable);
         // this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.enemies);
+        this.addObjectsToMap(this.blood);
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.blessings);
         this.addObjectsToMap(this.level.bombs);

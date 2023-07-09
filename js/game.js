@@ -4,7 +4,7 @@ let keyboard = new Keyboard();
 let allInterval = [];
 let pause = true;
 let startScreen = new Image();
-startScreen.src = 'img/9_intro_outro_screens/start/startscreen_1.png';
+startScreen.src = 'img/backgrounds/PNG/game_background_2/game_background_2.png';
 
 function init() {
     canvas = document.getElementById('canvas');
@@ -13,7 +13,7 @@ function init() {
     let ctx = canvas.getContext('2d');
 
     ctx.drawImage(startScreen, 0, 0, canvas.width, canvas.height);
-    startGame();
+    //startGame();
 }
 
 window.addEventListener("keydown", (e) => {
@@ -106,13 +106,12 @@ function setStoppableInterval(fn, time) {
 function startGame() {
     world = new World(canvas, keyboard);
 
-    console.log('My Character is', world.character)
-}
+    console.log('My Character is', world.character);
 
-function pauseGame() {
-    pause = true;
-}
-
-function resumeGame() {
+    document.getElementById('startGame').classList.add('d-none');
     pause = false;
+}
+
+function playPause() {
+    pause = !pause;
 }
