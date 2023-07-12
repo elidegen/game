@@ -84,7 +84,11 @@ class MovingObjects extends DrawableObject {
     takeDamage(damage) {
         if (!this.isHurt()) {
             this.health -= damage;
-            world.blood.push(new Blood(this.x + this.width/2, this.y + this.height/2));
+            if (this instanceof Endboss) {
+                world.blood.push(new Blood(this.x + this.width / 3, this.y + this.height / 3, 250, 250));
+            } else {
+                world.blood.push(new Blood(this.x + this.width / 3, this.y + this.height / 3, 150, 150));
+            }
             if (this.health < 0) {
                 this.health = 0;
             } else {
@@ -162,7 +166,7 @@ class MovingObjects extends DrawableObject {
         return (this.x - world.character.x) < 500;
     }
 
-    isAbove(mo){
+    isAbove(mo) {
         return this.y + this.height - this.offset.bottom < mo.y + mo.height - mo.offset.bottom;
     }
 }
