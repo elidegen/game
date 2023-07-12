@@ -44,6 +44,9 @@ window.addEventListener("keydown", (e) => {
         keyboard.THROW = true;
         world.character.currentImage = 0;
     }
+    if (e.keyCode == 16) {
+        keyboard.RUN = true;
+    }
 });
 
 window.addEventListener("keyup", (e) => {
@@ -70,6 +73,9 @@ window.addEventListener("keyup", (e) => {
     }
     if (e.keyCode == 76) {
         keyboard.THROW = false;
+    }
+    if (e.keyCode == 16) {
+        keyboard.RUN = false;
     }
 });
 

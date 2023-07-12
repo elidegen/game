@@ -232,9 +232,14 @@ class Character extends MovingObjects {
                 if (this.world.keyboard.DOWN && this.y < this.world.level.level_bottom_y) {
                     this.moveDown();
                 }
+                if(this.world.keyboard.RUN){
+                    this.speed = 16;
+                } else {
+                    this.speed = 8;
+                }
             }
             if(this.x < this.world.level.level_end_x - canvas.width + 100 && this.x > 100)
-            this.world.camera_x = -this.x + 150;
+            this.world.camera_x = -this.x + 100;
         }, 1000 / 60);
     }
 }

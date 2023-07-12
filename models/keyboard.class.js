@@ -7,4 +7,5 @@ class Keyboard {
     ENTER = false;
     HIT = false;
     THROW = false;
+    RUN = false;
 }
