@@ -7,6 +7,7 @@ class World {
     camera_x = 0;
     throwable = [];
     blood = [];
+    gameOver = 0;
 
     lastThrow = new Date().getTime();
     lastBossHit = 0;
@@ -48,7 +49,14 @@ class World {
         setStoppableInterval(() => {
             this.checkCollisions();
             this.checkThrowPress();
+            this.checkEndGame();
         }, 50);
+    }
+
+    checkEndGame() {
+        if (this.character.isDead()) {
+            stopGame();
+        }
     }
 
     recentAction(action, time) {
@@ -188,26 +196,28 @@ class World {
     }
 
     draw() {
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        if (!this.gameOver) {
+            this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-        this.ctx.translate(this.camera_x, 0);
+            this.ctx.translate(this.camera_x, 0);
 
-        this.addObjectsToMap(this.level.background);
-        this.addObjectsToMap(this.blood);
-        this.addObjectsToMap(this.throwable);
-        // this.addObjectsToMap(this.level.clouds);
-        this.addObjectsToMap(this.level.enemies);
-        this.addToMap(this.character);
-        this.addObjectsToMap(this.level.blessings);
-        this.addObjectsToMap(this.level.bombs);
+            this.addObjectsToMap(this.level.background);
+            this.addObjectsToMap(this.blood);
+            this.addObjectsToMap(this.throwable);
+            // this.addObjectsToMap(this.level.clouds);
+            this.addObjectsToMap(this.level.enemies);
+            this.addToMap(this.character);
+            this.addObjectsToMap(this.level.blessings);
+            this.addObjectsToMap(this.level.bombs);
 
-        this.ctx.translate(-this.camera_x, 0); //fixed objects after this line
+            this.ctx.translate(-this.camera_x, 0); //fixed objects after this line
 
-        //draw wird immer wieder aufgerufen. innerhalb der funktion funktioniert 'this' nicht.
-        let self = this;
-        requestAnimationFrame(function () {
-            self.draw();
-        })
+            //draw wird immer wieder aufgerufen. innerhalb der funktion funktioniert 'this' nicht.
+            let self = this;
+            requestAnimationFrame(function () {
+                self.draw();
+            })
+        }
     }
 
     addObjectsToMap(object) {

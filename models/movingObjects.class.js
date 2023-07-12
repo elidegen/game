@@ -84,12 +84,12 @@ class MovingObjects extends DrawableObject {
 
     takeDamage(damage) {
         if (!this.isHurt()) {
-            this.health -= damage;
             if (this instanceof Endboss) {
                 world.blood.push(new Blood(this.x + this.width / 3, this.y + this.height / 3, 250, 250));
             } else {
-                world.blood.push(new Blood(this.x + this.width / 3, this.y + this.height / 3, 150, 150));
+                world.blood.push(new Blood(this.x + this.width / 3, this.y + this.height / 3, 250, 250));
             }
+            this.health -= damage;
             if (this.health < 0) {
                 this.health = 0;
             } else {
