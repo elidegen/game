@@ -51,13 +51,13 @@ class World {
         }, 50);
     }
 
-    recentAction(action) {
+    recentAction(action, time) {
         let timepassed = new Date().getTime() - action;
-        return timepassed < 500;
+        return timepassed < time;
     }
 
     checkThrowPress() {
-        if (this.keyboard.THROW && !this.recentAction(this.lastThrow) && this.collectedBombs > 0) {
+        if (this.keyboard.THROW && !this.recentAction(this.lastThrow, 500) && this.collectedBombs > 0) {
             this.throwBomb();
         }
     }
@@ -125,7 +125,7 @@ class World {
     }
 
     hittingEnemy(enemy) {
-        return this.character.isCollidingWithAttack(enemy) && enemy.health > 0 && world.recentAction(this.character.lastAttack);
+        return this.character.isCollidingWithAttack(enemy) && enemy.health > 0 && world.recentAction(this.character.lastAttack, 500);
     }
 
     hurtEndboss() {

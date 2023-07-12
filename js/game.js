@@ -45,7 +45,10 @@ window.addEventListener("keydown", (e) => {
         world.character.currentImage = 0;
     }
     if (e.keyCode == 16) {
-        keyboard.RUN = true;
+        if (!world.recentAction(world.character.startRun, 2000)) {
+            keyboard.RUN = true;
+            world.character.startRun = new Date().getTime();
+        }
     }
 });
 
@@ -97,7 +100,7 @@ function togglePause() {
 }
 
 function stopGame() {
-    allInterval.forEach(clearInterval)
+    allInterval.forEach(clearInterval);
 }
 
 function setStoppableInterval(fn, time) {

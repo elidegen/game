@@ -175,6 +175,20 @@ class Character extends MovingObjects {
         'img/characters/Paladin_1/PNG/PNG Sequences/Throwing/0_Paladin_Throwing_010.png',
         'img/characters/Paladin_1/PNG/PNG Sequences/Throwing/0_Paladin_Throwing_011.png',
     ];
+    IMAGES_RUNNING = [
+        'img/characters/Paladin_1/PNG/PNG Sequences/Running/0_Paladin_Running_000.png',
+        'img/characters/Paladin_1/PNG/PNG Sequences/Running/0_Paladin_Running_001.png',
+        'img/characters/Paladin_1/PNG/PNG Sequences/Running/0_Paladin_Running_002.png',
+        'img/characters/Paladin_1/PNG/PNG Sequences/Running/0_Paladin_Running_003.png',
+        'img/characters/Paladin_1/PNG/PNG Sequences/Running/0_Paladin_Running_004.png',
+        'img/characters/Paladin_1/PNG/PNG Sequences/Running/0_Paladin_Running_005.png',
+        'img/characters/Paladin_1/PNG/PNG Sequences/Running/0_Paladin_Running_006.png',
+        'img/characters/Paladin_1/PNG/PNG Sequences/Running/0_Paladin_Running_007.png',
+        'img/characters/Paladin_1/PNG/PNG Sequences/Running/0_Paladin_Running_008.png',
+        'img/characters/Paladin_1/PNG/PNG Sequences/Running/0_Paladin_Running_009.png',
+        'img/characters/Paladin_1/PNG/PNG Sequences/Running/0_Paladin_Running_010.png',
+        'img/characters/Paladin_1/PNG/PNG Sequences/Running/0_Paladin_Running_011.png',
+    ]
     JUMP_SOUND = new Audio('audio/jump.mp3');
 
     constructor() {
@@ -188,6 +202,7 @@ class Character extends MovingObjects {
         this.loadImages(this.IMAGES_RUN_ATTACK);
         this.loadImages(this.IMAGES_BLESSED);
         this.loadImages(this.IMAGES_THROWING);
+        this.loadImages(this.IMAGES_RUNNING);
         this.animate();
         this.applyGravity();
         this.moveCharacter();
@@ -199,14 +214,16 @@ class Character extends MovingObjects {
                 this.playAnimation(this.IMAGES_DYING);
             } else if (this.isDead()) {
                 this.loadImage('img/characters/Paladin_1/PNG/PNG Sequences/Dying/0_Paladin_Dying_014.png');
-            } else if (this.world.recentAction(world.lastThrow)) {
+            } else if (this.world.recentAction(world.lastThrow, 500)) {
                 this.playAnimation(this.IMAGES_THROWING);
-            } else if (world.recentAction(this.lastAttack) && (this.world.keyboard.RIGHT || this.world.keyboard.LEFT)) {
+            } else if (world.recentAction(this.lastAttack, 500) && (this.world.keyboard.RIGHT || this.world.keyboard.LEFT)) {
                 this.playAnimation(this.IMAGES_RUN_ATTACK);
-            } else if (world.recentAction(this.lastAttack)) {
+            } else if (world.recentAction(this.lastAttack, 500)) {
                 this.playAnimation(this.IMAGES_ATTACK);
             } else if (this.isHurt() && this.health < this.MAX_HEALTH) {
                 this.playAnimation(this.IMAGES_HURT);
+            } else if ((world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.DOWN) && this.world.recentAction(this.startRun, 700)) {
+                this.playAnimation(this.IMAGES_RUNNING);
             } else if (world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.DOWN) {
                 this.playAnimation(this.IMAGES_WALKING);
             } else {
@@ -232,14 +249,16 @@ class Character extends MovingObjects {
                 if (this.world.keyboard.DOWN && this.y < this.world.level.level_bottom_y) {
                     this.moveDown();
                 }
-                if(this.world.keyboard.RUN){
-                    this.speed = 16;
+                if (this.isHurt()) {
+                    this.speed = 6;
+                } else if (this.world.recentAction(this.startRun, 700)) {
+                    this.speed = 12;
                 } else {
                     this.speed = 8;
                 }
             }
-            if(this.x < this.world.level.level_end_x - canvas.width + 100 && this.x > 100)
-            this.world.camera_x = -this.x + 100;
+            if (this.x < this.world.level.level_end_x - canvas.width + 100 && this.x > 100)
+                this.world.camera_x = -this.x + 100;
         }, 1000 / 60);
     }
 }

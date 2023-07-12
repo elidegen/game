@@ -11,6 +11,7 @@ class MovingObjects extends DrawableObject {
     offset;
     range;
     lastAttack = 0;
+    startRun = 0;
 
     applyGravity() {
         setStoppableInterval(() => {
@@ -138,7 +139,7 @@ class MovingObjects extends DrawableObject {
 
     moveEnemy() {
         setStoppableInterval(() => {
-            if (!this.isDead() && !world.recentAction(this.lastAttack)) {
+            if (!this.isDead() && !world.recentAction(this.lastAttack, 500)) {
                 this.followCharacter()
             }
         }, 100);
