@@ -84,11 +84,7 @@ class MovingObjects extends DrawableObject {
 
     takeDamage(damage) {
         if (!this.isHurt()) {
-            if (this instanceof Endboss) {
-                world.blood.push(new Blood(this.x + this.width / 3, this.y + this.height / 3, 250, 250));
-            } else {
-                world.blood.push(new Blood(this.x + this.width / 3, this.y + this.height / 3, 250, 250));
-            }
+            this.createBlood();
             this.health -= damage;
             if (this.health < 0) {
                 this.health = 0;
@@ -96,6 +92,14 @@ class MovingObjects extends DrawableObject {
                 this.lastHit = new Date().getTime();
             }
             console.log(this.health);
+        }
+    }
+
+    createBlood() {
+        if (this instanceof Endboss || enableBlood) {
+            world.blood.push(new Blood(this.x + this.width / 3, this.y + this.height / 3, 250, 250));
+        } else {
+            world.blood.push(new Blood(this.x + this.width / 3, this.y + this.height / 3, 250, 250));
         }
     }
 

@@ -3,6 +3,7 @@ let world;
 let keyboard = new Keyboard();
 let allInterval = [];
 let pause = true;
+let enableBlood = false;
 let startScreen = new Image();
 startScreen.src = 'img/backgrounds/PNG/game_background_2/game_background_2.png';
 
@@ -49,6 +50,9 @@ window.addEventListener("keydown", (e) => {
             keyboard.RUN = true;
             world.character.startRun = new Date().getTime();
         }
+    }
+    if (e.keyCode == 27) {
+        playPause();
     }
 });
 

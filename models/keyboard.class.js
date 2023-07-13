@@ -8,4 +8,5 @@ class Keyboard {
     HIT = false;
     THROW = false;
     RUN = false;
+    PAUSE = false;
 }
