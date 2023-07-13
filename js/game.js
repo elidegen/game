@@ -127,4 +127,11 @@ function startGame() {
 
 function playPause() {
     pause = !pause;
+    if (pause) {
+        document.getElementById('playPauseButton').src = 'img/playBlack.png';
+        document.getElementById('playPauseButton').style = 'margin-left: 6px';
+    } else {
+        document.getElementById('playPauseButton').src = 'img/pause.png';
+        document.getElementById('playPauseButton').style = 'margin-left: 0px';
+    }
 }
