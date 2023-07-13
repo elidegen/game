@@ -163,7 +163,7 @@ function startGame() {
 }
 
 function setBloodButton() {
-    if (enableBlood) {
+    if (enableBlood == true) {
         document.getElementById('bloodEnable').style = 'background: linear-gradient(to bottom, rgba(255, 0, 0, 0.568), #8B0000);'
     } else {
         document.getElementById('bloodEnable').style = 'background-color: lightgrey;'
@@ -175,8 +175,8 @@ function setLocalStorageBlood() {
 }
 
 function getLocalStorageBlood() {
-    if (localStorage.getItem('enableBlood')) {
-        enableBlood = localStorage.getItem('enableBlood');
+    if (localStorage.getItem('enableBlood') != undefined) {
+        enableBlood = JSON.parse(localStorage.getItem('enableBlood'));
     }
     setBloodButton();
 }
