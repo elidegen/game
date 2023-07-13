@@ -3,7 +3,7 @@ let world;
 let keyboard = new Keyboard();
 let allInterval = [];
 let pause = true;
-let enableBlood = true;
+let enableBlood = false;
 let gameStarted = 0;
 let startScreen = new Image();
 let volume = true;
@@ -17,6 +17,7 @@ function init() {
 
     ctx.drawImage(startScreen, 0, 0, canvas.width, canvas.height);
     //startGame();
+    getLocalStorageBlood();
 }
 
 window.addEventListener("keydown", (e) => {
@@ -114,7 +115,7 @@ function toggleMenu() {
         document.getElementById('settingsMenu').classList.remove('openSettings');
         document.getElementById('settingsMenu').classList.add('closeSettings');
         setTimeout(() => {
-        document.getElementById('settingsMenu').classList.add('d-none');            
+            document.getElementById('settingsMenu').classList.add('d-none');
         }, 1000);
     }
 }
@@ -134,11 +135,8 @@ function togglePlayPause() {
 
 function toggleBlood() {
     enableBlood = !enableBlood;
-    if(enableBlood){
-        document.getElementById('bloodEnable').style = 'background: linear-gradient(to bottom, rgba(255, 0, 0, 0.568), #8B0000);'
-    } else {
-        document.getElementById('bloodEnable').style = 'background-color: lightgrey;'
-    }
+    setBloodButton();
+    setLocalStorageBlood();
 }
 
 function stopGame() {
@@ -164,3 +162,21 @@ function startGame() {
     gameStarted = 1;
 }
 
+function setBloodButton() {
+    if (enableBlood) {
+        document.getElementById('bloodEnable').style = 'background: linear-gradient(to bottom, rgba(255, 0, 0, 0.568), #8B0000);'
+    } else {
+        document.getElementById('bloodEnable').style = 'background-color: lightgrey;'
+    }
+}
+
+function setLocalStorageBlood() {
+    localStorage.setItem('enableBlood', enableBlood);
+}
+
+function getLocalStorageBlood() {
+    if (localStorage.getItem('enableBlood')) {
+        enableBlood = localStorage.getItem('enableBlood');
+    }
+    setBloodButton();
+}
