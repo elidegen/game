@@ -4,6 +4,7 @@ let keyboard = new Keyboard();
 let allInterval = [];
 let pause = true;
 let enableBlood = false;
+let gameStarted = 0;
 let startScreen = new Image();
 startScreen.src = 'img/backgrounds/PNG/game_background_2/game_background_2.png';
 
@@ -52,7 +53,7 @@ window.addEventListener("keydown", (e) => {
         }
     }
     if (e.keyCode == 27) {
-        playPause();
+        togglePlayPause();
     }
 });
 
@@ -96,10 +97,37 @@ async function closeFullscreen() {
 
 function toggleMute() {
     world.volume = !world.volume;
-    if(world.volume){
-    document.getElementById('soundImg').src = ('img/sound.png');
+    if (world.volume) {
+        document.getElementById('soundImg').src = ('img/sound.png');
     } else {
-    document.getElementById('soundImg').src = ('img/mute.png');
+        document.getElementById('soundImg').src = ('img/mute.png');
+    }
+}
+
+function toggleSettings() {
+    if (document.getElementById('settingsMenu').classList.contains('closeSettings')) {
+        document.getElementById('settingsMenu').classList.add('openSettings');
+        document.getElementById('settingsMenu').classList.remove('closeSettings');
+        document.getElementById('settingsMenu').classList.remove('d-none');
+    } else {
+        document.getElementById('settingsMenu').classList.remove('openSettings');
+        document.getElementById('settingsMenu').classList.add('closeSettings');
+        setTimeout(() => {
+        document.getElementById('settingsMenu').classList.add('d-none');            
+        }, 1000);
+    }
+}
+
+function togglePlayPause() {
+    if (gameStarted) {
+        pause = !pause;
+        if (pause) {
+            document.getElementById('playPauseButton').src = 'img/playBlack.png';
+            document.getElementById('playPauseButton').style = 'margin-left: 6px';
+        } else {
+            document.getElementById('playPauseButton').src = 'img/pause.png';
+            document.getElementById('playPauseButton').style = 'margin-left: 0px';
+        }
     }
 }
 
@@ -123,15 +151,6 @@ function startGame() {
 
     document.getElementById('startGame').classList.add('d-none');
     pause = false;
+    gameStarted = 1;
 }
 
-function playPause() {
-    pause = !pause;
-    if (pause) {
-        document.getElementById('playPauseButton').src = 'img/playBlack.png';
-        document.getElementById('playPauseButton').style = 'margin-left: 6px';
-    } else {
-        document.getElementById('playPauseButton').src = 'img/pause.png';
-        document.getElementById('playPauseButton').style = 'margin-left: 0px';
-    }
-}

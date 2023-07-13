@@ -8,9 +8,12 @@
     <title>Blade of Valor</title>
 
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/png" href="img/3_enemies_chicken/chicken_small/1_walk/1_w.png">
-    <script src="models/keyboard.class.js"></script>
+    <link rel="icon" type="image/png" href="img/characters/Paladin_1/PNG/PNG Sequences/Slashing/0_Paladin_Slashing_011.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
 
+    <script src="models/keyboard.class.js"></script>
     <script src="js/game.js"></script>
     <script src="models/world.class.js"></script>
     <script src="models/drawableObject.class.js"></script>
@@ -41,13 +44,13 @@
         <div class="button" id="sound" onclick="toggleMute()">
             <img id="soundImg" src="./img/sound.png">
         </div>
-        <div class="button" id="settings" onclick="">
+        <div class="button" id="settings" onclick="toggleSettings()">
             <img src="./img/joystick.png">
         </div>
         <div class="button" id="startGame" onclick="startGame()">
             <img src="./img/playBlack.png">
         </div>
-        <div class="button" id="playPause" onclick="playPause()">
+        <div class="button" id="playPause" onclick="togglePlayPause()">
             <img id="playPauseButton" src="./img/pause.png">
         </div>
 
@@ -67,6 +70,28 @@
                 <div class="barSleeve">
                     <div class="bar" id="bombBar"></div>
                 </div>
+            </div>
+        </div>
+        <div class="settingsMenu d-none closeSettings" id="settingsMenu">
+            <h2>How to Play</h2>
+            <div class="controls">
+                <div class="left">
+                    <p>W A S D</p>
+                    <p>K</p>
+                    <p>L</p>
+                    <p>Shift</p>
+                    <p>Escape</p>
+                </div>
+                <div class="right">
+                    <p>Move</p>
+                    <p>Melee</p>
+                    <p>Throw</p>
+                    <p>Run</p>
+                    <p>Pause</p>
+                </div>
+            </div>
+            <h2>Credits</h2>
+            <div class="credits">
             </div>
         </div>
 
