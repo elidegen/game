@@ -96,9 +96,7 @@ class MovingObjects extends DrawableObject {
     }
 
     createBlood() {
-        if (this instanceof Endboss || enableBlood) {
-            world.blood.push(new Blood(this.x + this.width / 3, this.y + this.height / 3, 250, 250));
-        } else {
+        if (enableBlood){
             world.blood.push(new Blood(this.x + this.width / 3, this.y + this.height / 3, 250, 250));
         }
     }

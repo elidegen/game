@@ -104,7 +104,7 @@ function toggleMute() {
     }
 }
 
-function toggleSettings() {
+function toggleMenu() {
     if (document.getElementById('settingsMenu').classList.contains('closeSettings')) {
         document.getElementById('settingsMenu').classList.add('openSettings');
         document.getElementById('settingsMenu').classList.remove('closeSettings');
