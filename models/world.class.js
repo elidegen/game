@@ -23,8 +23,6 @@ class World {
     characterDamage = 40;
     bombDamage = 100;
 
-    volume = true;
-
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
@@ -89,7 +87,7 @@ class World {
     }
 
     playSound(sound) {
-        sound.volume = this.volume;
+        sound.volume = volume;
         sound.currentTime = 0;
         sound.play();
     }

@@ -42,7 +42,9 @@ canvas {
     justify-content: center;
     align-items: center;
     border-radius: 100%;
-    background: linear-gradient(to bottom, rgba(255, 0, 0, 0.568), #8B0000);
+    /* background: linear-gradient(to bottom, rgba(255, 0, 0, 0.568), #8B0000); */
+    background: linear-gradient(to bottom, rgb(165, 165, 165), rgb(97, 97, 97));
+
     /* background: linear-gradient(to bottom, rgb(255, 230, 0), orange); */
     border: 2px solid black;
     transition: 200ms;
@@ -106,9 +108,9 @@ h2 {
     width: 258px;
     height: 0;
     border-radius: 16px;
-    border: 1px solid black;
-    box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.5);
-    background: linear-gradient(to bottom, rgba(255, 0, 0, 0.356), #8b000059);
+    border: 2px solid black;
+    box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.5);
+    background: linear-gradient(to top, rgba(211, 211, 211, 0.5), rgba(128, 128, 128, 0.493));
     backdrop-filter: blur(4px);
     overflow-y: hidden;
 }
@@ -146,10 +148,10 @@ h2 {
     justify-content: space-evenly;
 }
 
-.controls p {
+.controls p, .settings p {
     display: flex;
     justify-content: center;
-    padding: 3px;
+    padding: 2px 4px;
     margin: 2px;
 }
 
@@ -160,10 +162,12 @@ h2 {
 }
 
 .left p {
-    border: 1px solid black;
+    border: 2px solid black;
+    border-radius: 5px;
+    background-color: rgb(163, 163, 163);
 }
 .right p {
-    border: 1px solid transparent;
+    border: 2px solid transparent;
 }
 
 .settings {

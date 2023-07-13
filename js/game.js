@@ -6,6 +6,7 @@ let pause = true;
 let enableBlood = false;
 let gameStarted = 0;
 let startScreen = new Image();
+let volume = true;
 startScreen.src = 'img/backgrounds/PNG/game_background_2/game_background_2.png';
 
 function init() {
@@ -96,8 +97,8 @@ async function closeFullscreen() {
 }
 
 function toggleMute() {
-    world.volume = !world.volume;
-    if (world.volume) {
+    volume = !volume;
+    if (volume) {
         document.getElementById('soundImg').src = ('img/sound.png');
     } else {
         document.getElementById('soundImg').src = ('img/mute.png');
@@ -134,7 +135,7 @@ function togglePlayPause() {
 function toggleBlood() {
     enableBlood = !enableBlood;
     if(enableBlood){
-        document.getElementById('bloodEnable').style = 'background-color: #8B0000;'
+        document.getElementById('bloodEnable').style = 'background: linear-gradient(to bottom, rgba(255, 0, 0, 0.568), #8B0000);'
     } else {
         document.getElementById('bloodEnable').style = 'background-color: lightgrey;'
     }
