@@ -3,7 +3,7 @@ let world;
 let keyboard = new Keyboard();
 let allInterval = [];
 let pause = true;
-let enableBlood = false;
+let enableBlood = true;
 let gameStarted = 0;
 let startScreen = new Image();
 let volume = true;

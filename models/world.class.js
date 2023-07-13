@@ -54,6 +54,7 @@ class World {
     checkEndGame() {
         if (this.character.isDead()) {
             stopGame();
+            this.gameOver = 1;
         }
     }
 

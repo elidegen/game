@@ -66,12 +66,14 @@ class Blood extends MovingObjects {
         if (!this.bloodSet) {
             let i = 0;
             const interval = setInterval(() => {
-                if (i < this.bloodType.length) {
-                    this.loadImage(this.bloodType[i]);
-                    i++;
-                } else {
-                    clearInterval(interval); // Schleife beenden, wenn alle Durchläufe abgeschlossen sind
-                    world.blood.splice(0, 1);
+                if (!pause) {
+                    if (i < this.bloodType.length) {
+                        this.loadImage(this.bloodType[i]);
+                        i++;
+                    } else {
+                        clearInterval(interval); // Schleife beenden, wenn alle Durchläufe abgeschlossen sind
+                        world.blood.splice(0, 1);
+                    }
                 }
             }, 500);
             this.bloodSet = true;
