@@ -96,11 +96,11 @@ async function closeFullscreen() {
 
 function toggleMute() {
     world.volume = !world.volume;
-    document.getElementById('sound').classList.toggle('mute');
-}
-
-function togglePause() {
-    pause = !pause;
+    if(world.volume){
+    document.getElementById('soundImg').src = ('img/sound.png');
+    } else {
+    document.getElementById('soundImg').src = ('img/mute.png');
+    }
 }
 
 function stopGame() {

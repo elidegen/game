@@ -23,7 +23,7 @@ class World {
     characterDamage = 40;
     bombDamage = 100;
 
-    volume = false;
+    volume = true;
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
