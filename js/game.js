@@ -131,6 +131,15 @@ function togglePlayPause() {
     }
 }
 
+function toggleBlood() {
+    enableBlood = !enableBlood;
+    if(enableBlood){
+        document.getElementById('bloodEnable').style = 'background-color: #8B0000;'
+    } else {
+        document.getElementById('bloodEnable').style = 'background-color: lightgrey;'
+    }
+}
+
 function stopGame() {
     allInterval.forEach(clearInterval);
 }

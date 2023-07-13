@@ -106,9 +106,11 @@ h2 {
     width: 258px;
     height: 0;
     border-radius: 16px;
+    border: 1px solid black;
     box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.5);
+    background: linear-gradient(to bottom, rgba(255, 0, 0, 0.356), #8b000059);
     backdrop-filter: blur(4px);
-    overflow-y: scroll;
+    overflow-y: hidden;
 }
 
 .openSettings {
@@ -121,7 +123,7 @@ h2 {
 
 @keyframes open {
     100% {
-        height: 300px;
+        height: 360px;
     }
 
     0% {
@@ -131,7 +133,7 @@ h2 {
 
 @keyframes close {
     0% {
-        height: 300px;
+        height: 360px;
     }
 
     100% {
@@ -141,13 +143,13 @@ h2 {
 
 .controls {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
 }
 
 .controls p {
     display: flex;
     justify-content: center;
-    padding: 5px;
+    padding: 3px;
     margin: 2px;
 }
 
@@ -157,14 +159,33 @@ h2 {
     flex-direction: column;
 }
 
-.left img {
-    height: 80px;
+.left p {
+    border: 1px solid black;
+}
+.right p {
+    border: 1px solid transparent;
 }
 
-.credits {
+.settings {
     display: flex;
     flex-direction: column;
     text-align: center;
+}
+
+.blood  {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+#bloodEnable {
+    height: 20px;
+    width: 20px;
+    background-color: lightgrey;
+    box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.4);
+    border: 1px solid black;
+    border-radius: 16px;
+    transition: 225ms;
 }
 
 /* status bars */
