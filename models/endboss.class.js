@@ -4,7 +4,6 @@ class Endboss extends MovingObjects {
     height = 500;
     width = 500;
     y = this.y - this.height + 100;
-    bossActivated = 0;
     MAX_HEALTH = 500;
     health = this.MAX_HEALTH;
     otherDirection = 1;
@@ -135,19 +134,10 @@ class Endboss extends MovingObjects {
         this.animate();
     }
 
-    startEndboss() {
-        if (this.bossActivated == 0) {
-            this.moveEnemy();
-            this.bossActivated = 1;
-        }
-    }
-
     animate() {
         setStoppableInterval(() => {
             this.speed = 3;
-            if (this.bossActivated == 0) {
-                this.playAnimation(this.IMAGES_IDLE);
-            } else if (this.isDead() && this.isHurt()) {
+            if (this.isDead() && this.isHurt()) {
                 this.playAnimation(this.IMAGES_DYING);
             } else if (this.isDead()) {
                 this.loadImage('img/enemies/Orc/PNG/PNG Sequences/Dying/0_Orc_Dying_014.png');
