@@ -53,8 +53,10 @@ class World {
 
     checkEndGame() {
         if (this.character.isDead()) {
-            stopGame();
-            this.gameOver = 1;
+            setTimeout(() => {
+                stopGame();
+                this.gameOver = 1;
+            }, 2000);
         }
     }
 

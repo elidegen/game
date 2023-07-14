@@ -141,6 +141,9 @@ class Endboss extends MovingObjects {
                 this.playAnimation(this.IMAGES_DYING);
             } else if (this.isDead()) {
                 this.loadImage('img/enemies/Orc/PNG/PNG Sequences/Dying/0_Orc_Dying_014.png');
+                setTimeout(() => {
+                    this.world.gameOver = 1;
+                }, 2000);
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
             } else if (this.playerNearby()) {
