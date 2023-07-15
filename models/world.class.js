@@ -57,7 +57,14 @@ class World {
                 stopGame();
                 this.gameOver = 1;
                 document.getElementById('overlayLose').classList.remove('d-none');
-            }, 2000);
+            }, 1500);
+        }
+        if(this.level.enemies[0].isDead()){
+            setTimeout(() => {
+                stopGame();
+                this.gameOver = 1;
+                document.getElementById('overlayWin').classList.remove('d-none');
+            }, 1500);
         }
     }
 

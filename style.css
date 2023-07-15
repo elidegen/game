@@ -22,18 +22,9 @@ body {
     right: 0;
     border-radius: 20px;
     z-index: 999;
-    /* background-image: url('img/gameOver.png'); */
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    background:
-        /* top, transparent black, faked with gradient */
-        linear-gradient(rgba(0, 0, 0, 0.7),
-            rgba(0, 0, 0, 0.7)),
-        /* bottom, image */
-        url('img/gameOver.png');
-    background-position: top;
-    background-size: cover;
 }
 
 #overlayLose {
@@ -43,6 +34,8 @@ body {
             rgba(0, 0, 0, 0.7)),
         /* bottom, image */
         url('img/gameOver.png');
+        background-position: top;
+        background-size: cover;
 }
 
 #overlayWin {
@@ -50,6 +43,8 @@ body {
         linear-gradient(rgba(0, 0, 0, 0.3),
             rgba(0, 0, 0, 0.3)),
         url('img/win.png');
+        background-position: top;
+        background-size: cover;
 }
 
 .overlayEnd {
@@ -113,10 +108,7 @@ canvas {
     justify-content: center;
     align-items: center;
     border-radius: 100%;
-    /* background: linear-gradient(to bottom, rgba(255, 0, 0, 0.568), #8B0000); */
     background: linear-gradient(to bottom, rgb(165, 165, 165), rgb(97, 97, 97));
-
-    /* background: linear-gradient(to bottom, rgb(255, 230, 0), orange); */
     border: 2px solid black;
     transition: 200ms;
     box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.5);
