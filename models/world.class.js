@@ -56,6 +56,7 @@ class World {
             setTimeout(() => {
                 stopGame();
                 this.gameOver = 1;
+                document.getElementById('overlayLose').classList.remove('d-none');
             }, 2000);
         }
     }

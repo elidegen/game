@@ -2,6 +2,7 @@ const level1 = new Level(
     [
         new Endboss(),
         new Goblin(),
+        new Ogre(),
     ],
     [
         new Cloud(),
