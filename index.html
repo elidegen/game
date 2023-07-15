@@ -101,10 +101,14 @@
                 </div>
             </div>
         </div>
-        <div class="overlay">
+        <div class="overlay d-none">
             <div class="lose">
-                <h2>You lose</h2>
-                <div class="button replay">Replay</div>
+                <h2>You lose!</h2>
+                <div class="button replay" onclick="location.reload()">Replay</div>
+            </div>
+            <div class="lose">
+                <h2>You win!</h2>
+                <div class="button replay" onclick="nextLevel()">Next Level</div>
             </div>
         </div>
 

@@ -7,6 +7,7 @@ let enableBlood = false;
 let gameStarted = 0;
 let startScreen = new Image();
 let volume = true;
+let currentLevel = 1;
 startScreen.src = 'img/backgrounds/PNG/game_background_2/game_background_2.png';
 
 function init() {
@@ -18,6 +19,7 @@ function init() {
     ctx.drawImage(startScreen, 0, 0, canvas.width, canvas.height);
     //startGame();
     getLocalStorageBlood();
+    setCurrentLevel();
 }
 
 window.addEventListener("keydown", (e) => {
@@ -179,4 +181,18 @@ function getLocalStorageBlood() {
         enableBlood = JSON.parse(localStorage.getItem('enableBlood'));
     }
     setBloodButton();
+}
+
+function nextLevel() {
+    currentLevel += 1;
+    localStorage.setItem('level', currentLevel);
+    location.reload();
+}
+
+function setCurrentLevel() {
+    if(JSON.parse(localStorage.getItem('level')) >= 2){
+        currentLevel = JSON.parse(localStorage.getItem('level'));
+        let level = "level" + currentLevel;
+        world.level = level;
+    }
 }
