@@ -179,13 +179,6 @@ class World {
         barID.style = `width: 100%;`
     }
 
-    collectBomb(bomb) {
-        this.level.bomb.splice(this.level.bomb.indexOf(bomb), 1);
-        this.collectedBombs += 1;
-        // this.salsabar.setPercentage(this.calcPercentage(this.collectedBombs, this.MAX_BOMB));
-        bombBar.style = "width: 100%;"
-    }
-
     calcPercentage(current, max) {
         return (current / max * 100);
     }
@@ -217,14 +210,14 @@ class World {
             let self = this;
             requestAnimationFrame(function () {
                 self.draw();
-            })
+            });
         }
     }
 
     addObjectsToMap(object) {
         object.forEach(o => {
             this.addToMap(o);
-        })
+        });
     }
 
     addToMap(mo) {
