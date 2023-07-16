@@ -138,6 +138,8 @@ class World {
                 }
                 if (this.character.isColliding(bomb) && bomb.explode == true) {
                     this.character.takeDamage(this.bombDamage);
+                    this.setHealthBar();
+                    console.log('bomb aua');
                 }
             });
         });

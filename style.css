@@ -173,14 +173,12 @@ h2 {
     right: 15px;
     top: 80px;
     width: 256px;
-    height: 0;
     border-radius: 16px;
     border: 2px solid black;
     box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.5);
     background: linear-gradient(to top, rgba(211, 211, 211, 0.5), rgba(128, 128, 128, 0.493));
     backdrop-filter: blur(4px);
     overflow-y: scroll;
-    padding-bottom: 20px;
 }
 
 .openSettings {
@@ -194,6 +192,7 @@ h2 {
 @keyframes open {
     100% {
         height: 360px;
+        padding-bottom: 20px;
     }
 
     0% {
@@ -208,6 +207,7 @@ h2 {
 
     100% {
         height: 0;
+        padding-bottom: 0px;
     }
 }
 

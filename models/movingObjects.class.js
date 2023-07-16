@@ -83,7 +83,7 @@ class MovingObjects extends DrawableObject {
     }
 
     takeDamage(damage) {
-        if (!this.isHurt()) {
+        if (!this.isHurt() && !this.isDead()) {
             this.createBlood();
             this.health -= damage;
             if (this.health < 0) {
@@ -91,7 +91,7 @@ class MovingObjects extends DrawableObject {
             } else {
                 this.lastHit = new Date().getTime();
             }
-            console.log(this.health);
+            console.log(this. MAX_HEALTH, this.health);
         }
     }
 
