@@ -11,12 +11,8 @@ startScreen.src = 'img/backgrounds/PNG/game_background_2/game_background_2.png';
 
 function init() {
     canvas = document.getElementById('canvas');
-
-    // startScreen.draw(canvas.getContext('2d'));
     let ctx = canvas.getContext('2d');
-
     ctx.drawImage(startScreen, 0, 0, canvas.width, canvas.height);
-    //startGame();
     getLocalStorageBlood();
 }
 
@@ -154,9 +150,7 @@ function setStoppableInterval(fn, time) {
 
 function startGame() {
     world = new World(canvas, keyboard);
-
     console.log('My Character is', world.character);
-
     document.getElementById('startGame').classList.add('d-none');
     pause = false;
     gameStarted = 1;
@@ -179,4 +173,13 @@ function getLocalStorageBlood() {
         enableBlood = JSON.parse(localStorage.getItem('enableBlood'));
     }
     setBloodButton();
+}
+
+function hideWinOverlay() {
+    document.getElementById('overlayWin').classList.add('d-none');
+}
+
+function loadNextLevel() {
+    startGame();
+    world.level = level2;
 }
