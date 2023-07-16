@@ -248,7 +248,7 @@ class World {
     checkCharacterPosition() {
         let interval = setInterval(() => {
             if (this.character.x > 1500) {
-                this.level.enemies[0].moveEnemy();
+                //this.level.enemies[0].moveEnemy();
                 clearInterval(interval);
             }
         }, 200);
