@@ -20,15 +20,15 @@ class ThrowedBomb extends MovingObjects {
         'img/distance combat/bomb/bomb_03.png',
     ];
     IMAGES_EXPLOSION = [
-        'img/distance combat/bomb/explosion/png/7/7_1.png',
-        'img/distance combat/bomb/explosion/png/7/7_2.png',
-        'img/distance combat/bomb/explosion/png/7/7_3.png',
-        'img/distance combat/bomb/explosion/png/7/7_4.png',
-        'img/distance combat/bomb/explosion/png/7/7_5.png',
-        'img/distance combat/bomb/explosion/png/7/7_6.png',
-        'img/distance combat/bomb/explosion/png/7/7_7.png',
-        'img/distance combat/bomb/explosion/png/7/7_8.png',
-        'img/distance combat/bomb/explosion/png/7/7_9.png',
+        'img/distance combat/bomb/explosion/7/7_1.png',
+        'img/distance combat/bomb/explosion/7/7_2.png',
+        'img/distance combat/bomb/explosion/7/7_3.png',
+        'img/distance combat/bomb/explosion/7/7_4.png',
+        'img/distance combat/bomb/explosion/7/7_5.png',
+        'img/distance combat/bomb/explosion/7/7_6.png',
+        'img/distance combat/bomb/explosion/7/7_7.png',
+        'img/distance combat/bomb/explosion/7/7_8.png',
+        'img/distance combat/bomb/explosion/7/7_9.png',
     ];
 
     constructor(x, y) {
@@ -46,19 +46,20 @@ class ThrowedBomb extends MovingObjects {
 
     throw() {
         let i = 0;
-        setStoppableInterval(() => {
+        let interval = setInterval(() => {
             if (this.isAboveGround()) {
                 this.x += this.speed;
                 this.playAnimation(this.IMAGES_THROW);
             } else if (i < 9) {
-                this.explode = 1;
+                this.explode = true;
                 this.height = 100;
                 this.width = 100;
                 this.playAnimation(this.IMAGES_EXPLOSION);
                 i++;
-            } else if (i >= 9 && !this.alreadySpliced) {
-                world.throwable.splice(0, 1);
-                this.alreadySpliced = true;
+            } else if (i == 9) {
+                world.throwable.shift();
+                clearInterval(interval);
+                this.explode = false;
             }
         }, 50);
     }

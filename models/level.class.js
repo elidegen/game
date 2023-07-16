@@ -1,6 +1,5 @@
 class Level {
     enemies;
-    clouds;
     background;
     blessings;
     bombs;
@@ -9,10 +8,9 @@ class Level {
     level_top_y = 120;
     level_bottom_y = 460;
 
-    constructor(enemies, clouds, background, blessings, bombs){
+    constructor(enemies, background, blessings, bombs){
         this.enemies = enemies;
         this.background = background;
-        this.clouds = clouds;
         this.blessings = blessings;
         this.bombs = bombs;
     }

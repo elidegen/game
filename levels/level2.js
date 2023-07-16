@@ -7,9 +7,6 @@ const level2 = new Level(
         new Ogre(),
     ],
     [
-        new Cloud(),
-    ],
-    [
         new BackgroundObject('img/backgrounds/PNG/game_background_1/game_background_1.png', 0),
         new BackgroundObject('img/backgrounds/PNG/game_background_1/game_background_1.png', 719),
         new BackgroundObject('img/backgrounds/PNG/game_background_1/game_background_1.png', 719 * 2),

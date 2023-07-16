@@ -131,16 +131,16 @@ class World {
         });
         this.throwable.forEach(bomb => {
             this.level.enemies.forEach(enemy => {
-                if (enemy.isColliding(bomb) && enemy.isVulnerable() && bomb.explode == true) {
+                if (enemy.isColliding(bomb) && enemy.isVulnerable() && bomb.explode) {
                     enemy.bombHit = true;
                     enemy.takeDamage(this.bombDamage);
                     enemy.bombHit = false;
                 }
             });
-            if (this.character.isColliding(bomb) && this.character.isVulnerable() && bomb.explode == true) {
+            if (this.character.isColliding(bomb) && this.character.isVulnerable() && bomb.explode) {
                 this.character.takeDamage(this.bombDamage);
                 this.setHealthBar();
-                console.log('bomb aua');
+                console.log(bomb);
             }
         });
     }
@@ -209,7 +209,6 @@ class World {
         this.addObjectsToMap(this.level.background);
         this.addObjectsToMap(this.blood);
         this.addObjectsToMap(this.throwable);
-        // this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.enemies);
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.blessings);
