@@ -14,6 +14,10 @@ body {
     font-weight: 700;
 }
 
+::-webkit-scrollbar {
+    display: none;
+}
+
 .overlay {
     position: absolute;
     top: 0;
@@ -34,8 +38,8 @@ body {
             rgba(0, 0, 0, 0.7)),
         /* bottom, image */
         url('img/gameOver.png');
-        background-position: top;
-        background-size: cover;
+    background-position: top;
+    background-size: cover;
 }
 
 #overlayWin {
@@ -43,8 +47,8 @@ body {
         linear-gradient(rgba(0, 0, 0, 0.3),
             rgba(0, 0, 0, 0.3)),
         url('img/win.png');
-        background-position: top;
-        background-size: cover;
+    background-position: top;
+    background-size: cover;
 }
 
 .overlayEnd {
@@ -175,7 +179,8 @@ h2 {
     box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.5);
     background: linear-gradient(to top, rgba(211, 211, 211, 0.5), rgba(128, 128, 128, 0.493));
     backdrop-filter: blur(4px);
-    overflow-y: hidden;
+    overflow-y: scroll;
+    padding-bottom: 20px;
 }
 
 .openSettings {
@@ -211,8 +216,7 @@ h2 {
     justify-content: space-evenly;
 }
 
-.controls p,
-.settings p {
+.settingsMenu p {
     display: flex;
     justify-content: center;
     padding: 2px 4px;
@@ -255,6 +259,13 @@ h2 {
     border: 1px solid black;
     border-radius: 16px;
     transition: 225ms;
+}
+
+.credits {
+    display: flex;
+    justify-content: center;
+    padding: 0 32px;
+    text-align: center;
 }
 
 /* status bars */
