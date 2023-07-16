@@ -63,7 +63,7 @@ class World {
             this.gameOver = 1;
             setTimeout(() => {
                 // stopGame();
-                pause = true;                
+                pause = true;
                 document.getElementById('overlayWin').classList.remove('d-none');
                 loadNextLevel();
             }, 1500);
@@ -131,17 +131,17 @@ class World {
         });
         this.throwable.forEach(bomb => {
             this.level.enemies.forEach(enemy => {
-                if (enemy.isColliding(bomb) && bomb.explode == true && enemy.bombHit == false) {
+                if (enemy.isColliding(bomb) && enemy.isVulnerable() && bomb.explode == true) {
                     enemy.bombHit = true;
                     enemy.takeDamage(this.bombDamage);
                     enemy.bombHit = false;
                 }
-                if (this.character.isColliding(bomb) && bomb.explode == true) {
-                    this.character.takeDamage(this.bombDamage);
-                    this.setHealthBar();
-                    console.log('bomb aua');
-                }
             });
+            if (this.character.isColliding(bomb) && this.character.isVulnerable() && bomb.explode == true) {
+                this.character.takeDamage(this.bombDamage);
+                this.setHealthBar();
+                console.log('bomb aua');
+            }
         });
     }
 

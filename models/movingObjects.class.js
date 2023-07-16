@@ -83,7 +83,7 @@ class MovingObjects extends DrawableObject {
     }
 
     takeDamage(damage) {
-        if (!this.isHurt() && !this.isDead()) {
+        if (this.isVulnerable()) {
             this.createBlood();
             this.health -= damage;
             if (this.health < 0) {
@@ -108,6 +108,10 @@ class MovingObjects extends DrawableObject {
     isHurt() {
         let timepassed = new Date().getTime() - this.lastHit; //difference in ms
         return timepassed < 700;
+    }
+
+    isVulnerable() {
+        return !this.isDead() && !this.isHurt();
     }
 
     playAnimation(images) {

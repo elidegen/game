@@ -2,7 +2,7 @@ class Enemies extends MovingObjects {
     height = 200;
     width = 200;
     i = 1;
-    MAX_HEALTH = 99;
+    MAX_HEALTH = 95;
     health = this.MAX_HEALTH;
     otherDirection = 1;
     alreadyCollided = 0;
