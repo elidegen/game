@@ -13,15 +13,14 @@ class World {
     lastBossHit = 0;
     lastBlessing = 0;
 
-    collectedBlessings = 0;
     collectedBombs = 10;
-    MAX_BLESSINGS;
     MAX_BOMB;
 
     bossDamage = 100;
     enemyDamage = 20;
     characterDamage = 40;
     bombDamage = 100;
+    blessingHealing = 50;
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -116,7 +115,7 @@ class World {
         this.level.blessings.forEach(blessing => {
             if (this.character.isColliding(blessing)) {
                 this.collectBlessing(blessing);
-                this.character.addHealth(50);
+                this.character.addHealth(this.blessingHealing);
             }
         });
         this.level.bombs.forEach(bomb => {
