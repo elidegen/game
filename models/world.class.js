@@ -13,8 +13,7 @@ class World {
     lastBossHit = 0;
     lastBlessing = 0;
 
-    collectedBombs = 10;
-    MAX_BOMB;
+    collectedBombs = 0;
 
     bossDamage = 100;
     enemyDamage = 20;
@@ -26,13 +25,12 @@ class World {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.keyboard = keyboard;
-        this.MAX_BOMB = this.level.bombs.length;
         this.setWorld();
         this.draw();
         this.run();
         this.checkCharacterPosition();
-        this.setBombBar();
         this.setHealthBar();
+        this.setBombCount(10);
     }
 
     setWorld() {
@@ -46,6 +44,11 @@ class World {
             this.checkThrowPress();
             this.checkEndGame();
         }, 50);
+    }
+
+    setBombCount(value) {
+        this.collectedBombs += value;
+        document.getElementById('bombCount').innerHTML = this.collectedBombs;
     }
 
     checkEndGame() {
@@ -79,9 +82,8 @@ class World {
     }
 
     throwBomb() {
-        this.collectedBombs -= 1;
+        this.setBombCount(-1);
         this.lastThrow = new Date().getTime();
-        this.setBombBar();
         setTimeout(() => {
             let bomb = new ThrowedBomb(this.character.x + this.setBombPos(), this.character.y);
             this.throwable.push(bomb);
@@ -120,9 +122,8 @@ class World {
         });
         this.level.bombs.forEach(bomb => {
             if (this.character.isColliding(bomb)) {
-                this.collectItem(this.level.bombs, bomb, bombBar);
-                this.collectedBombs += 1;
-                this.setBombBar();
+                this.collectItem(this.level.bombs, bomb);
+                this.setBombCount(1);
             }
         });
         this.throwable.forEach(bomb => {
@@ -165,10 +166,6 @@ class World {
         healthBar.style = `width: ${this.character.health / this.character.MAX_HEALTH * 100}%;`;
     }
 
-    setBombBar() {
-        bombBar.style = `width: ${this.collectedBombs / this.MAX_BOMB * 100}%;`;
-    }
-
     killChicken(enemy) {
         enemy.health -= this.characterDamage;
         setTimeout(() => {
@@ -177,10 +174,8 @@ class World {
         }, 50);
     }
 
-    collectItem(itemPath, item, barID) {
+    collectItem(itemPath, item) {
         itemPath.splice(itemPath.indexOf(item), 1);
-        // this.salsabar.setPercentage(this.calcPercentage(this.collectedBombs, this.MAX_BOMB));
-        barID.style = `width: 100%;`
     }
 
     calcPercentage(current, max) {

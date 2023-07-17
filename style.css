@@ -271,46 +271,60 @@ h2 {
 /* status bars */
 .status {
     position: absolute;
-    top: 0;
-    left: 0;
-    padding: 10px;
+    top: 15px;
+    left: 15px;
+    height: 50px;
+    padding: 0 12px;
     display: flex;
-    border-radius: 0 0 20px 0;
-}
-
-.statusBarImgs {
-    display: flex;
-    flex-direction: column;
-    z-index: 5;
-}
-
-.statusBarImgs img {
-    height: 30px;
-    width: 30px;
+    align-items: center;
+    gap: 15px;
+    border-radius: 25px;
+    background: linear-gradient(to bottom, rgb(165, 165, 165), rgb(97, 97, 97));
+    border: 2px solid black;
+    box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.5); 
 }
 
 .statusBars {
     display: flex;
     flex-direction: column;
-    margin-left: -40px;
 }
 
 .barSleeve {
-    width: 200px;
-    height: 15px;
+    width: 300px;
+    height: 25px;
     border: 1px solid black;
     border-radius: 20px;
     background: linear-gradient(to top, lightgrey, grey);
-    margin: 8px 23px;
 }
 
 .bar {
-    /* background: linear-gradient(to bottom, rgb(255, 230, 0), orange); */
     background: linear-gradient(to bottom, rgba(255, 0, 0, 0.568), #8B0000);
     width: 100%;
     height: 100%;
     border-radius: 20px;
     border-right: 1px solid black;
+    display: flex;
+    align-items: center;
+}
+
+.bar span {
+    padding-left: 10px;
+}
+
+.bombs {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.bombs img {
+    height: 30px;
+    margin-top: -4px;
+}
+
+#bombCount {
+    font-size: 25px;
+    color: black;
 }
 
 @media(max-width: 1280px) {
