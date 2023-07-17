@@ -176,4 +176,13 @@ class MovingObjects extends DrawableObject {
     isAbove(mo) {
         return this.y + this.height - this.offset.bottom < mo.y + mo.height - mo.offset.bottom;
     }
+
+    addHealth(amount) {
+        if (!this.isDead()) {
+            this.health += amount;
+        }
+        if(this.health > this.MAX_HEALTH){
+            this.health = this.MAX_HEALTH;
+        }
+    }
 }

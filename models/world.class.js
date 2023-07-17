@@ -27,13 +27,11 @@ class World {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.keyboard = keyboard;
-        this.MAX_BLESSINGS = this.level.blessings.length;
         this.MAX_BOMB = this.level.bombs.length;
         this.setWorld();
         this.draw();
         this.run();
         this.checkCharacterPosition();
-        this.setBlessingBar();
         this.setBombBar();
         this.setHealthBar();
     }
@@ -117,9 +115,8 @@ class World {
         });
         this.level.blessings.forEach(blessing => {
             if (this.character.isColliding(blessing)) {
-                this.collectItem(this.level.blessings, blessing, blessingBar);
-                this.collectedBlessings += 1;
-                this.setBlessingBar();
+                this.collectBlessing(blessing);
+                this.character.addHealth(50);
             }
         });
         this.level.bombs.forEach(bomb => {
@@ -169,10 +166,6 @@ class World {
         healthBar.style = `width: ${this.character.health / this.character.MAX_HEALTH * 100}%;`;
     }
 
-    setBlessingBar() {
-        blessingBar.style = `width: ${this.collectedBlessings / this.MAX_BLESSINGS * 100}%;`;
-    }
-
     setBombBar() {
         bombBar.style = `width: ${this.collectedBombs / this.MAX_BOMB * 100}%;`;
     }
@@ -197,8 +190,8 @@ class World {
 
     collectBlessing(blessing) {
         this.level.blessings.splice(this.level.blessings.indexOf(blessing), 1);
-        this.collectedBlessings += 1;
         this.lastBlessing = new Date().getTime();
+        this.character.currentImage = 0;
     }
 
     draw() {
