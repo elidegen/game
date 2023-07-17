@@ -97,11 +97,7 @@ class MovingObjects extends DrawableObject {
 
     createBlood() {
         if (enableBlood) {
-            if (!this.otherDirection) {
-                world.blood.push(new Blood(this.x + this.width / 3, this.y + this.height / 3, 250, 250));
-            } else {
-                world.blood.push(new Blood(this.x, this.y + this.height / 3, 250, 250));
-            }
+            world.blood.push(new Blood(this.x + this.width / 3, this.y + this.height / 3, 250, 250));
         }
     }
 
