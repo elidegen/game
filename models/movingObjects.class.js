@@ -91,13 +91,17 @@ class MovingObjects extends DrawableObject {
             } else {
                 this.lastHit = new Date().getTime();
             }
-            console.log(this. MAX_HEALTH, this.health);
+            console.log(this.MAX_HEALTH, this.health);
         }
     }
 
     createBlood() {
-        if (enableBlood){
-            world.blood.push(new Blood(this.x + this.width / 3, this.y + this.height / 3, 250, 250));
+        if (enableBlood) {
+            if (!this.otherDirection) {
+                world.blood.push(new Blood(this.x + this.width / 3, this.y + this.height / 3, 250, 250));
+            } else {
+                world.blood.push(new Blood(this.x, this.y + this.height / 3, 250, 250));
+            }
         }
     }
 
