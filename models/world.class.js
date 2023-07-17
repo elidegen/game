@@ -137,7 +137,6 @@ class World {
             if (this.character.isColliding(bomb) && this.character.isVulnerable() && bomb.explode) {
                 this.character.takeDamage(this.bombDamage);
                 this.setHealthBar();
-                console.log(bomb);
             }
         });
     }
