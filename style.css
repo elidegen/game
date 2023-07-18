@@ -122,6 +122,7 @@ canvas {
 .heros {
     display: flex;
     justify-content: space-evenly;
+    flex-wrap: wrap;
     width: 100%;
 }
 
@@ -142,22 +143,22 @@ canvas {
 }
 
 .hero img:hover {
-    filter: drop-shadow(0px 0px 15px #f7c350);
+    filter: drop-shadow(0px 0px 15px white);
     transform: scale(1.1);
     cursor: pointer;
     transition: 225ms;
 }
 
 #hero1:hover {
-    content: url("img/characters/Paladin_1/PNG/PNG Sequences/Hurt/0_Paladin_Hurt_008.png");
+    content: url("img/characters/Knight_1/Slashing/0_Knight_Slashing_011.png");
 }
 
 #hero2:hover {
-    content: url("img/characters/Paladin_2/PNG/PNG Sequences/Hurt/0_Paladin_Hurt_008.png");
+    content: url("img/characters/Knight_2/Slashing/Slashing_011.png");
 }
 
 #hero3:hover {
-    content: url("img/characters/Paladin_3/PNG/PNG Sequences/Hurt/0_Paladin_Hurt_008.png");
+    content: url("img/characters/Knight_3/Slashing/Slashing_011.png");
 }
 
 /*  */
