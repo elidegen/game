@@ -7,6 +7,7 @@ let enableBlood = false;
 let gameStarted = 0;
 let startScreen = new Image();
 let volume = true;
+let currentLevel = 1;
 startScreen.src = 'img/backgrounds/PNG/game_background_2/game_background_2.png';
 
 function init() {
@@ -181,5 +182,7 @@ function hideWinOverlay() {
 
 function loadNextLevel() {
     startGame();
-    world.level = level2;
+    // let level = 'level' + currentLevel;
+    world.level = window['level2'];
+    hideWinOverlay();
 }

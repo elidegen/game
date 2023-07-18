@@ -40,9 +40,11 @@ class World {
 
     run() {
         setStoppableInterval(() => {
-            this.checkCollisions();
-            this.checkThrowPress();
-            this.checkEndGame();
+            if (this.gameOver != 1) {
+                this.checkCollisions();
+                this.checkThrowPress();
+                this.checkEndGame();
+            }
         }, 50);
     }
 
@@ -62,10 +64,9 @@ class World {
         if (this.level.enemies[0].isDead()) {
             this.gameOver = 1;
             setTimeout(() => {
-                // stopGame();
                 pause = true;
                 document.getElementById('overlayWin').classList.remove('d-none');
-                loadNextLevel();
+                currentLevel += 1;
             }, 2500);
         }
     }
