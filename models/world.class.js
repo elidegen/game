@@ -30,7 +30,7 @@ class World {
         this.run();
         this.checkCharacterPosition();
         this.setHealthBar();
-        this.setBombCount(10);
+        this.setCounts(10, 0);
     }
 
     setWorld() {
@@ -48,9 +48,14 @@ class World {
         }, 50);
     }
 
-    setBombCount(value) {
-        this.collectedBombs += value;
+    setCounts(bomb, shield) {
+        this.collectedBombs += bomb;
+        this.character.shield += shield;
+        if(this.character.shield < 0){
+            this.character.shield = 0;
+        }
         document.getElementById('bombCount').innerHTML = this.collectedBombs;
+        document.getElementById('shieldCount').innerHTML = this.character.shield;
     }
 
     checkEndGame() {
@@ -82,7 +87,7 @@ class World {
     }
 
     throwBomb() {
-        this.setBombCount(-1);
+        this.setCounts(-1, 0);
         this.lastThrow = new Date().getTime();
         setTimeout(() => {
             let bomb = new ThrowedBomb(this.character.x + this.setBombPos(), this.character.y);
@@ -107,7 +112,11 @@ class World {
     checkCollisions() {
         this.level.enemies.forEach(enemy => {
             if (enemy.isCollidingWithAttack(this.character) && enemy.health > 0) {
-                this.collideEnemy(enemy);
+                if (this.character.shield == 0) {
+                    this.collideEnemy(enemy);
+                } else {
+                    this.setCounts(0, -1);
+                }
             }
             if (this.hittingEnemy(enemy)) {
                 enemy.takeDamage(this.characterDamage);
@@ -117,14 +126,13 @@ class World {
         this.level.blessings.forEach(blessing => {
             if (this.character.isColliding(blessing)) {
                 this.collectBlessing(blessing);
-                this.character.addShield(this.blessingHealing);
-                this.setShieldBar();
+                this.character.shield++;
             }
         });
         this.level.bombs.forEach(bomb => {
             if (this.character.isColliding(bomb)) {
                 this.collectItem(this.level.bombs, bomb);
-                this.setBombCount(1);
+                this.setCounts(1, 0);
             }
         });
         this.throwable.forEach(bomb => {

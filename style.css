@@ -361,11 +361,6 @@ h2 {
     background: linear-gradient(to top, lightgrey, grey);
 }
 
-#shieldBar {
-    background: linear-gradient(to bottom, rgba(124, 124, 124, 0.568), #2c2c2c);
-    width: 0;
-}
-
 .bar {
     background: linear-gradient(to bottom, rgba(255, 0, 0, 0.568), #8B0000);
     width: 100%;
@@ -394,6 +389,17 @@ h2 {
 #bombCount {
     font-size: 25px;
     color: black;
+}
+
+.shield {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.shield img {
+    height: 40px;
+    margin: auto 0;
 }
 
 @media(max-width: 1280px) {

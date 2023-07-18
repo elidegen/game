@@ -176,18 +176,4 @@ class MovingObjects extends DrawableObject {
     isAbove(mo) {
         return this.y + this.height - this.offset.bottom < mo.y + mo.height - mo.offset.bottom;
     }
-
-    addShield(amount) {
-        if (!this.isDead()) {
-            this.shield += amount;
-        }
-        if(this.shield > this.MAX_SHIELD){
-            this.shield = this.MAX_SHIELD;
-        }
-        if(this.shield > 0){
-            document.getElementById('shieldBar').classList.remove('d-none');
-        } else {
-            document.getElementById('shieldBar').classList.add('d-none');
-        }
-    }
 }
