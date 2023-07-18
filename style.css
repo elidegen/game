@@ -386,7 +386,7 @@ h2 {
     margin-top: -4px;
 }
 
-#bombCount {
+#bombCount, #shieldCount {
     font-size: 25px;
     color: black;
 }
@@ -400,6 +400,17 @@ h2 {
 .shield img {
     height: 40px;
     margin: auto 0;
+}
+
+@keyframes fadeRed {
+    0% { color: black; }
+    50% { color: red; }
+    100% { color: black; }
+}
+
+.fade-red {
+    animation: fadeRed 1s linear;
+    animation-fill-mode: forwards;
 }
 
 @media(max-width: 1280px) {

@@ -51,11 +51,23 @@ class World {
     setCounts(bomb, shield) {
         this.collectedBombs += bomb;
         this.character.shield += shield;
-        if(this.character.shield < 0){
+        if (this.character.shield < 0) {
             this.character.shield = 0;
         }
         document.getElementById('bombCount').innerHTML = this.collectedBombs;
         document.getElementById('shieldCount').innerHTML = this.character.shield;
+        if (bomb != 0) {
+            document.getElementById('bombCount').classList.add('fade-red');
+            setTimeout(() => {
+                document.getElementById('bombCount').classList.remove('fade-red');
+            }, 1000);
+        }
+        if (shield != 0) {
+            document.getElementById('shieldCount').classList.add('fade-red');
+            setTimeout(() => {
+                document.getElementById('shieldCount').classList.remove('fade-red');
+            }, 1000);
+        }
     }
 
     checkEndGame() {
@@ -126,7 +138,7 @@ class World {
         this.level.blessings.forEach(blessing => {
             if (this.character.isColliding(blessing)) {
                 this.collectBlessing(blessing);
-                this.character.shield++;
+                this.setCounts(0, 1);
             }
         });
         this.level.bombs.forEach(bomb => {
