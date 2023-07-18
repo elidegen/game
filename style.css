@@ -18,6 +18,23 @@ body {
     display: none;
 }
 
+canvas {
+    background-color: black;
+    display: block;
+    border-radius: 20px;
+    box-shadow: 0 2px 5px 5px rgba(0, 0, 0, 0.4);
+}
+
+.d-none {
+    display: none !important;
+}
+
+.rotate {
+    display: none;
+}
+
+/* overlays */
+
 .overlay {
     position: absolute;
     top: 0;
@@ -84,20 +101,31 @@ body {
     background-image: linear-gradient(to bottom, white, gold);
 }
 
-canvas {
-    background-color: black;
-    display: block;
-    border-radius: 20px;
-    box-shadow: 0 2px 5px 5px rgba(0, 0, 0, 0.4);
+.chooseHero {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('img/backgrounds/PNG/PNG/game_background_3/game_background_3(3).png');
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
 }
 
-.d-none {
-    display: none !important;
+.chooseHero h2 {
+    background-image: linear-gradient(to bottom, yellow, gold);
+    font-size: 80px;
+    margin: 0;
 }
 
-.rotate {
-    display: none;
+.heros {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
 }
+
+/*  */
 
 .container {
     position: relative;
@@ -281,7 +309,7 @@ h2 {
     border-radius: 25px;
     background: linear-gradient(to bottom, rgb(165, 165, 165), rgb(97, 97, 97));
     border: 2px solid black;
-    box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.5); 
+    box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.5);
 }
 
 .statusBars {
