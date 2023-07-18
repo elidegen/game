@@ -1,6 +1,6 @@
 class Blessing extends MovingObjects {
-    height = 50;
-    width = 50;
+    height = 80;
+    width = 80;
     offset = {
         top: 5,
         right: 7,
@@ -8,11 +8,10 @@ class Blessing extends MovingObjects {
         bottom: 5,
     };
     IMAGES_BLESSING = [
-        'img/blessing_0.png',
-        'img/blessing_1.png',
+        'img/Shield.png',
     ];
     constructor() {
-        super().loadImage('img/blessing_0.png');
+        super().loadImage('img/heart.png');
         this.loadImages(this.IMAGES_BLESSING);
         this.x = 300 + Math.random() * 2000;
         this.y = 230 + Math.random() * 350;
