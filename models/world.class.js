@@ -53,20 +53,20 @@ class World {
 
     checkEndGame() {
         if (this.character.isDead()) {
+            this.gameOver = 1;
             setTimeout(() => {
                 stopGame();
-                this.gameOver = 1;
                 document.getElementById('overlayLose').classList.remove('d-none');
-            }, 1500);
+            }, 2500);
         }
-        if (this.level.enemies[0].isDead() && !this.gameOver) {
+        if (this.level.enemies[0].isDead()) {
             this.gameOver = 1;
             setTimeout(() => {
                 // stopGame();
                 pause = true;
                 document.getElementById('overlayWin').classList.remove('d-none');
                 loadNextLevel();
-            }, 1500);
+            }, 2500);
         }
     }
 
@@ -118,6 +118,7 @@ class World {
             if (this.character.isColliding(blessing)) {
                 this.collectBlessing(blessing);
                 this.character.addHealth(this.blessingHealing);
+                this.setHealthBar();
             }
         });
         this.level.bombs.forEach(bomb => {

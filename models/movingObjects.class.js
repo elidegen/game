@@ -83,7 +83,7 @@ class MovingObjects extends DrawableObject {
     }
 
     takeDamage(damage) {
-        if (this.isVulnerable()) {
+        if (this.isVulnerable() && !world.gameOver) {
             this.createBlood();
             this.health -= damage;
             if (this.health < 0) {
