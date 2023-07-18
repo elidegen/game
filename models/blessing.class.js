@@ -11,7 +11,7 @@ class Blessing extends MovingObjects {
         'img/Shield.png',
     ];
     constructor() {
-        super().loadImage('img/heart.png');
+        super().loadImage('img/Shield.png');
         this.loadImages(this.IMAGES_BLESSING);
         this.x = 300 + Math.random() * 2000;
         this.y = 230 + Math.random() * 350;

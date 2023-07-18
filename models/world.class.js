@@ -117,8 +117,8 @@ class World {
         this.level.blessings.forEach(blessing => {
             if (this.character.isColliding(blessing)) {
                 this.collectBlessing(blessing);
-                this.character.addHealth(this.blessingHealing);
-                this.setHealthBar();
+                this.character.addShield(this.blessingHealing);
+                this.setShieldBar();
             }
         });
         this.level.bombs.forEach(bomb => {
@@ -164,6 +164,10 @@ class World {
 
     setHealthBar() {
         healthBar.style = `width: ${this.character.health / this.character.MAX_HEALTH * 100}%;`;
+    }
+
+    setShieldBar() {
+        shieldBar.style = `width: ${this.character.shield / this.character.MAX_SHIELD * 100}%;`;
     }
 
     killChicken(enemy) {
