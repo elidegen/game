@@ -188,3 +188,11 @@ function loadNextLevel() {
     world.level = eval(level);
     hideWinOverlay();
 }
+
+function hideHeroSelection(){
+    document.getElementById('heroSelection').classList.add('d-none');
+}
+
+function chooseHero(nr) {
+    hero = nr;
+}
