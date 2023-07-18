@@ -2,7 +2,7 @@ class Character extends MovingObjects {
     x = 100;
     height = 200;
     width = 200;
-    y = this.y - this.height; //435 -350 = 
+    y = this.y - this.height; //435 -350 = currentLevel
     world;
     MAX_HEALTH = 1000;
     health = this.MAX_HEALTH;
@@ -15,30 +15,30 @@ class Character extends MovingObjects {
         bottom: 35,
     };
     IMAGES_WALKING = [
-        'img/characters/Paladin_1/PNG/PNG Sequences/Walking/0_Paladin_Walking_000.png',
-        'img/characters/Paladin_1/PNG/PNG Sequences/Walking/0_Paladin_Walking_001.png',
-        'img/characters/Paladin_1/PNG/PNG Sequences/Walking/0_Paladin_Walking_002.png',
-        'img/characters/Paladin_1/PNG/PNG Sequences/Walking/0_Paladin_Walking_003.png',
-        'img/characters/Paladin_1/PNG/PNG Sequences/Walking/0_Paladin_Walking_004.png',
-        'img/characters/Paladin_1/PNG/PNG Sequences/Walking/0_Paladin_Walking_005.png',
-        'img/characters/Paladin_1/PNG/PNG Sequences/Walking/0_Paladin_Walking_006.png',
-        'img/characters/Paladin_1/PNG/PNG Sequences/Walking/0_Paladin_Walking_007.png',
-        'img/characters/Paladin_1/PNG/PNG Sequences/Walking/0_Paladin_Walking_008.png',
-        'img/characters/Paladin_1/PNG/PNG Sequences/Walking/0_Paladin_Walking_009.png',
-        'img/characters/Paladin_1/PNG/PNG Sequences/Walking/0_Paladin_Walking_010.png',
-        'img/characters/Paladin_1/PNG/PNG Sequences/Walking/0_Paladin_Walking_011.png',
-        'img/characters/Paladin_1/PNG/PNG Sequences/Walking/0_Paladin_Walking_012.png',
-        'img/characters/Paladin_1/PNG/PNG Sequences/Walking/0_Paladin_Walking_013.png',
-        'img/characters/Paladin_1/PNG/PNG Sequences/Walking/0_Paladin_Walking_014.png',
-        'img/characters/Paladin_1/PNG/PNG Sequences/Walking/0_Paladin_Walking_015.png',
-        'img/characters/Paladin_1/PNG/PNG Sequences/Walking/0_Paladin_Walking_016.png',
-        'img/characters/Paladin_1/PNG/PNG Sequences/Walking/0_Paladin_Walking_017.png',
-        'img/characters/Paladin_1/PNG/PNG Sequences/Walking/0_Paladin_Walking_018.png',
-        'img/characters/Paladin_1/PNG/PNG Sequences/Walking/0_Paladin_Walking_019.png',
-        'img/characters/Paladin_1/PNG/PNG Sequences/Walking/0_Paladin_Walking_020.png',
-        'img/characters/Paladin_1/PNG/PNG Sequences/Walking/0_Paladin_Walking_021.png',
-        'img/characters/Paladin_1/PNG/PNG Sequences/Walking/0_Paladin_Walking_022.png',
-        'img/characters/Paladin_1/PNG/PNG Sequences/Walking/0_Paladin_Walking_023.png',
+        `img/characters/Paladin_${hero}/PNG/PNG Sequences/Walking/0_Paladin_Walking_000.png`,
+        `img/characters/Paladin_${hero}/PNG/PNG Sequences/Walking/0_Paladin_Walking_001.png`,
+        `img/characters/Paladin_${hero}/PNG/PNG Sequences/Walking/0_Paladin_Walking_002.png`,
+        `img/characters/Paladin_${hero}/PNG/PNG Sequences/Walking/0_Paladin_Walking_003.png`,
+        `img/characters/Paladin_${hero}/PNG/PNG Sequences/Walking/0_Paladin_Walking_004.png`,
+        `img/characters/Paladin_${hero}/PNG/PNG Sequences/Walking/0_Paladin_Walking_005.png`,
+        `img/characters/Paladin_${hero}/PNG/PNG Sequences/Walking/0_Paladin_Walking_006.png`,
+        `img/characters/Paladin_${hero}/PNG/PNG Sequences/Walking/0_Paladin_Walking_007.png`,
+        `img/characters/Paladin_${hero}/PNG/PNG Sequences/Walking/0_Paladin_Walking_008.png`,
+        `img/characters/Paladin_${hero}/PNG/PNG Sequences/Walking/0_Paladin_Walking_009.png`,
+        `img/characters/Paladin_${hero}/PNG/PNG Sequences/Walking/0_Paladin_Walking_010.png`,
+        `img/characters/Paladin_${hero}/PNG/PNG Sequences/Walking/0_Paladin_Walking_011.png`,
+        `img/characters/Paladin_${hero}/PNG/PNG Sequences/Walking/0_Paladin_Walking_012.png`,
+        `img/characters/Paladin_${hero}/PNG/PNG Sequences/Walking/0_Paladin_Walking_013.png`,
+        `img/characters/Paladin_${hero}/PNG/PNG Sequences/Walking/0_Paladin_Walking_014.png`,
+        `img/characters/Paladin_${hero}/PNG/PNG Sequences/Walking/0_Paladin_Walking_015.png`,
+        `img/characters/Paladin_${hero}/PNG/PNG Sequences/Walking/0_Paladin_Walking_016.png`,
+        `img/characters/Paladin_${hero}/PNG/PNG Sequences/Walking/0_Paladin_Walking_017.png`,
+        `img/characters/Paladin_${hero}/PNG/PNG Sequences/Walking/0_Paladin_Walking_018.png`,
+        `img/characters/Paladin_${hero}/PNG/PNG Sequences/Walking/0_Paladin_Walking_019.png`,
+        `img/characters/Paladin_${hero}/PNG/PNG Sequences/Walking/0_Paladin_Walking_020.png`,
+        `img/characters/Paladin_${hero}/PNG/PNG Sequences/Walking/0_Paladin_Walking_021.png`,
+        `img/characters/Paladin_${hero}/PNG/PNG Sequences/Walking/0_Paladin_Walking_022.png`,
+        `img/characters/Paladin_${hero}/PNG/PNG Sequences/Walking/0_Paladin_Walking_023.png`,
     ];
     IMAGES_JUMPING = [
         'img/characters/Paladin_1/PNG/PNG Sequences/Jump Loop/0_Paladin_Jump Loop_000.png',

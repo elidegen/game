@@ -8,6 +8,7 @@ let gameStarted = 0;
 let startScreen = new Image();
 let volume = true;
 let currentLevel = 1;
+let hero = 2;
 startScreen.src = 'img/backgrounds/PNG/game_background_2/game_background_2.png';
 
 function init() {
