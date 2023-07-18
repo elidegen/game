@@ -66,7 +66,6 @@ class World {
             setTimeout(() => {
                 pause = true;
                 document.getElementById('overlayWin').classList.remove('d-none');
-                currentLevel += 1;
             }, 2500);
         }
     }

@@ -182,7 +182,8 @@ function hideWinOverlay() {
 
 function loadNextLevel() {
     startGame();
-    // let level = 'level' + currentLevel;
-    world.level = window['level2'];
+    currentLevel++;
+    let level = 'level' + currentLevel;
+    world.level = eval(level);
     hideWinOverlay();
 }
