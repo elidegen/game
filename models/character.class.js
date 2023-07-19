@@ -4,7 +4,7 @@ class Character extends MovingObjects {
     width = 200;
     y = this.y - this.height; //435 -350 = currentLevel
     world;
-    MAX_HEALTH = 1000;
+    MAX_HEALTH = 50;
     health = this.MAX_HEALTH;
     shield = 0;
     MAX_SHIELD = this.MAX_HEALTH;
@@ -183,17 +183,17 @@ class Character extends MovingObjects {
 
     animate() {
         setStoppableInterval(() => {
-            if (this.isDead() && this.isHurt()) {
+            if (this.world.recentAction(this.lastHit, 250) && this.isDead()) {
                 this.playAnimation(this.IMAGES_DYING);
             } else if (this.isDead()) {
-                this.loadImage('img/characters/Paladin_1/PNG/PNG Sequences/Dying/0_Paladin_Dying_014.png');
-            } else if (this.world.recentAction(world.lastThrow, 500)) {
+                this.loadImage(`img/characters/Knight_${hero}/Dying/Dying_014.png`);
+            } else if (this.world.recentAction(world.lastThrow, 250)) {
                 this.playAnimation(this.IMAGES_THROWING);
-            } else if (world.recentAction(this.lastAttack, 500) && (this.world.keyboard.RIGHT || this.world.keyboard.LEFT)) {
+            } else if (world.recentAction(this.lastAttack, 250) && (this.world.keyboard.RIGHT || this.world.keyboard.LEFT)) {
                 this.playAnimation(this.IMAGES_RUN_ATTACK);
-            } else if (world.recentAction(this.lastAttack, 500)) {
+            } else if (world.recentAction(this.lastAttack, 250)) {
                 this.playAnimation(this.IMAGES_ATTACK);
-            } else if (this.isHurt() && this.health < this.MAX_HEALTH) {
+            } else if (this.world.recentAction(this.lastHit, 250) && this.health < this.MAX_HEALTH) {
                 this.playAnimation(this.IMAGES_HURT);
             } else if ((world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.DOWN) && this.world.recentAction(this.startRun, 700)) {
                 this.playAnimation(this.IMAGES_RUNNING);
@@ -202,7 +202,7 @@ class Character extends MovingObjects {
             } else {
                 this.playAnimation(this.IMAGES_IDLE);
             }
-        }, 50);
+        }, 25);
     }
 
     moveCharacter() {
@@ -222,8 +222,8 @@ class Character extends MovingObjects {
                 if (this.world.keyboard.DOWN && this.y < this.world.level.level_bottom_y) {
                     this.moveDown();
                 }
-                if (this.isHurt()) {
-                    this.speed = 6;
+                if (this.world.recentAction(this.lastHit, 400)) {
+                    this.speed = 4;
                 } else if (this.world.recentAction(this.startRun, 700)) {
                     this.speed = 12;
                 } else {
