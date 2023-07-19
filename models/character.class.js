@@ -183,9 +183,11 @@ class Character extends MovingObjects {
 
     animate() {
         setStoppableInterval(() => {
-            if (this.world.recentAction(this.lastHit, 250) && this.isDead()) {
+            if (this.world.recentAction(this.lastHit, 1000) && this.isDead()) {
+                console.log('dying animation');
                 this.playAnimation(this.IMAGES_DYING);
-            } else if (this.isDead()) {
+            } else if (this.isDead() && !this.world.recentAction(this.lastHit, 500)) {
+                console.log('tot');
                 this.loadImage(`img/characters/Knight_${hero}/Dying/Dying_014.png`);
             } else if (this.world.recentAction(world.lastThrow, 250)) {
                 this.playAnimation(this.IMAGES_THROWING);

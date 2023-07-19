@@ -91,6 +91,7 @@ class MovingObjects extends DrawableObject {
                 this.health = 0;
             } else {
                 this.lastHit = new Date().getTime();
+                this.currentImage = 0;
             }
             console.log(this, this.health);
         }
