@@ -4,7 +4,7 @@ class Character extends MovingObjects {
     width = 200;
     y = this.y - this.height; //435 -350 = currentLevel
     world;
-    MAX_HEALTH = 50;
+    MAX_HEALTH = 500;
     health = this.MAX_HEALTH;
     shield = 0;
     MAX_SHIELD = this.MAX_HEALTH;

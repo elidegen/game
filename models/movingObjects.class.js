@@ -87,12 +87,8 @@ class MovingObjects extends DrawableObject {
         if (this.isVulnerable() && !world.gameOver) {
             this.createBlood();
             this.health -= damage;
-            if (this.health < 0) {
-                this.health = 0;
-            } else {
-                this.lastHit = new Date().getTime();
-                this.currentImage = 0;
-            }
+            this.lastHit = new Date().getTime();
+            this.currentImage = 0;
             console.log(this, this.health);
         }
     }
@@ -147,10 +143,10 @@ class MovingObjects extends DrawableObject {
 
     moveEnemy() {
         setStoppableInterval(() => {
-            if (!this.isDead() && !world.recentAction(this.lastAttack, 500)) {
+            if (!this.isDead() && !world.recentAction(this.lastAttack, 250)) {
                 this.followCharacter()
             }
-        }, 100);
+        }, 50);
 
     }
 

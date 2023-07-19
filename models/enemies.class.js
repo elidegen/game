@@ -21,10 +21,10 @@ class Enemies extends MovingObjects {
     IMAGE_DEAD;
     IMAGES_RUNNING;
 
-    constructor(){
+    constructor() {
         super();
-        this.x = 500 + Math.random() * 2000; //math.random = zahl zwischen 0 und 1    
-        this.y = 120 + Math.random() * 340;        
+        this.x = 700 + Math.random() * 2000; //math.random = zahl zwischen 0 und 1    
+        this.y = 120 + Math.random() * 340;
         this.animate();
         this.moveEnemy();
     }
@@ -32,20 +32,20 @@ class Enemies extends MovingObjects {
     animate() {
         setStoppableInterval(() => {
             this.speed = 1 + Math.random() * 3;
-            if(this.isDead() && this.isHurt()){
+            if (this.isDead() && this.isHurt()) {
                 this.playAnimation(this.IMAGES_DYING);
-            } else if (!this.isDead() && this.isHurt()) {
-                this.playAnimation(this.IMAGES_HURT);
-            } else if (!this.isDead() && world.recentAction(this.lastAttack, 500)) {
-                this.playAnimation(this.IMAGES_ATTACK);
-            } else if (!this.isDead() && this.playerNearby()) {
-                this.speed = 4 + Math.random() * 4;
-                this.playAnimation(this.IMAGES_RUNNING);
-            }else if (!this.isDead()) {
-                this.playAnimation(this.IMAGES_WALKING);
-            }  else {
+            } else if (this.isDead())
                 this.loadImage(this.IMAGE_DEAD);
+            else if (this.isHurt()) {
+                this.playAnimation(this.IMAGES_HURT);
+            } else if (world.recentAction(this.lastAttack, 500)) {
+                this.playAnimation(this.IMAGES_ATTACK);
+            } else if (this.playerNearby()) {
+                this.speed = 6;
+                this.playAnimation(this.IMAGES_RUNNING);
+            } else {
+                this.playAnimation(this.IMAGES_WALKING);
             }
-        }, 130);
+        }, 25);
     }
 }
