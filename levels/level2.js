@@ -1,10 +1,10 @@
 const level2 = new Level(
     [
         new Endboss(),
-        new Goblin(),
-        new Goblin(),
-        new Ogre(),
-        new Ogre(),
+        new Enemy1(),
+        new Enemy2(),
+        new Enemy1(),
+        new Enemy2(),
     ],
     [
         new BackgroundObject('img/backgrounds/PNG/game_background_1/game_background_1.png', 0),

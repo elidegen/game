@@ -9,7 +9,7 @@ let startScreen = new Image();
 let volume = true;
 let currentLevel = 1;
 let hero = 2;
-startScreen.src = 'img/backgrounds/PNG/game_background_2/game_background_2.png';
+startScreen.src = 'img/backgrounds/game_background_1.png';
 
 function init() {
     canvas = document.getElementById('canvas');
