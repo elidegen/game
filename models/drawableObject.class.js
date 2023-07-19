@@ -24,7 +24,7 @@ class DrawableObject {
     }
 
     drawFrame(ctx) {
-        if (this instanceof Character || this instanceof Goblin || this instanceof Ogre || this instanceof Endboss || this instanceof ThrowedBomb) {
+        if (this instanceof Character || this instanceof Enemy1 || this instanceof Enemy2 || this instanceof Enemy3 || this instanceof Endboss || this instanceof ThrowedBomb) {
             ctx.beginPath();
             ctx.linewidth = '5';
             ctx.strokeStyle = 'blue';
