@@ -23,22 +23,22 @@ class Enemies extends MovingObjects {
 
     constructor() {
         super();
-        this.x = 700 + Math.random() * 2000; //math.random = zahl zwischen 0 und 1    
-        this.y = 120 + Math.random() * 340;
+        this.x = 1000 + Math.random() * 500 //700 + Math.random() * 2000;    
+        this.y = 120 + Math.random() * 340; //math.random = zahl zwischen 0 und 1 
         this.animate();
         this.moveEnemy();
     }
 
     animate() {
         setStoppableInterval(() => {
-            this.speed = 1 + Math.random() * 3;
-            if (this.isDead() && this.isHurt()) {
+            this.speed = 3;
+            if (this.isDead() && world.recentAction(this.lastHit, 250)) {
                 this.playAnimation(this.IMAGES_DYING);
-            } else if (this.isDead())
+            } else if (this.isDead()) {
                 this.loadImage(this.IMAGE_DEAD);
-            else if (this.isHurt()) {
+            } else if (world.recentAction(this.lastHit, 250)) {
                 this.playAnimation(this.IMAGES_HURT);
-            } else if (world.recentAction(this.lastAttack, 500)) {
+            } else if (world.recentAction(this.lastAttack, 250)) {
                 this.playAnimation(this.IMAGES_ATTACK);
             } else if (this.playerNearby()) {
                 this.speed = 6;
