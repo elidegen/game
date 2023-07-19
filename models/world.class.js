@@ -11,7 +11,6 @@ class World {
 
     lastThrow = new Date().getTime();
     lastBossHit = 0;
-    lastBlessing = 0;
 
     collectedBombs = 0;
 
@@ -208,8 +207,6 @@ class World {
 
     collectBlessing(blessing) {
         this.level.blessings.splice(this.level.blessings.indexOf(blessing), 1);
-        this.lastBlessing = new Date().getTime();
-        this.character.currentImage = 0;
     }
 
     draw() {

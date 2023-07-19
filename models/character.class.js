@@ -122,38 +122,6 @@ class Character extends MovingObjects {
         `img/characters/Knight_${hero}/Run Slashing/Run Slashing_010.png`,
         `img/characters/Knight_${hero}/Run Slashing/Run Slashing_011.png`,
     ];
-    IMAGES_BLESSED = [
-        'img/characters/Paladin_1/PNG/PNG Sequences/Blessed/0_Paladin_Blessed_000.png',
-        'img/characters/Paladin_1/PNG/PNG Sequences/Blessed/0_Paladin_Blessed_001.png',
-        'img/characters/Paladin_1/PNG/PNG Sequences/Blessed/0_Paladin_Blessed_002.png',
-        'img/characters/Paladin_1/PNG/PNG Sequences/Blessed/0_Paladin_Blessed_003.png',
-        'img/characters/Paladin_1/PNG/PNG Sequences/Blessed/0_Paladin_Blessed_004.png',
-        'img/characters/Paladin_1/PNG/PNG Sequences/Blessed/0_Paladin_Blessed_005.png',
-        'img/characters/Paladin_1/PNG/PNG Sequences/Blessed/0_Paladin_Blessed_006.png',
-        'img/characters/Paladin_1/PNG/PNG Sequences/Blessed/0_Paladin_Blessed_007.png',
-        'img/characters/Paladin_1/PNG/PNG Sequences/Blessed/0_Paladin_Blessed_008.png',
-        'img/characters/Paladin_1/PNG/PNG Sequences/Blessed/0_Paladin_Blessed_009.png',
-        'img/characters/Paladin_1/PNG/PNG Sequences/Blessed/0_Paladin_Blessed_010.png',
-        'img/characters/Paladin_1/PNG/PNG Sequences/Blessed/0_Paladin_Blessed_011.png',
-        'img/characters/Paladin_1/PNG/PNG Sequences/Blessed/0_Paladin_Blessed_012.png',
-        'img/characters/Paladin_1/PNG/PNG Sequences/Blessed/0_Paladin_Blessed_013.png',
-        'img/characters/Paladin_1/PNG/PNG Sequences/Blessed/0_Paladin_Blessed_014.png',
-        'img/characters/Paladin_1/PNG/PNG Sequences/Blessed/0_Paladin_Blessed_015.png',
-        'img/characters/Paladin_1/PNG/PNG Sequences/Blessed/0_Paladin_Blessed_016.png',
-        'img/characters/Paladin_1/PNG/PNG Sequences/Blessed/0_Paladin_Blessed_017.png',
-        'img/characters/Paladin_1/PNG/PNG Sequences/Blessed/0_Paladin_Blessed_018.png',
-        'img/characters/Paladin_1/PNG/PNG Sequences/Blessed/0_Paladin_Blessed_019.png',
-        'img/characters/Paladin_1/PNG/PNG Sequences/Blessed/0_Paladin_Blessed_020.png',
-        'img/characters/Paladin_1/PNG/PNG Sequences/Blessed/0_Paladin_Blessed_021.png',
-        'img/characters/Paladin_1/PNG/PNG Sequences/Blessed/0_Paladin_Blessed_022.png',
-        'img/characters/Paladin_1/PNG/PNG Sequences/Blessed/0_Paladin_Blessed_023.png',
-        'img/characters/Paladin_1/PNG/PNG Sequences/Blessed/0_Paladin_Blessed_024.png',
-        'img/characters/Paladin_1/PNG/PNG Sequences/Blessed/0_Paladin_Blessed_025.png',
-        'img/characters/Paladin_1/PNG/PNG Sequences/Blessed/0_Paladin_Blessed_026.png',
-        'img/characters/Paladin_1/PNG/PNG Sequences/Blessed/0_Paladin_Blessed_027.png',
-        'img/characters/Paladin_1/PNG/PNG Sequences/Blessed/0_Paladin_Blessed_028.png',
-        'img/characters/Paladin_1/PNG/PNG Sequences/Blessed/0_Paladin_Blessed_029.png',
-    ];
     IMAGES_THROWING = [
         `img/characters/Knight_${hero}/Throwing/Throwing_000.png`,
         `img/characters/Knight_${hero}/Throwing/Throwing_001.png`,
@@ -206,7 +174,6 @@ class Character extends MovingObjects {
         this.loadImages(this.IMAGES_IDLE);
         this.loadImages(this.IMAGES_ATTACK);
         this.loadImages(this.IMAGES_RUN_ATTACK);
-        this.loadImages(this.IMAGES_BLESSED);
         this.loadImages(this.IMAGES_THROWING);
         this.loadImages(this.IMAGES_RUNNING);
         this.animate();
@@ -220,8 +187,6 @@ class Character extends MovingObjects {
                 this.playAnimation(this.IMAGES_DYING);
             } else if (this.isDead()) {
                 this.loadImage('img/characters/Paladin_1/PNG/PNG Sequences/Dying/0_Paladin_Dying_014.png');
-            } else if (this.world.recentAction(world.lastBlessing, 1000)) {
-                this.playAnimation(this.IMAGES_BLESSED);
             } else if (this.world.recentAction(world.lastThrow, 500)) {
                 this.playAnimation(this.IMAGES_THROWING);
             } else if (world.recentAction(this.lastAttack, 500) && (this.world.keyboard.RIGHT || this.world.keyboard.LEFT)) {
