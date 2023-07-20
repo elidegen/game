@@ -16,6 +16,7 @@ function init() {
     let ctx = canvas.getContext('2d');
     ctx.drawImage(startScreen, 0, 0, canvas.width, canvas.height);
     getLocalStorageBlood();
+    showKing();
 }
 
 window.addEventListener("keydown", (e) => {
@@ -86,6 +87,12 @@ window.addEventListener("keyup", (e) => {
         keyboard.RUN = false;
     }
 });
+
+function showKing() {
+    if (localStorage.getItem('king') == 'unlocked') {
+        document.getElementById('king').classList.remove('d-none');
+    }
+}
 
 async function enterFullscreen() {
     await canvas.requestFullscreen();
@@ -184,22 +191,26 @@ function hideWinOverlay() {
 async function loadNextLevel() {
     startGame();
     currentLevel++;
-    if (currentLevel == 2) {
-        await setLevel2();
-    } else if (currentLevel == 3) {
-        await setLevel3();
-    } else if (currentLevel == 4) {
-        await setLevel4();
-    } else if (currentLevel == 5) {
-        await setLevel5();
-    } else if (currentLevel == 6) {
-        await setLevel6();
-    } else if (currentLevel == 7) {
-        await setLevel7();
+    if (currentLevel == 8) {
+        localStorage.setItem('king', 'unlocked');
+    } else {
+        if (currentLevel == 2) {
+            await setLevel2();
+        } else if (currentLevel == 3) {
+            await setLevel3();
+        } else if (currentLevel == 4) {
+            await setLevel4();
+        } else if (currentLevel == 5) {
+            await setLevel5();
+        } else if (currentLevel == 6) {
+            await setLevel6();
+        } else if (currentLevel == 7) {
+            await setLevel7();
+        }
+        let level = 'level' + currentLevel;
+        world.level = eval(level);
+        hideWinOverlay();
     }
-    let level = 'level' + currentLevel;
-    world.level = eval(level);
-    hideWinOverlay();
 }
 
 function hideHeroSelection() {

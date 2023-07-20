@@ -1,4 +1,4 @@
-class Enemy3 extends Enemies {
+class Enemy4 extends Enemies {
     IMAGES_WALKING = [
         `img/enemies/Enemy_${currentLevel}.4/Walking/Walking_000.png`,
         `img/enemies/Enemy_${currentLevel}.4/Walking/Walking_001.png`,
