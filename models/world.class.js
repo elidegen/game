@@ -122,7 +122,7 @@ class World {
 
     checkCollisions() {
         this.level.enemies.forEach(enemy => {
-            if (enemy.isCollidingWithAttack(this.character) && enemy.health > 0) {
+            if (enemy.isCollidingWithAttack(this.character) && enemy.health > 0 && !this.recentAction(enemy.lastAttack, 500)) {
                 if (this.character.shield == 0) {
                     this.collideEnemy(enemy);
                 } else {
@@ -172,12 +172,12 @@ class World {
     collideEnemy(enemy) {
         if (enemy == this.level.enemies[0]) {
             this.character.takeDamage(this.bossDamage);
-            this.setHealthBar();
         } else {
-            enemy.lastAttack = new Date().getTime();
             this.character.takeDamage(this.enemyDamage);
-            this.setHealthBar();
         }
+        this.setHealthBar();
+        enemy.lastAttack = new Date().getTime();
+        enemy.currentImage = 0;
     }
 
     setHealthBar() {
@@ -254,7 +254,7 @@ class World {
     checkCharacterPosition() {
         let interval = setInterval(() => {
             if (this.character.x > 1500) {
-                //this.level.enemies[0].moveEnemy();
+                this.level.enemies[0].moveEnemy();
                 clearInterval(interval);
             }
         }, 200);

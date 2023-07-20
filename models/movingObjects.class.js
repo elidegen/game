@@ -143,7 +143,7 @@ class MovingObjects extends DrawableObject {
 
     moveEnemy() {
         setStoppableInterval(() => {
-            if (!this.isDead() && !world.recentAction(this.lastAttack, 250)) {
+            if (!this.isDead() && !world.recentAction(this.lastAttack, 500)) {
                 this.followCharacter()
             }
         }, 50);
