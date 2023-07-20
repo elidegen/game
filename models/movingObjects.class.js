@@ -13,7 +13,7 @@ class MovingObjects extends DrawableObject {
     lastAttack = 0;
     startRun = 0;
     alreadyDead = 0;
-    animationSpeed = 50;
+    animationSpeed = 35;
 
     applyGravity() {
         setStoppableInterval(() => {
@@ -22,11 +22,6 @@ class MovingObjects extends DrawableObject {
                 this.speedY -= this.acceleration
             }
         }, 1000 / 25);
-    }
-
-    jump() {
-        this.speedY = 25;
-        world.playSound(this.JUMP_SOUND);
     }
 
     isAboveGround() {
@@ -86,11 +81,16 @@ class MovingObjects extends DrawableObject {
 
     takeDamage(damage) {
         if (this.isVulnerable() && !world.gameOver) {
-            this.createBlood();
-            this.health -= damage;
-            this.lastHit = new Date().getTime();
-            this.currentImage = 0;
-            console.log(this, this.health);
+            if (this.shield > 0) {
+                world.setCounts(0, -1);
+                console.log('kill all shieeeeld');
+            } else {
+                this.createBlood();
+                this.health -= damage;
+                this.lastHit = new Date().getTime();
+                this.currentImage = 0;
+                console.log(this, this.health);
+            }
         }
     }
 

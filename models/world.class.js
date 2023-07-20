@@ -18,7 +18,6 @@ class World {
     enemyDamage = 20;
     characterDamage = 40;
     bombDamage = 100;
-    blessingHealing = 50;
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -29,7 +28,7 @@ class World {
         this.run();
         this.checkCharacterPosition();
         this.setHealthBar();
-        this.setCounts(10, 0);
+        this.setCounts(10, 5);
     }
 
     setWorld() {
@@ -55,12 +54,20 @@ class World {
         }
         document.getElementById('bombCount').innerHTML = this.collectedBombs;
         document.getElementById('shieldCount').innerHTML = this.character.shield;
+        this.bombCountFadeRed(bomb);
+        this.shieldCountFadeRed(shield);
+    }
+
+    bombCountFadeRed(bomb) {
         if (bomb != 0) {
             document.getElementById('bombCount').classList.add('fade-red');
             setTimeout(() => {
                 document.getElementById('bombCount').classList.remove('fade-red');
             }, 1000);
         }
+    }
+
+    shieldCountFadeRed(shield) {
         if (shield != 0) {
             document.getElementById('shieldCount').classList.add('fade-red');
             setTimeout(() => {
@@ -86,7 +93,7 @@ class World {
         }
     }
 
-    recentAction(action, time) {
+    recentAction(action, time) { // = maximal time milisekunden sind seit action vergangen. durch ! wird maximal zu mindestens
         let timepassed = new Date().getTime() - action;
         return timepassed < time;
     }
@@ -122,12 +129,8 @@ class World {
 
     checkCollisions() {
         this.level.enemies.forEach(enemy => {
-            if (enemy.isCollidingWithAttack(this.character) && enemy.health > 0 && !this.recentAction(enemy.lastAttack, 500)) {
-                if (this.character.shield == 0) {
-                    this.collideEnemy(enemy);
-                } else {
-                    this.setCounts(0, -1);
-                }
+            if (enemy.isCollidingWithAttack(this.character) && enemy.health > 0 && !this.recentAction(enemy.lastAttack, enemy.animationSpeed * enemy.IMAGES_ATTACK.length)) {
+                this.collideEnemy(enemy);
             }
             if (this.hittingEnemy(enemy)) {
                 enemy.takeDamage(this.characterDamage);
