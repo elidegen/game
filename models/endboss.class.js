@@ -100,6 +100,8 @@ class Endboss extends MovingObjects {
         `img/enemies/Boss_${currentLevel}/Dying/Dying_013.png`,
         `img/enemies/Boss_${currentLevel}/Dying/Dying_014.png`,
     ];
+    IMAGE_DEAD = `img/enemies/Boss_${currentLevel}/Dying/Dying_014.png`;
+
 
     constructor() {
         super().loadImage(`img/enemies/Boss_${currentLevel}/Walking/Walking_004.png`);
@@ -116,18 +118,20 @@ class Endboss extends MovingObjects {
     animate() {
         setStoppableInterval(() => {
             this.speed = 3;
-            if (this.isDead() && this.isHurt()) {
+            if (this.isDead() && world.recentAction(this.lastHit, 250)) {
                 this.playAnimation(this.IMAGES_DYING);
             } else if (this.isDead()) {
-                this.loadImage(`img/enemies/Boss_${currentLevel}/Dying/Dying_014.png`);
-            } else if (this.isHurt()) {
+                this.loadImage(this.IMAGE_DEAD);
+            } else if (world.recentAction(this.lastHit, 250)) {
                 this.playAnimation(this.IMAGES_HURT);
+            } else if (world.recentAction(this.lastAttack, 250)) {
+                this.playAnimation(this.IMAGES_ATTACK);
             } else if (this.playerNearby()) {
-                this.speed = 15;
+                this.speed = 6;
                 this.playAnimation(this.IMAGES_RUNNING);
             } else {
                 this.playAnimation(this.IMAGES_WALKING);
             }
-        }, 130);
+        }, 25);
     }
 }
