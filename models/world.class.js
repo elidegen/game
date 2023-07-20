@@ -138,7 +138,7 @@ class World {
         });
         this.level.blessings.forEach(blessing => {
             if (this.character.isColliding(blessing)) {
-                this.collectBlessing(blessing);
+                this.collectItem(this.level.blessings, blessing);
                 this.setCounts(0, 1);
             }
         });
@@ -173,22 +173,18 @@ class World {
     }
 
     collideEnemy(enemy) {
-        if (enemy == this.level.enemies[0]) {
-            this.character.takeDamage(this.bossDamage);
-        } else {
-            this.character.takeDamage(this.enemyDamage);
-        }
-        this.setHealthBar();
-        enemy.lastAttack = new Date().getTime();
         enemy.currentImage = 0;
+        enemy.lastAttack = new Date().getTime();
+            if (enemy == this.level.enemies[0]) {
+                this.character.takeDamage(this.bossDamage);
+            } else {
+                this.character.takeDamage(this.enemyDamage);
+            }
+        this.setHealthBar();
     }
 
     setHealthBar() {
         healthBar.style = `width: ${this.character.health / this.character.MAX_HEALTH * 100}%;`;
-    }
-
-    setShieldBar() {
-        shieldBar.style = `width: ${this.character.shield / this.character.MAX_SHIELD * 100}%;`;
     }
 
     killChicken(enemy) {
@@ -205,10 +201,6 @@ class World {
 
     calcPercentage(current, max) {
         return (current / max * 100);
-    }
-
-    collectBlessing(blessing) {
-        this.level.blessings.splice(this.level.blessings.indexOf(blessing), 1);
     }
 
     draw() {
