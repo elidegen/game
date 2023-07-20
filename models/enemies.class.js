@@ -46,6 +46,6 @@ class Enemies extends MovingObjects {
             } else {
                 this.playAnimation(this.IMAGES_WALKING);
             }
-        }, 25);
+        }, 50);
     }
 }
