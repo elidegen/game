@@ -28,7 +28,7 @@ class World {
         this.run();
         this.checkCharacterPosition();
         this.setHealthBar();
-        this.setCounts(10, 5);
+        this.setCounts(10, 0);
     }
 
     setWorld() {
@@ -78,6 +78,7 @@ class World {
 
     checkEndGame() {
         if (this.character.isDead()) {
+            this.setHealthBar();
             this.gameOver = 1;
             setTimeout(() => {
                 stopGame();
@@ -184,6 +185,9 @@ class World {
     }
 
     setHealthBar() {
+        if(this.character.isDead()){
+            healthBar.classList.add('d-none');
+        }
         healthBar.style = `width: ${this.character.health / this.character.MAX_HEALTH * 100}%;`;
     }
 
@@ -238,7 +242,7 @@ class World {
 
         mo.draw(this.ctx);
 
-        mo.drawFrame(this.ctx);
+        //mo.drawFrame(this.ctx);
 
         this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width, mo.height);
         if (mo.otherDirection) {

@@ -89,6 +89,9 @@ class MovingObjects extends DrawableObject {
                     world.setCounts(0, -1);
                 } else {
                     this.health -= damage;
+                    if(this.health < 0){
+                        this.health = 0;
+                    }
                     this.createBlood();
                 }
             }, 100);

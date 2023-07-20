@@ -4,9 +4,10 @@ class Character extends MovingObjects {
     width = 200;
     y = this.y - this.height; //435 -350 = currentLevel
     world;
-    MAX_HEALTH = 500;
+    MAX_HEALTH = 100;
     health = this.MAX_HEALTH;
     shield = 0;
+    heroSpeedBuff = 0;
     damage = 50;
     range = 70;
     offset = {
@@ -178,6 +179,23 @@ class Character extends MovingObjects {
         this.animate();
         this.applyGravity();
         this.moveCharacter();
+        this.setHero();
+    }
+
+    setHero() {
+        if (hero == 1) {
+            this.damage = this.damage * 1.25;
+        } else if (hero == 2) {
+            this.heroSpeedBuff = 2;
+        } else if (hero == 3) {
+            this.MAX_HEALTH = this.MAX_HEALTH * 1.25;
+            this.health = this.MAX_HEALTH;
+        } else if (hero == 0) {
+            this.damage = this.damage * 1.25;
+            this.MAX_HEALTH = this.MAX_HEALTH * 1.25;
+            this.health = this.MAX_HEALTH;
+            this.heroSpeedBuff = 2;
+        }
     }
 
     animate() {
@@ -222,11 +240,11 @@ class Character extends MovingObjects {
                     this.moveDown();
                 }
                 if (this.world.recentAction(this.lastHit, 400)) {
-                    this.speed = 4;
+                    this.speed = 4 + this.heroSpeedBuff;
                 } else if (this.world.recentAction(this.startRun, 700)) {
-                    this.speed = 12;
+                    this.speed = 12 + this.heroSpeedBuff;
                 } else {
-                    this.speed = 8;
+                    this.speed = 8 + this.heroSpeedBuff;
                 }
             }
             if (this.x < this.world.level.level_end_x - canvas.width + 100 && this.x > 100)
