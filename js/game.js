@@ -197,23 +197,27 @@ async function loadNextLevel() {
         document.getElementById('gameEndButton').classList.remove('d-none');
         localStorage.setItem('king', 'unlocked');
     } else {
-        if (currentLevel == 2) {
-            await setLevel2();
-        } else if (currentLevel == 3) {
-            await setLevel3();
-        } else if (currentLevel == 4) {
-            await setLevel4();
-        } else if (currentLevel == 5) {
-            await setLevel5();
-        } else if (currentLevel == 6) {
-            await setLevel6();
-        } else if (currentLevel == 7) {
-            await setLevel7();
-        }
-        let level = 'level' + currentLevel;
-        world.level = eval(level);
-        hideWinOverlay();
+        await setLevel();
     }
+}
+
+async function setLevel() {
+    if (currentLevel == 2) {
+        await setLevel2();
+    } else if (currentLevel == 3) {
+        await setLevel3();
+    } else if (currentLevel == 4) {
+        await setLevel4();
+    } else if (currentLevel == 5) {
+        await setLevel5();
+    } else if (currentLevel == 6) {
+        await setLevel6();
+    } else if (currentLevel == 7) {
+        await setLevel7();
+    }
+    let level = 'level' + currentLevel;
+    world.level = eval(level);
+    hideWinOverlay();
 }
 
 function hideHeroSelection() {
