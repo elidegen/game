@@ -12,11 +12,11 @@ function setLevel3() {
         ],
         [
             new BackgroundObject('img/backgrounds/game_background_3.png', 0),
-            new BackgroundObject('img/backgrounds/game_background_3.png', 1280),
-            new BackgroundObject('img/backgrounds/game_background_3.png', 1280 * 2),
-            new BackgroundObject('img/backgrounds/game_background_3.png', 1280 * 3),
-            new BackgroundObject('img/backgrounds/game_background_3.png', 1280 * 4),
-            new BackgroundObject('img/backgrounds/game_background_3.png', 1280 * 5),
+            new BackgroundObject('img/backgrounds/game_background_3.png', 1000),
+            new BackgroundObject('img/backgrounds/game_background_3.png', 1000 * 2),
+            new BackgroundObject('img/backgrounds/game_background_3.png', 1000 * 3),
+            new BackgroundObject('img/backgrounds/game_background_3.png', 1000 * 4),
+            new BackgroundObject('img/backgrounds/game_background_3.png', 1000 * 5),
         ],
         [
             new Blessing(),
