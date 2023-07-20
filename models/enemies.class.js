@@ -32,13 +32,13 @@ class Enemies extends MovingObjects {
     animate() {
         setStoppableInterval(() => {
             this.speed = 3;
-            if (this.isDead() && world.recentAction(this.lastHit, 350)) {
+            if (this.isDead() && world.recentAction(this.lastHit, this.animationSpeed * this.IMAGES_DYING.length)) {
                 this.playAnimation(this.IMAGES_DYING);
             } else if (this.isDead()) {
                 this.loadImage(this.IMAGE_DEAD);
-            } else if (world.recentAction(this.lastHit, 350)) {
+            } else if (world.recentAction(this.lastHit, this.animationSpeed * this.IMAGES_HURT.length)) {
                 this.playAnimation(this.IMAGES_HURT);
-            } else if (world.recentAction(this.lastAttack, 350)) {
+            } else if (world.recentAction(this.lastAttack, this.animationSpeed * this.IMAGES_ATTACK.length)) {
                 this.playAnimation(this.IMAGES_ATTACK);
             } else if (this.playerNearby()) {
                 this.speed = 6;
@@ -46,6 +46,6 @@ class Enemies extends MovingObjects {
             } else {
                 this.playAnimation(this.IMAGES_WALKING);
             }
-        }, 35);
+        }, this.animationSpeed);
     }
 }

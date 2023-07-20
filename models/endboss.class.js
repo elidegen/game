@@ -4,7 +4,7 @@ class Endboss extends MovingObjects {
     height = 500;
     width = 500;
     y = this.y - this.height + 100;
-    MAX_HEALTH = 100;
+    MAX_HEALTH = 300;
     health = this.MAX_HEALTH;
     otherDirection = 1;
     range = 160;
@@ -118,20 +118,20 @@ class Endboss extends MovingObjects {
     animate() {
         setStoppableInterval(() => {
             this.speed = 3;
-            if (this.isDead() && world.recentAction(this.lastHit, 250)) {
+            if (this.isDead() && world.recentAction(this.lastHit, this.animationSpeed * this.IMAGES_DYING.length)) {
                 this.playAnimation(this.IMAGES_DYING);
             } else if (this.isDead()) {
                 this.loadImage(this.IMAGE_DEAD);
-            } else if (world.recentAction(this.lastHit, 250)) {
+            } else if (world.recentAction(this.lastHit, this.animationSpeed * this.IMAGES_HURT.length)) {
                 this.playAnimation(this.IMAGES_HURT);
-            } else if (world.recentAction(this.lastAttack, 250)) {
+            } else if (world.recentAction(this.lastAttack, this.animationSpeed * this.IMAGES_ATTACK.length)) {
                 this.playAnimation(this.IMAGES_ATTACK);
             } else if (this.playerNearby()) {
-                this.speed = 13;
+                this.speed = 12;
                 this.playAnimation(this.IMAGES_RUNNING);
             } else {
                 this.playAnimation(this.IMAGES_WALKING);
             }
-        }, 25);
+        }, this.animationSpeed);
     }
 }

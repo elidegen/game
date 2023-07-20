@@ -183,17 +183,17 @@ class Character extends MovingObjects {
 
     animate() {
         setStoppableInterval(() => {
-            if (this.world.recentAction(this.lastHit, 1000) && this.isDead()) {
+            if (this.world.recentAction(this.lastHit, this.animationSpeed * this.IMAGES_DYING.length) && this.isDead()) {
                 this.playAnimation(this.IMAGES_DYING);
             } else if (this.isDead() && !this.world.recentAction(this.lastHit, 500)) {
                 this.loadImage(`img/characters/Knight_${hero}/Dying/Dying_014.png`);
-            } else if (this.world.recentAction(world.lastThrow, 350)) {
+            } else if (this.world.recentAction(world.lastThrow, this.animationSpeed * this.IMAGES_THROWING.length)) {
                 this.playAnimation(this.IMAGES_THROWING);
-            } else if (world.recentAction(this.lastAttack, 350) && (this.world.keyboard.RIGHT || this.world.keyboard.LEFT)) {
+            } else if (world.recentAction(this.lastAttack, this.animationSpeed * this.IMAGES_RUN_ATTACK.length) && (this.world.keyboard.RIGHT || this.world.keyboard.LEFT)) {
                 this.playAnimation(this.IMAGES_RUN_ATTACK);
-            } else if (world.recentAction(this.lastAttack, 350)) {
+            } else if (world.recentAction(this.lastAttack, this.animationSpeed * this.IMAGES_ATTACK.length)) {
                 this.playAnimation(this.IMAGES_ATTACK);
-            } else if (this.world.recentAction(this.lastHit, 350) && this.health < this.MAX_HEALTH) {
+            } else if (this.world.recentAction(this.lastHit, this.animationSpeed * this.IMAGES_HURT.length) && this.health < this.MAX_HEALTH) {
                 this.playAnimation(this.IMAGES_HURT);
             } else if ((world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.DOWN) && this.world.recentAction(this.startRun, 700)) {
                 this.playAnimation(this.IMAGES_RUNNING);
@@ -202,7 +202,7 @@ class Character extends MovingObjects {
             } else {
                 this.playAnimation(this.IMAGES_IDLE);
             }
-        }, 35);
+        }, this.animationSpeed);
     }
 
     moveCharacter() {
