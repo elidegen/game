@@ -8,7 +8,7 @@ let gameStarted = 0;
 let startScreen = new Image();
 let volume = true;
 let currentLevel = 1;
-let hero = 2;
+let hero;
 startScreen.src = 'img/backgrounds/game_background_1.png';
 
 function init() {
@@ -181,15 +181,28 @@ function hideWinOverlay() {
     document.getElementById('overlayWin').classList.add('d-none');
 }
 
-function loadNextLevel() {
+async function loadNextLevel() {
     startGame();
     currentLevel++;
+    if (currentLevel == 2) {
+        await setLevel2();
+    } else if (currentLevel == 3) {
+        await setLevel3();
+    } else if (currentLevel == 4) {
+        await setLevel4();
+    } else if (currentLevel == 5) {
+        await setLevel5();
+    } else if (currentLevel == 6) {
+        await setLevel6();
+    } else if (currentLevel == 7) {
+        await setLevel7();
+    }
     let level = 'level' + currentLevel;
     world.level = eval(level);
     hideWinOverlay();
 }
 
-function hideHeroSelection(){
+function hideHeroSelection() {
     document.getElementById('heroSelection').classList.add('d-none');
 }
 
