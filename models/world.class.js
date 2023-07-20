@@ -185,10 +185,9 @@ class World {
     }
 
     setHealthBar() {
+        healthBar.style = `width: ${this.character.health / this.character.MAX_HEALTH * 100}%;`;
         if (this.character.isDead()) {
             healthBar.classList.add('d-none');
-        } else {
-            healthBar.style = `width: ${this.character.health / this.character.MAX_HEALTH * 100}%;`;
         }
     }
 

@@ -7,12 +7,12 @@ const level2 = new Level(
         new Enemy2(),
     ],
     [
-        new BackgroundObject('img/backgrounds/PNG/game_background_1/game_background_1.png', 0),
-        new BackgroundObject('img/backgrounds/PNG/game_background_1/game_background_1.png', 1280),
-        new BackgroundObject('img/backgrounds/PNG/game_background_1/game_background_1.png', 1280 * 2),
-        new BackgroundObject('img/backgrounds/PNG/game_background_1/game_background_1.png', 1280 * 3),
-        new BackgroundObject('img/backgrounds/PNG/game_background_1/game_background_1.png', 1280 * 4),
-        new BackgroundObject('img/backgrounds/PNG/game_background_1/game_background_1.png', 1280 * 5),
+        new BackgroundObject('img/backgrounds/game_background_2.png', 0),
+        new BackgroundObject('img/backgrounds/game_background_2.png', 1280),
+        new BackgroundObject('img/backgrounds/game_background_2.png', 1280 * 2),
+        new BackgroundObject('img/backgrounds/game_background_2.png', 1280 * 3),
+        new BackgroundObject('img/backgrounds/game_background_2.png', 1280 * 4),
+        new BackgroundObject('img/backgrounds/game_background_2.png', 1280 * 5),
     ],
     [
         new Blessing(),
