@@ -7,7 +7,7 @@ let enableBlood = false;
 let gameStarted = 0;
 let startScreen = new Image();
 let volume = true;
-let currentLevel = 3;
+let currentLevel = 1;
 let hero;
 startScreen.src = 'img/backgrounds/game_background_1.png';
 
@@ -184,23 +184,21 @@ function hideWinOverlay() {
 async function loadNextLevel() {
     startGame();
     currentLevel++;
-    await setLevel4();
-    world.level = level4;
-    // if (currentLevel == 2) {
-    //     await setLevel2();
-    // } else if (currentLevel == 3) {
-    //     await setLevel3();
-    // } else if (currentLevel == 4) {
-    //     await setLevel4();
-    // } else if (currentLevel == 5) {
-    //     await setLevel5();
-    // } else if (currentLevel == 6) {
-    //     await setLevel6();
-    // } else if (currentLevel == 7) {
-    //     await setLevel7();
-    // }
-    // let level = 'level' + currentLevel;
-    // world.level = eval(level);
+    if (currentLevel == 2) {
+        await setLevel2();
+    } else if (currentLevel == 3) {
+        await setLevel3();
+    } else if (currentLevel == 4) {
+        await setLevel4();
+    } else if (currentLevel == 5) {
+        await setLevel5();
+    } else if (currentLevel == 6) {
+        await setLevel6();
+    } else if (currentLevel == 7) {
+        await setLevel7();
+    }
+    let level = 'level' + currentLevel;
+    world.level = eval(level);
     hideWinOverlay();
 }
 
