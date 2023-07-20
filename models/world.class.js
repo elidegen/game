@@ -176,19 +176,20 @@ class World {
     collideEnemy(enemy) {
         enemy.currentImage = 0;
         enemy.lastAttack = new Date().getTime();
-            if (enemy == this.level.enemies[0]) {
-                this.character.takeDamage(this.bossDamage);
-            } else {
-                this.character.takeDamage(this.enemyDamage);
-            }
+        if (enemy == this.level.enemies[0]) {
+            this.character.takeDamage(this.bossDamage);
+        } else {
+            this.character.takeDamage(this.enemyDamage);
+        }
         this.setHealthBar();
     }
 
     setHealthBar() {
-        if(this.character.isDead()){
+        if (this.character.isDead()) {
             healthBar.classList.add('d-none');
+        } else {
+            healthBar.style = `width: ${this.character.health / this.character.MAX_HEALTH * 100}%;`;
         }
-        healthBar.style = `width: ${this.character.health / this.character.MAX_HEALTH * 100}%;`;
     }
 
     killChicken(enemy) {
