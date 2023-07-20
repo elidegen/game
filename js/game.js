@@ -192,6 +192,9 @@ async function loadNextLevel() {
     startGame();
     currentLevel++;
     if (currentLevel == 8) {
+        document.getElementById('levelEndText').innerHTML = "You Win!";
+        document.getElementById('levelEndButton').classList.add('d-none');
+        document.getElementById('gameEndButton').classList.remove('d-none');
         localStorage.setItem('king', 'unlocked');
     } else {
         if (currentLevel == 2) {
@@ -219,4 +222,5 @@ function hideHeroSelection() {
 
 function chooseHero(nr) {
     hero = nr;
+    startGame();
 }

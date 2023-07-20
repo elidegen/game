@@ -81,7 +81,7 @@ canvas {
     -webkit-background-clip: text;
     color: transparent;
     -webkit-text-stroke: 3px black;
-    margin-bottom: 0;
+    margin: 0;
 }
 
 #overlayLose h2 {
@@ -89,7 +89,7 @@ canvas {
 }
 
 #overlayWin h2 {
-    background-image: linear-gradient(to bottom, white, gold);
+    background-image: linear-gradient(to bottom, rgb(255, 235, 124), gold);
 }
 
 .chooseHero {
@@ -337,6 +337,7 @@ h2 {
 .credits {
     display: flex;
     justify-content: center;
+    flex-direction: column;
     padding: 0 32px;
     text-align: center;
 }

@@ -107,7 +107,7 @@
             <h2>Credits</h2>
             <div class="credits">
                 <p>Background Images created with Adobe Firefly</p>
-                <a href="https://www.vecteezy.com/free-vector/heart-biology">Heart Biology Vectors by Vecteezy</a>
+                <p>Sprites from CraftPix.net</p>
             </div>
         </div>
 
@@ -120,14 +120,14 @@
 
         <div id="overlayWin" class="overlay d-none">
             <div id="win" class="overlayEnd">
-                <h2>Level cleared!</h2>
-                <div class="button replay" onclick="loadNextLevel();">Next Level</div>
+                <h2 id="levelEndText">Level cleared!</h2>
+                <div id="levelEndButton" class="button replay" onclick="loadNextLevel();">Next Level</div>
+                <div id="gameEndButton" class="button replay d-none" onclick="location.reload()">Replay</div>
             </div>
         </div>
 
         <div id="heroSelection" class="chooseHero overlay">
             <h2>Choose your Hero!</h2>
-
             <div class="heros">
                 <div id="king" class="hero d-none">
                     <img id="hero0" onclick="hideHeroSelection(), chooseHero(0);"
@@ -148,7 +148,7 @@
                     <img id="hero3" onclick="hideHeroSelection(), chooseHero(3);"
                         src="img/characters/Knight_3/Idle/Idle_017.png" alt="">
                     <h3>Baron Everlast</h3>
-                </div>                
+                </div>
             </div>
         </div>
 
