@@ -9,9 +9,6 @@ body {
     align-items: center;
     justify-content: space-evenly;
     flex-direction: column;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
     height: 100vh;
     margin: 0;
     font-family: 'kingthings', sans-serif;
@@ -21,6 +18,7 @@ body {
         linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3)),
         /* bottom, image */
         url('img/backgrounds/game_background_0.png');
+        background-position: top;
 }
 
 body::after {
@@ -134,14 +132,13 @@ canvas {
 .chooseHero h2 {
     background-image: linear-gradient(to bottom, rgb(255, 235, 124), gold);
     font-size: 80px;
-    margin-top: 50px;
 }
 
 .heros {
     display: flex;
     justify-content: space-evenly;
-    flex-wrap: wrap;
     width: 100%;
+    margin-top: -50px;
 }
 
 .heros h3 {
@@ -503,6 +500,10 @@ h2 {
         text-align: center;
         margin: auto 0;
     }
+
+    .container {
+        display: none;
+    }
 }
 
 @media(max-height: 720px) {
@@ -514,5 +515,22 @@ h2 {
 @media(max-height: 820px) {
     h1 {
         display: none;
+    }
+}
+
+@media(max-width: 1200px){
+    .hero img{
+        width: 25vw;
+        height: 25vw;
+    }
+
+    .heros h3 {
+        font-size: 25px;
+    }
+}
+
+@media(max-width: 1000px){
+    .heros h3 {
+        font-size: 15px;
     }
 }
