@@ -156,7 +156,7 @@ class MovingObjects extends DrawableObject {
     }
 
     followCharacter() {
-        if (this.x + this.width / 2 < world.character.x + world.character.width / 2) {
+        if (this.x + this.width / 2 <= world.character.x + world.character.width / 2) {
             this.moveRight();
         }
         if (this.x + this.width / 2 > world.character.x + world.character.width / 2) {

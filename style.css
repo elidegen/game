@@ -9,7 +9,6 @@ body {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    background-image: url('img/greyMountainsBackground.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -17,6 +16,11 @@ body {
     margin: 0;
     font-family: 'kingthings', sans-serif;
     font-weight: 700;
+    background:
+        /* top, transparent black, faked with gradient */
+        linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3)),
+        /* bottom, image */
+        url('img/backgrounds/game_background_0.png');
 }
 
 h1 {
@@ -64,7 +68,7 @@ canvas {
 #overlayLose {
     background:
         /* top, transparent black, faked with gradient */
-        linear-gradient(rgba(0, 0, 0, 0.7),
+        linear-gradient(rgba(0, 0, 0, 0.3),
             rgba(0, 0, 0, 0.7)),
         /* bottom, image */
         url('img/gameOver.png');
@@ -93,7 +97,7 @@ canvas {
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
-    -webkit-text-stroke: 1px black;
+    -webkit-text-stroke: .5px black;
     margin: 0;
 }
 
@@ -156,7 +160,7 @@ canvas {
 }
 
 #hero0 {
-    filter: drop-shadow(0px 0px 10px rgb(170, 157, 84));    
+    filter: drop-shadow(0px 0px 10px rgb(170, 157, 84));
 }
 
 .hero img:hover {
@@ -414,7 +418,8 @@ h2 {
     margin-top: -4px;
 }
 
-#bombCount, #shieldCount {
+#bombCount,
+#shieldCount {
     font-size: 25px;
     color: black;
 }
@@ -431,9 +436,17 @@ h2 {
 }
 
 @keyframes fadeRed {
-    0% { color: black; }
-    50% { color: red; }
-    100% { color: black; }
+    0% {
+        color: black;
+    }
+
+    50% {
+        color: red;
+    }
+
+    100% {
+        color: black;
+    }
 }
 
 .fade-red {
