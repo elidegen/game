@@ -14,8 +14,10 @@ class World {
 
     collectedBombs = 0;
 
-    bossDamage = 100;
-    enemyDamage = 20;
+    bossOriginalDamage = 100;
+    enemyOriginalDamage = 20;
+    bossDamage = this.bossOriginalDamage;
+    enemyDamage = this.enemyOriginalDamage;
     characterDamage = 40;
     bombDamage = 100;
 

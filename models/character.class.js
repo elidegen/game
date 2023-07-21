@@ -4,7 +4,7 @@ class Character extends MovingObjects {
     width = 200;
     y = this.y - this.height; //435 -350 = currentLevel
     world;
-    MAX_HEALTH = 1000;
+    MAX_HEALTH = 500;
     health = this.MAX_HEALTH;
     shield = 0;
     heroSpeedBuff = 0;
@@ -184,15 +184,15 @@ class Character extends MovingObjects {
 
     setHero() {
         if (hero == 1) {
-            this.damage = this.damage * 1.25;
+            this.damage = this.damage * 1.5;
         } else if (hero == 2) {
             this.heroSpeedBuff = 2;
         } else if (hero == 3) {
-            this.MAX_HEALTH = this.MAX_HEALTH * 1.25;
+            this.MAX_HEALTH = this.MAX_HEALTH * 1.5;
             this.health = this.MAX_HEALTH;
         } else if (hero == 0) {
-            this.damage = this.damage * 1.25;
-            this.MAX_HEALTH = this.MAX_HEALTH * 1.25;
+            this.damage = this.damage * 1.5;
+            this.MAX_HEALTH = this.MAX_HEALTH * 1.5;
             this.health = this.MAX_HEALTH;
             this.heroSpeedBuff = 2;
         }

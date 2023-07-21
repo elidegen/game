@@ -1,5 +1,5 @@
 let level2;
-function setLevel2() {
+function setLevel2() {    
     level2 = new Level(
         [
             new Endboss(),

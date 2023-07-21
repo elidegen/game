@@ -2,7 +2,7 @@ class Enemies extends MovingObjects {
     height = 200;
     width = 200;
     i = 1;
-    MAX_HEALTH = 95;
+    MAX_HEALTH = 150;
     health = this.MAX_HEALTH;
     otherDirection = 1;
     alreadyCollided = 0;
@@ -23,7 +23,7 @@ class Enemies extends MovingObjects {
 
     constructor() {
         super();
-        this.x = 1000 + Math.random() * 500 //700 + Math.random() * 2000;    
+        this.x = 1000 + Math.random() * 2000;    
         this.y = 120 + Math.random() * 340; //math.random = zahl zwischen 0 und 1 
         this.animate();
         this.moveEnemy();
