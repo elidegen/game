@@ -308,7 +308,7 @@ h2 {
     }
 }
 
-.controls {
+.howToPlay {
     display: flex;
     justify-content: space-evenly;
 }
@@ -369,6 +369,63 @@ h2 {
     flex-direction: column;
     padding: 0 32px;
     text-align: center;
+}
+
+/* controls */
+
+.controls {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: fit-content;
+    backdrop-filter: blur(2px);
+    z-index: 9999;
+}
+
+.controlPad {
+    position: relative;
+    left: 0;
+    bottom: 0;
+    height: 150px;
+    width: 250px;
+    background-color: #8B0000;
+}
+
+#touchLeft {
+    position: absolute;
+    left: 0;
+}
+
+#touchLeft img {
+    transform: rotate(180deg);
+}
+
+#touchRight {
+    position: absolute;
+    right: 0;
+}
+
+#touchUp {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%,0);
+}
+
+#touchUp img {
+    transform: rotate(-90deg);
+}
+
+#touchDown {
+    position: absolute;
+    bottom: 0;    
+    left: 50%;
+    transform: translate(-50%,0);
+}
+
+#touchDown img {
+    transform: rotate(90deg);
 }
 
 /* status bars */
