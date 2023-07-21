@@ -32,6 +32,8 @@ function setLevel6() {
             new Bomb(),
             new Bomb(),
             new Bomb(),
+            new Bomb(),
+            new Bomb(),
         ],
     );
 }

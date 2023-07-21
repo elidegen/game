@@ -18,7 +18,6 @@ class World {
     enemyOriginalDamage = 20;
     bossDamage = this.bossOriginalDamage;
     enemyDamage = this.enemyOriginalDamage;
-    characterDamage = 40;
     bombDamage = 100;
 
     constructor(canvas, keyboard) {
@@ -30,7 +29,19 @@ class World {
         this.run();
         this.checkCharacterPosition();
         this.setHealthBar();
-        this.setCounts(10, 0);
+        this.setBombShield();
+    }
+
+    setBombShield() {
+        if (hero == 0) {
+            this.setCounts(1, 1);
+        } else if (hero == 1) {
+            this.setCounts(1, 0);
+        } else if (hero == 2) {
+            this.setCounts(0, 0);
+        } else if (hero == 3) {
+            this.setCounts(0, 1);
+        }
     }
 
     setWorld() {
@@ -136,7 +147,7 @@ class World {
                 this.collideEnemy(enemy);
             }
             if (this.hittingEnemy(enemy)) {
-                enemy.takeDamage(this.characterDamage);
+                enemy.takeDamage(this.character.damage);
             }
         });
         this.level.blessings.forEach(blessing => {
@@ -171,7 +182,7 @@ class World {
     }
 
     hurtEndboss() {
-        this.level.enemies[0].health -= this.characterDamage;
+        this.level.enemies[0].health -= this.character.damage;
         this.lastBossHit = new Date().getTime();
     }
 
@@ -191,14 +202,6 @@ class World {
         if (this.character.isDead()) {
             healthBar.classList.add('d-none');
         }
-    }
-
-    killChicken(enemy) {
-        enemy.health -= this.characterDamage;
-        setTimeout(() => {
-            enemy.speed = 0;
-            enemy.y += 20;
-        }, 50);
     }
 
     collectItem(itemPath, item) {

@@ -18,7 +18,6 @@ function setLevel2() {
         ],
         [
             new Blessing(),
-            new Blessing(),
         ],
         [
             new Bomb(),

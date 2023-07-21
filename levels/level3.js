@@ -24,8 +24,6 @@ function setLevel3() {
         ],
         [
             new Bomb(),
-            new Bomb(),
-            new Bomb(),
         ],
     );
 }

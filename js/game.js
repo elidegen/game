@@ -191,7 +191,8 @@ function hideWinOverlay() {
 async function loadNextLevel() {
     startGame();
     currentLevel++;
-    world.enemyDamage = world.enemyOriginalDamage * currentLevel / 2;
+    world.enemyDamage = world.enemyOriginalDamage * currentLevel / 3;
+    world.bossDamage = world.bossOriginalDamage * currentLevel / 3;
     if (currentLevel == 8) {
         document.getElementById('levelEndText').innerHTML = "You Win!";
         document.getElementById('levelEndButton').classList.add('d-none');

@@ -185,16 +185,19 @@ class Character extends MovingObjects {
     setHero() {
         if (hero == 1) {
             this.damage = this.damage * 1.5;
+            // this.world.setCounts(1, 0);
         } else if (hero == 2) {
-            this.heroSpeedBuff = 2;
+            this.heroSpeedBuff = 3;
         } else if (hero == 3) {
             this.MAX_HEALTH = this.MAX_HEALTH * 1.5;
             this.health = this.MAX_HEALTH;
+            // this.world.setCounts(0, 1);
         } else if (hero == 0) {
             this.damage = this.damage * 1.5;
             this.MAX_HEALTH = this.MAX_HEALTH * 1.5;
             this.health = this.MAX_HEALTH;
-            this.heroSpeedBuff = 2;
+            this.heroSpeedBuff = 3;
+            // this.world.setCounts(1, 1);
         }
     }
 

@@ -4,7 +4,7 @@ class Endboss extends MovingObjects {
     height = 500;
     width = 500;
     y = this.y - this.height + 100;
-    MAX_HEALTH = 100;
+    MAX_HEALTH = 500;
     health = this.MAX_HEALTH;
     otherDirection = 1;
     range = 160;
