@@ -7,7 +7,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
     flex-direction: column;
     background-size: cover;
     background-repeat: no-repeat;
@@ -23,12 +23,22 @@ body {
         url('img/backgrounds/game_background_0.png');
 }
 
+body::after {
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    z-index: -1;
+    content: url("img/characters/Knight_0/Slashing/Slashing_011.png") url("img/characters/Knight_1/Slashing/Slashing_011.png") url("img/characters/Knight_2/Slashing/Slashing_011.png") url("img/characters/Knight_3/Slashing/Slashing_011.png");
+}
+
 h1 {
     font-size: 80px;
     letter-spacing: 3px;
     text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.4);
     color: #a0220a;
     -webkit-text-stroke: .5px black;
+    margin: 0;
 }
 
 ::-webkit-scrollbar {
@@ -170,6 +180,11 @@ canvas {
     transition: 225ms;
 }
 
+#hero0:hover {
+    content: url("img/characters/Knight_0/Slashing/Slashing_011.png");
+    filter: drop-shadow(0px 0px 15px rgb(255, 228, 77));
+}
+
 #hero1:hover {
     content: url("img/characters/Knight_1/Slashing/Slashing_011.png");
 }
@@ -180,11 +195,6 @@ canvas {
 
 #hero3:hover {
     content: url("img/characters/Knight_3/Slashing/Slashing_011.png");
-}
-
-#hero0:hover {
-    content: url("img/characters/Knight_0/Slashing/Slashing_011.png");
-    filter: drop-shadow(0px 0px 15px rgb(255, 228, 77));
 }
 
 /*  */
