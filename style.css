@@ -18,7 +18,7 @@ body {
         linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3)),
         /* bottom, image */
         url('img/backgrounds/game_background_0.png');
-        background-position: top;
+    background-position: top;
 }
 
 body::after {
@@ -379,53 +379,67 @@ h2 {
     left: 0;
     right: 0;
     height: fit-content;
-    backdrop-filter: blur(2px);
     z-index: 9999;
+    padding: 15px;
+    display: none;
 }
 
 .controlPad {
     position: relative;
     left: 0;
     bottom: 0;
-    height: 150px;
-    width: 250px;
-    background-color: #8B0000;
+    height: 140px;
+    width: 160px;
 }
 
 #touchLeft {
     position: absolute;
     left: 0;
+    bottom: 50%;
+    top: unset;
+    transform: translate(0, 50%);
 }
 
 #touchLeft img {
+    margin-right: 6px;
     transform: rotate(180deg);
 }
 
 #touchRight {
     position: absolute;
     right: 0;
+    bottom: 50%;
+    top: unset;
+    transform: translate(0, 50%);
+}
+
+#touchRight img {
+    margin-left: 6px;
 }
 
 #touchUp {
     position: absolute;
     top: 0;
     left: 50%;
-    transform: translate(-50%,0);
+    transform: translate(-50%, 0);
 }
 
 #touchUp img {
     transform: rotate(-90deg);
+    margin-bottom: 6px;
 }
 
 #touchDown {
     position: absolute;
-    bottom: 0;    
+    top: unset;
+    bottom: 0;
     left: 50%;
-    transform: translate(-50%,0);
+    transform: translate(-50%, 0);
 }
 
 #touchDown img {
     transform: rotate(90deg);
+    margin-top: 6px;
 }
 
 /* status bars */
@@ -575,8 +589,8 @@ h2 {
     }
 }
 
-@media(max-width: 1200px){
-    .hero img{
+@media(max-width: 1200px) {
+    .hero img {
         width: 25vw;
         height: 25vw;
     }
@@ -586,8 +600,14 @@ h2 {
     }
 }
 
-@media(max-width: 1000px){
+@media(max-width: 1000px) {
     .heros h3 {
         font-size: 15px;
+    }
+}
+
+@media(max-width: 821px){
+    .controls {
+        display: block;
     }
 }
