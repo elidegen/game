@@ -162,7 +162,8 @@ function startGame() {
     console.log('My Character is', world.character);
     pause = false;
     gameStarted = 1;
-    world.keyboard.mobileButtonPress();
+    world.keyboard.mobileButtonPress();    
+    document.getElementById('controls').classList.remove('d-none')
 }
 
 function setBloodButton() {
