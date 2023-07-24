@@ -39,7 +39,6 @@ window.addEventListener("keydown", (e) => {
         keyboard.SPACE = true;
     }
     if (e.keyCode == 75) { //K
-        keyboard.HIT = true;
         world.character.lastAttack = new Date().getTime();
         world.character.currentImage = 0;
     }
@@ -77,14 +76,8 @@ window.addEventListener("keyup", (e) => {
     if (e.keyCode == 13) {
         keyboard.ENTER = false;
     }
-    if (e.keyCode == 75) {
-        keyboard.HIT = false;
-    }
     if (e.keyCode == 76) {
         keyboard.THROW = false;
-    }
-    if (e.keyCode == 16) {
-        keyboard.RUN = false;
     }
 });
 

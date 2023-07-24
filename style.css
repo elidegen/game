@@ -108,8 +108,8 @@ canvas {
     margin: 0;
 }
 
-#overlayLose h2 {
-    background-image: linear-gradient(to bottom, red, #8B0000);
+#lose h2 {
+    color: red;
 }
 
 .chooseHero {
@@ -266,6 +266,8 @@ h2 {
     background: linear-gradient(to top, rgba(211, 211, 211, 0.5), rgba(128, 128, 128, 0.493));
     backdrop-filter: blur(4px);
     overflow-y: scroll;
+    z-index: 1000;
+    height: 360px;
 }
 
 .openSettings {
@@ -276,25 +278,51 @@ h2 {
     animation: close 1s forwards;
 }
 
-@keyframes open {
-    100% {
-        height: 360px;
-        padding-bottom: 20px;
+@media(min-height: 720px) {
+    @keyframes open {
+        100% {
+            height: 360px;
+            padding-bottom: 20px;
+        }
+
+        0% {
+            height: 0;
+        }
     }
 
-    0% {
-        height: 0;
+    @keyframes close {
+        0% {
+            height: 360px;
+        }
+
+        100% {
+            height: 0;
+            padding-bottom: 0px;
+        }
     }
 }
 
-@keyframes close {
-    0% {
-        height: 360px;
+@media(max-height: 720px) {
+    @keyframes open {
+        100% {
+            height: 70vh;
+            padding-bottom: 20px;
+        }
+
+        0% {
+            height: 0;
+        }
     }
 
-    100% {
-        height: 0;
-        padding-bottom: 0px;
+    @keyframes close {
+        0% {
+            height: 70vh;
+        }
+
+        100% {
+            height: 0;
+            padding-bottom: 0px;
+        }
     }
 }
 
@@ -369,7 +397,7 @@ h2 {
     left: 0;
     right: 0;
     height: fit-content;
-    z-index: 9999;
+    z-index: 999;
     display: none;
 }
 

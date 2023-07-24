@@ -5,12 +5,12 @@ class Keyboard {
     DOWN = false;
     SPACE = false;
     ENTER = false;
-    HIT = false;
     THROW = false;
-    RUN = false;
     PAUSE = false;
 
     mobileButtonPress() {
+        // dpad
+
         document.getElementById('touchUp').addEventListener('touchstart', (e) => {
             e.preventDefault();
             this.UP = true;
@@ -45,6 +45,32 @@ class Keyboard {
         document.getElementById('touchLeft').addEventListener('touchend', (e) => {
             e.preventDefault();
             this.LEFT = false;
+        });
+
+        // controls
+
+        document.getElementById('touchHit').addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            world.character.lastAttack = new Date().getTime();
+            world.character.currentImage = 0;
+        });
+
+        document.getElementById('touchRun').addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            if (!world.recentAction(world.character.startRun, 2000)) {
+                keyboard.RUN = true;
+                world.character.startRun = new Date().getTime();
+            }
+        });
+
+        document.getElementById('touchThrow').addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            this.THROW = true;
+            world.character.currentImage = 0;
+        });
+        document.getElementById('touchThrow').addEventListener('touchend', (e) => {
+            e.preventDefault();
+            this.THROW = false;
         });
     }
 }
