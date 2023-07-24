@@ -652,7 +652,7 @@ h2 {
     }
 }
 
-@media(max-width: 1000px) {
+@media(max-width: 1050px) {
     .heros h3 {
         font-size: 15px;
     }
@@ -665,5 +665,11 @@ h2 {
 
     .overlay h2 {
         font-size: 80px;
+    }
+}
+
+@media(max-width: 900px) and (min-height: 1100px) {
+    .controls {
+        display: block !important;
     }
 }
