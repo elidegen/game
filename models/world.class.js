@@ -249,7 +249,7 @@ class World {
 
         mo.draw(this.ctx);
 
-        mo.drawFrame(this.ctx);
+        // mo.drawFrame(this.ctx);
 
         this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width, mo.height);
         if (mo.otherDirection) {
