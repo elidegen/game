@@ -144,7 +144,7 @@ class World {
     checkCollisions() {
         this.level.enemies.forEach(enemy => {
             if (enemy.isCollidingWithAttack(this.character) && enemy.health > 0 && !this.recentAction(enemy.lastAttack, enemy.animationSpeed * enemy.IMAGES_ATTACK.length)) {
-                this.collideEnemy(enemy);
+               this.collideEnemy(enemy);
             }
             if (this.hittingEnemy(enemy)) {
                 enemy.takeDamage(this.character.damage);
@@ -189,12 +189,10 @@ class World {
     collideEnemy(enemy) {
         enemy.currentImage = 0;
         enemy.lastAttack = new Date().getTime();
-        if (enemy == this.level.enemies[0]) {
-            this.character.takeDamage(this.bossDamage);
-        } else {
+        if (enemy != this.level.enemies[0]) {
             this.character.takeDamage(this.enemyDamage);
         }
-        this.setHealthBar();
+        // this.setHealthBar();
     }
 
     setHealthBar() {
