@@ -370,7 +370,6 @@ h2 {
     right: 0;
     height: fit-content;
     z-index: 9999;
-    padding: 15px;
     display: none;
 }
 
@@ -378,8 +377,9 @@ h2 {
     position: relative;
     left: 0;
     bottom: 0;
-    height: 140px;
+    height: 120px;
     width: 160px;
+    margin: 25px;
 }
 
 #touchLeft {
@@ -430,6 +430,36 @@ h2 {
 #touchDown img {
     transform: rotate(90deg);
     margin-top: 6px;
+}
+
+.gameButtons {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    height: 140px;
+    width: 160px;
+    margin: 25px;
+}
+
+#touchHit {
+    position: absolute;
+    top: unset;
+    right: 70px;
+    bottom: 0;
+}
+
+#touchRun {
+    position: absolute;
+    top: unset;
+    right: 0;
+    bottom: 70px;
+}
+
+#touchThrow {
+    position: absolute;
+    top: unset;
+    right: 0;
+    bottom: 0;
 }
 
 /* status bars */
@@ -600,10 +630,11 @@ h2 {
     }
 }
 
-@media(max-width: 1100px){
+@media(max-width: 1100px) {
     .controls {
         display: block;
     }
+
     .overlay h2 {
         font-size: 80px;
     }
