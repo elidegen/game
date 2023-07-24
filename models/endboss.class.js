@@ -128,8 +128,8 @@ class Endboss extends MovingObjects {
             } else if (world.recentAction(this.lastAttack, this.animationSpeed * this.IMAGES_ATTACK.length)) {
                 this.playAnimation(this.IMAGES_ATTACK);
                 if (this.currentImage == 8) {
-                    this.world.character.takeDamage(this.world.bossDamage);
-                    this.world.setHealthBar();
+                    world.character.takeDamage(world.bossDamage);
+                    world.setHealthBar();
                 }
             } else if (this.playerNearby()) {
                 this.speed = 12;

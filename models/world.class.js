@@ -143,7 +143,7 @@ class World {
 
     checkCollisions() {
         this.level.enemies.forEach(enemy => {
-            if (enemy.isCollidingWithAttack(this.character) && enemy.health > 0 && !this.recentAction(enemy.lastAttack, enemy.animationSpeed * enemy.IMAGES_ATTACK.length)) {
+            if (this.hittingCharacter(enemy)) {
                this.collideEnemy(enemy);
             }
             if (this.hittingEnemy(enemy)) {
@@ -175,6 +175,10 @@ class World {
                 this.setHealthBar();
             }
         });
+    }
+
+    hittingCharacter(enemy) {
+        return enemy.isCollidingWithAttack(this.character) && enemy.health > 0 && !this.recentAction(enemy.lastAttack, enemy.animationSpeed * enemy.IMAGES_ATTACK.length);
     }
 
     hittingEnemy(enemy) {
