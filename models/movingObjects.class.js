@@ -83,24 +83,32 @@ class MovingObjects extends DrawableObject {
         if (this.isVulnerable() && !world.gameOver) {
             this.lastHit = new Date().getTime();
             this.currentImage = 0;
-            setTimeout(() => {
-                if (this.shield > 0) {
-                    world.setCounts(0, -1);
-                } else {
-                    this.health -= damage;
-                    if(this.health < 0){
-                        this.health = 0;
-                    }
-                    this.createBlood();
-                }
-            }, 100);
+            this.getHurt(damage);
         }
         world.setHealthBar();
     }
 
+    getHurt(damage) {
+        if (this.shield > 0) {
+            setTimeout(() => {
+                world.setCounts(0, -1);
+            }, 100);
+        } else {
+            this.createBlood();
+            setTimeout(() => {
+                this.health -= damage;
+                if (this.health < 0) {
+                    this.health = 0;
+                }
+            }, 100);
+        }
+    }
+
     createBlood() {
-        if (enableBlood) {
+        if (enableBlood && this.otherDirection) {
             world.blood.push(new Blood(this.x + this.width / 3, this.y + this.height / 3, 250, 250));
+        } else {
+            world.blood.push(new Blood(this.x - this.width / 2, this.y + this.height / 3, 250, 250));
         }
     }
 
