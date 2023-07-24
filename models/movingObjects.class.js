@@ -80,12 +80,10 @@ class MovingObjects extends DrawableObject {
     }
 
     takeDamage(damage) {
-        console.log(this, this.isVulnerable());
         if (this.isVulnerable() && !world.gameOver) {
             this.lastHit = new Date().getTime();
             this.currentImage = 0;
             setTimeout(() => {
-                // console.log(this, this.health);
                 if (this.shield > 0) {
                     world.setCounts(0, -1);
                 } else {
@@ -112,7 +110,7 @@ class MovingObjects extends DrawableObject {
 
     isHurt() {
         let timepassed = new Date().getTime() - this.lastHit; //difference in ms
-        return timepassed < 600;
+        return timepassed < 385;
     }
 
     isVulnerable() {

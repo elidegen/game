@@ -9,7 +9,7 @@ class Endboss extends MovingObjects {
     otherDirection = 1;
     range = 100;
     bombHit = false;
-    animationSpeed = 50;
+    // animationSpeed = 50;
     offset = {
         top: 280,
         right: 180,
