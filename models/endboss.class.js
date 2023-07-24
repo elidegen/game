@@ -7,7 +7,7 @@ class Endboss extends MovingObjects {
     MAX_HEALTH = 500;
     health = this.MAX_HEALTH;
     otherDirection = 1;
-    range = 160;
+    range = 100;
     bombHit = false;
     animationSpeed = 50;
     offset = {
