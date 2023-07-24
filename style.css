@@ -124,11 +124,6 @@ canvas {
     flex-direction: column;
 }
 
-.chooseHero h2 {
-    background-image: linear-gradient(to bottom, rgb(255, 235, 124), gold);
-    font-size: 80px;
-}
-
 .heros {
     display: flex;
     justify-content: space-evenly;
@@ -605,11 +600,11 @@ h2 {
     }
 }
 
-@media(max-width: 1000px){
+@media(max-width: 1100px){
     .controls {
         display: block;
     }
     .overlay h2 {
-        font-size: 120px;
+        font-size: 80px;
     }
 }
