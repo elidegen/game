@@ -38,7 +38,7 @@ window.addEventListener("keydown", (e) => {
     if (e.keyCode == 32) {
         keyboard.SPACE = true;
     }
-    if (e.keyCode == 75) { //K
+    if (e.keyCode == 75 && !world.recentAction(world.character.lastAttack, 500)) { //K
         world.character.lastAttack = new Date().getTime();
         world.character.currentImage = 0;
     }

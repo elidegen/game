@@ -11,7 +11,7 @@ body {
     flex-direction: column;
     height: 100vh;
     margin: 0;
-    font-family: 'kingthings', sans-serif;
+    font-family: 'kingthings', Arial, Helvetica, sans-serif;
     font-weight: 700;
     background:
         /* top, transparent black, faked with gradient */
@@ -118,7 +118,7 @@ canvas {
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: url('img/backgrounds/PNG/PNG/game_background_3/game_background_3(3).png');
+    background-image: url('img/backgrounds/hero_background.png');
     background-size: cover;
     display: flex;
     flex-direction: column;

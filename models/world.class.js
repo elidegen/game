@@ -178,7 +178,7 @@ class World {
     }
 
     hittingCharacter(enemy) {
-        return enemy.isCollidingWithAttack(this.character) && enemy.health > 0 && !this.recentAction(enemy.lastAttack, enemy.animationSpeed * enemy.IMAGES_ATTACK.length);
+        return enemy.isCollidingWithAttack(this.character) && enemy.health > 0 && !this.recentAction(enemy.lastAttack, enemy.animationSpeed * enemy.IMAGES_ATTACK.length + 500);
     }
 
     hittingEnemy(enemy) {

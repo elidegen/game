@@ -20,6 +20,7 @@ class Enemies extends MovingObjects {
     IMAGES_DYING;
     IMAGE_DEAD;
     IMAGES_RUNNING;
+    IMAGES_IDLE_BLINKING;
 
     constructor() {
         super();
@@ -40,6 +41,8 @@ class Enemies extends MovingObjects {
                 this.playAnimation(this.IMAGES_HURT);
             } else if (world.recentAction(this.lastAttack, this.animationSpeed * this.IMAGES_ATTACK.length)) {
                 this.playAnimation(this.IMAGES_ATTACK);
+            } else if (this.isCollidingWithAttack(world.character) && !world.recentAction(this.lastAttack, this.animationSpeed * this.IMAGES_ATTACK.length)) {
+                this.playAnimation(this.IMAGES_WALKING);
             } else if (this.playerNearby()) {
                 this.speed = 6;
                 this.playAnimation(this.IMAGES_RUNNING);

@@ -84,6 +84,26 @@ class Enemy2 extends Enemies {
         `img/enemies/Enemy_${currentLevel}.2/Running/Running_010.png`,
         `img/enemies/Enemy_${currentLevel}.2/Running/Running_011.png`,
     ];
+    IMAGES_IDLE_BLINKING = [
+        `img/enemies/Enemy_${currentLevel}.2/Idle Blinking/Idle Blinking_000.png`,
+        `img/enemies/Enemy_${currentLevel}.2/Idle Blinking/Idle Blinking_001.png`,
+        `img/enemies/Enemy_${currentLevel}.2/Idle Blinking/Idle Blinking_002.png`,
+        `img/enemies/Enemy_${currentLevel}.2/Idle Blinking/Idle Blinking_003.png`,
+        `img/enemies/Enemy_${currentLevel}.2/Idle Blinking/Idle Blinking_004.png`,
+        `img/enemies/Enemy_${currentLevel}.2/Idle Blinking/Idle Blinking_005.png`,
+        `img/enemies/Enemy_${currentLevel}.2/Idle Blinking/Idle Blinking_006.png`,
+        `img/enemies/Enemy_${currentLevel}.2/Idle Blinking/Idle Blinking_007.png`,
+        `img/enemies/Enemy_${currentLevel}.2/Idle Blinking/Idle Blinking_008.png`,
+        `img/enemies/Enemy_${currentLevel}.2/Idle Blinking/Idle Blinking_009.png`,
+        `img/enemies/Enemy_${currentLevel}.2/Idle Blinking/Idle Blinking_010.png`,
+        `img/enemies/Enemy_${currentLevel}.2/Idle Blinking/Idle Blinking_011.png`,
+        `img/enemies/Enemy_${currentLevel}.2/Idle Blinking/Idle Blinking_012.png`,
+        `img/enemies/Enemy_${currentLevel}.2/Idle Blinking/Idle Blinking_013.png`,
+        `img/enemies/Enemy_${currentLevel}.2/Idle Blinking/Idle Blinking_014.png`,
+        `img/enemies/Enemy_${currentLevel}.2/Idle Blinking/Idle Blinking_015.png`,
+        `img/enemies/Enemy_${currentLevel}.2/Idle Blinking/Idle Blinking_016.png`,
+        `img/enemies/Enemy_${currentLevel}.2/Idle Blinking/Idle Blinking_017.png`,
+    ];
     IMAGE_DEAD = `img/enemies/Enemy_${currentLevel}.2/Dying/Dying_014.png`
 
     constructor() {
@@ -93,5 +113,6 @@ class Enemy2 extends Enemies {
         this.loadImages(this.IMAGES_ATTACK);
         this.loadImages(this.IMAGES_DYING);
         this.loadImages(this.IMAGES_RUNNING);
+        this.loadImages(this.IMAGES_IDLE_BLINKING);
     }
 }
