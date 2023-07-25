@@ -90,22 +90,18 @@ class MovingObjects extends DrawableObject {
 
     getHurt(damage, direction) {
         if (this.shield > 0) {
-            // setTimeout(() => {
                 world.setCounts(0, -1);
-            // }, 100);
         } else {
             this.createBlood(direction);
-            // setTimeout(() => {
+            console.log('get hurt');
                 this.health -= damage;
                 if (this.health < 0) {
                     this.health = 0;
                 }
-            // }, 100);
         }
     }
 
     createBlood(direction) {
-        console.log('eins hit');
         if (this instanceof Endboss && enableBlood) {
             this.endbossBlood();
         } else if ((this instanceof Enemy1 || this instanceof Enemy2 || this instanceof Enemy3 || this instanceof Enemy4) && enableBlood) {
