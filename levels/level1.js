@@ -1,8 +1,8 @@
 const level1 = new Level(
     [
         new Endboss(),
-        new Enemy1(),
-        new Enemy2(),
+        // new Enemy1(),
+        // new Enemy2(),
     ],
     [
         new BackgroundObject('img/backgrounds/game_background_1.png', 0),

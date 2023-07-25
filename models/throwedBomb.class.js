@@ -47,19 +47,21 @@ class ThrowedBomb extends MovingObjects {
     throw() {
         let i = 0;
         let interval = setInterval(() => {
-            if (this.isAboveGround()) {
-                this.x += this.speed;
-                this.playAnimation(this.IMAGES_THROW);
-            } else if (i < 9) {
-                this.explode = true;
-                this.height = 100;
-                this.width = 100;
-                this.playAnimation(this.IMAGES_EXPLOSION);
-                i++;
-            } else if (i == 9) {
-                world.throwable.shift();
-                clearInterval(interval);
-                this.explode = false;
+            if (!pause) {
+                if (this.isAboveGround()) {
+                    this.x += this.speed;
+                    this.playAnimation(this.IMAGES_THROW);
+                } else if (i < 9) {
+                    this.explode = true;
+                    this.height = 100;
+                    this.width = 100;
+                    this.playAnimation(this.IMAGES_EXPLOSION);
+                    i++;
+                } else if (i == 9) {
+                    world.throwable.shift();
+                    clearInterval(interval);
+                    this.explode = false;
+                }
             }
         }, 50);
     }
