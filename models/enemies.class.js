@@ -20,7 +20,7 @@ class Enemies extends MovingObjects {
     IMAGES_DYING;
     IMAGE_DEAD;
     IMAGES_RUNNING;
-    IMAGES_IDLE_BLINKING;
+    // IMAGES_IDLE_BLINKING;
 
     constructor() {
         super();

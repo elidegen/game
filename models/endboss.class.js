@@ -101,26 +101,26 @@ class Endboss extends MovingObjects {
         `img/enemies/Boss_${currentLevel}/Dying/Dying_013.png`,
         `img/enemies/Boss_${currentLevel}/Dying/Dying_014.png`,
     ];
-    IMAGES_IDLE_BLINKING = [
-        `img/enemies/Boss_${currentLevel}/Idle/0_Zombie_Pirate_Idle_000.png`,
-        `img/enemies/Boss_${currentLevel}/Idle/0_Zombie_Pirate_Idle_001.png`,
-        `img/enemies/Boss_${currentLevel}/Idle/0_Zombie_Pirate_Idle_002.png`,
-        `img/enemies/Boss_${currentLevel}/Idle/0_Zombie_Pirate_Idle_003.png`,
-        `img/enemies/Boss_${currentLevel}/Idle/0_Zombie_Pirate_Idle_004.png`,
-        `img/enemies/Boss_${currentLevel}/Idle/0_Zombie_Pirate_Idle_005.png`,
-        `img/enemies/Boss_${currentLevel}/Idle/0_Zombie_Pirate_Idle_006.png`,
-        `img/enemies/Boss_${currentLevel}/Idle/0_Zombie_Pirate_Idle_007.png`,
-        `img/enemies/Boss_${currentLevel}/Idle/0_Zombie_Pirate_Idle_008.png`,
-        `img/enemies/Boss_${currentLevel}/Idle/0_Zombie_Pirate_Idle_009.png`,
-        `img/enemies/Boss_${currentLevel}/Idle/0_Zombie_Pirate_Idle_010.png`,
-        `img/enemies/Boss_${currentLevel}/Idle/0_Zombie_Pirate_Idle_011.png`,
-        `img/enemies/Boss_${currentLevel}/Idle/0_Zombie_Pirate_Idle_012.png`,
-        `img/enemies/Boss_${currentLevel}/Idle/0_Zombie_Pirate_Idle_013.png`,
-        `img/enemies/Boss_${currentLevel}/Idle/0_Zombie_Pirate_Idle_014.png`,
-        `img/enemies/Boss_${currentLevel}/Idle/0_Zombie_Pirate_Idle_015.png`,
-        `img/enemies/Boss_${currentLevel}/Idle/0_Zombie_Pirate_Idle_016.png`,
-        `img/enemies/Boss_${currentLevel}/Idle/0_Zombie_Pirate_Idle_017.png`,
-    ];
+    // IMAGES_IDLE_BLINKING = [
+    //     `img/enemies/Boss_${currentLevel}/Idle/0_Zombie_Pirate_Idle_000.png`,
+    //     `img/enemies/Boss_${currentLevel}/Idle/0_Zombie_Pirate_Idle_001.png`,
+    //     `img/enemies/Boss_${currentLevel}/Idle/0_Zombie_Pirate_Idle_002.png`,
+    //     `img/enemies/Boss_${currentLevel}/Idle/0_Zombie_Pirate_Idle_003.png`,
+    //     `img/enemies/Boss_${currentLevel}/Idle/0_Zombie_Pirate_Idle_004.png`,
+    //     `img/enemies/Boss_${currentLevel}/Idle/0_Zombie_Pirate_Idle_005.png`,
+    //     `img/enemies/Boss_${currentLevel}/Idle/0_Zombie_Pirate_Idle_006.png`,
+    //     `img/enemies/Boss_${currentLevel}/Idle/0_Zombie_Pirate_Idle_007.png`,
+    //     `img/enemies/Boss_${currentLevel}/Idle/0_Zombie_Pirate_Idle_008.png`,
+    //     `img/enemies/Boss_${currentLevel}/Idle/0_Zombie_Pirate_Idle_009.png`,
+    //     `img/enemies/Boss_${currentLevel}/Idle/0_Zombie_Pirate_Idle_010.png`,
+    //     `img/enemies/Boss_${currentLevel}/Idle/0_Zombie_Pirate_Idle_011.png`,
+    //     `img/enemies/Boss_${currentLevel}/Idle/0_Zombie_Pirate_Idle_012.png`,
+    //     `img/enemies/Boss_${currentLevel}/Idle/0_Zombie_Pirate_Idle_013.png`,
+    //     `img/enemies/Boss_${currentLevel}/Idle/0_Zombie_Pirate_Idle_014.png`,
+    //     `img/enemies/Boss_${currentLevel}/Idle/0_Zombie_Pirate_Idle_015.png`,
+    //     `img/enemies/Boss_${currentLevel}/Idle/0_Zombie_Pirate_Idle_016.png`,
+    //     `img/enemies/Boss_${currentLevel}/Idle/0_Zombie_Pirate_Idle_017.png`,
+    // ];
     IMAGE_DEAD = `img/enemies/Boss_${currentLevel}/Dying/Dying_014.png`;
 
 
@@ -131,7 +131,7 @@ class Endboss extends MovingObjects {
         this.loadImages(this.IMAGES_ATTACK);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_DYING);
-        this.loadImages(this.IMAGES_IDLE_BLINKING);
+        // this.loadImages(this.IMAGES_IDLE_BLINKING);
         //this.x = this.world.level.level_end_x;
         this.x = 2500;
         this.animate();
@@ -151,7 +151,7 @@ class Endboss extends MovingObjects {
             } else if (world.recentAction(this.lastAttack, this.animationSpeed * this.IMAGES_ATTACK.length)) {
                 this.playAnimation(this.IMAGES_ATTACK);
                 if (this.currentImage == 8) {
-                    world.character.takeDamage(world.bossDamage);
+                    world.character.takeDamage(world.bossDamage, this.otherDirection);
                     world.setHealthBar();
                 }
             } else if (this.playerNearby()) {

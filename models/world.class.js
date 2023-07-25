@@ -147,7 +147,7 @@ class World {
                this.collideEnemy(enemy);
             }
             if (this.hittingEnemy(enemy)) {
-                enemy.takeDamage(this.character.damage);
+                enemy.takeDamage(this.character.damage, this.otherDirection);
             }
         });
         this.level.blessings.forEach(blessing => {
@@ -166,12 +166,12 @@ class World {
             this.level.enemies.forEach(enemy => {
                 if (enemy.isColliding(bomb) && enemy.isVulnerable() && bomb.explode) {
                     enemy.bombHit = true;
-                    enemy.takeDamage(this.bombDamage);
+                    enemy.takeDamage(this.bombDamage, this.otherDirection);
                     enemy.bombHit = false;
                 }
             });
             if (this.character.isColliding(bomb) && this.character.isVulnerable() && bomb.explode) {
-                this.character.takeDamage(this.bombDamage);
+                this.character.takeDamage(this.bombDamage, this.otherDirection);
                 this.setHealthBar();
             }
         });
@@ -194,7 +194,7 @@ class World {
         enemy.currentImage = 0;
         enemy.lastAttack = new Date().getTime();
         if (enemy != this.level.enemies[0]) {
-            this.character.takeDamage(this.enemyDamage);
+            this.character.takeDamage(this.enemyDamage, this.otherDirection);
         }
         // this.setHealthBar();
     }

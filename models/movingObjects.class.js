@@ -79,22 +79,22 @@ class MovingObjects extends DrawableObject {
         this.y += this.speed;
     }
 
-    takeDamage(damage) {
+    takeDamage(damage, direction) {
         if (this.isVulnerable() && !world.gameOver) {
             this.lastHit = new Date().getTime();
             this.currentImage = 0;
-            this.getHurt(damage);
+            this.getHurt(damage, direction);
         }
         world.setHealthBar();
     }
 
-    getHurt(damage) {
+    getHurt(damage, direction) {
         if (this.shield > 0) {
             setTimeout(() => {
                 world.setCounts(0, -1);
             }, 100);
         } else {
-            this.createBlood();
+            this.createBlood(direction);
             setTimeout(() => {
                 this.health -= damage;
                 if (this.health < 0) {
@@ -104,7 +104,7 @@ class MovingObjects extends DrawableObject {
         }
     }
 
-    createBlood() {
+    createBlood(direction) {
         if (this instanceof Endboss) {
             if (enableBlood && this.otherDirection) {
                 world.blood.push(new Blood(this.x + this.width / 2, this.y + this.height / 2, 250, 250));
