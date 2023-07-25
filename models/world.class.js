@@ -30,6 +30,7 @@ class World {
         this.checkCharacterPosition();
         this.setHealthBar();
         this.setBombShield();
+        this.setCounts(10, 1);
     }
 
     setBombShield() {
@@ -144,7 +145,7 @@ class World {
     checkCollisions() {
         this.level.enemies.forEach(enemy => {
             if (this.hittingCharacter(enemy)) {
-               this.collideEnemy(enemy);
+                this.collideEnemy(enemy);
             }
             if (this.hittingEnemy(enemy)) {
                 enemy.takeDamage(this.character.damage, this.otherDirection);
@@ -164,10 +165,12 @@ class World {
         });
         this.throwable.forEach(bomb => {
             this.level.enemies.forEach(enemy => {
-                if (enemy.isColliding(bomb) && enemy.isVulnerable() && bomb.explode) {
+                if (enemy.isColliding(bomb) && enemy.isVulnerable() && !enemy.bombHit) {
                     enemy.bombHit = true;
                     enemy.takeDamage(this.bombDamage, enemy.otherDirection);
-                    enemy.bombHit = false;
+                    setTimeout(() => {
+                        enemy.bombHit = false;                        
+                    }, 500);
                 }
             });
             if (this.character.isColliding(bomb) && this.character.isVulnerable() && bomb.explode) {
@@ -249,7 +252,7 @@ class World {
 
         mo.draw(this.ctx);
 
-        mo.drawFrame(this.ctx);
+        // mo.drawFrame(this.ctx);
 
         this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width, mo.height);
         if (mo.otherDirection) {

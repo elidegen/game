@@ -90,40 +90,52 @@ class MovingObjects extends DrawableObject {
 
     getHurt(damage, direction) {
         if (this.shield > 0) {
-            setTimeout(() => {
+            // setTimeout(() => {
                 world.setCounts(0, -1);
-            }, 100);
+            // }, 100);
         } else {
             this.createBlood(direction);
-            setTimeout(() => {
+            // setTimeout(() => {
                 this.health -= damage;
                 if (this.health < 0) {
                     this.health = 0;
                 }
-            }, 100);
+            // }, 100);
         }
     }
 
     createBlood(direction) {
+        console.log('eins hit');
         if (this instanceof Endboss && enableBlood) {
-            if (this.otherDirection) {
-                world.blood.push(new Blood(this.x + this.width / 2, this.y + this.height / 2, 250, 250));
-            } else {
-                world.blood.push(new Blood(this.x, this.y + this.height / 2, 250, 250));
-            }
+            this.endbossBlood();
         } else if ((this instanceof Enemy1 || this instanceof Enemy2 || this instanceof Enemy3 || this instanceof Enemy4) && enableBlood) {
-            if (this.otherDirection) {
-                world.blood.push(new Blood(this.x + this.width / 3, this.y + this.height / 3, 250, 250));
-            } else {
-                world.blood.push(new Blood(this.x - this.width / 2, this.y + this.height / 3, 250, 250));
-            }
+            this.enemyBlood();
         } else if (this instanceof Character && enableBlood) {
-            console.log(direction);
-            if (!direction) {
-                world.blood.push(new Blood(this.x + this.width / 3, this.y + this.height / 3, 250, 250));
-            } else {
-                world.blood.push(new Blood(this.x - this.width / 2, this.y + this.height / 3, 250, 250));
-            }
+            this.characterBlood(direction);
+        }
+    }
+
+    endbossBlood() {
+        if (this.otherDirection) {
+            world.blood.push(new Blood(this.x + this.width / 2, this.y + this.height / 2, 250, 250));
+        } else {
+            world.blood.push(new Blood(this.x, this.y + this.height / 2, 250, 250));
+        }
+    }
+
+    enemyBlood() {
+        if (this.otherDirection) {
+            world.blood.push(new Blood(this.x + this.width / 3, this.y + this.height / 3, 250, 250));
+        } else {
+            world.blood.push(new Blood(this.x - this.width / 2, this.y + this.height / 3, 250, 250));
+        }
+    }
+
+    characterBlood(direction) {
+        if (!direction) {
+            world.blood.push(new Blood(this.x + this.width / 3, this.y + this.height / 3, 250, 250));
+        } else {
+            world.blood.push(new Blood(this.x - this.width / 2, this.y + this.height / 3, 250, 250));
         }
     }
 
