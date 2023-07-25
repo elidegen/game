@@ -105,18 +105,25 @@ class MovingObjects extends DrawableObject {
     }
 
     createBlood(direction) {
-        if (this instanceof Endboss) {
-            if (enableBlood && this.otherDirection) {
+        if (this instanceof Endboss && enableBlood) {
+            if (this.otherDirection) {
                 world.blood.push(new Blood(this.x + this.width / 2, this.y + this.height / 2, 250, 250));
             } else {
                 world.blood.push(new Blood(this.x, this.y + this.height / 2, 250, 250));
             }
-        } else {
-            // if (enableBlood && this.otherDirection) {
-            //     world.blood.push(new Blood(this.x + this.width / 3, this.y + this.height / 3, 250, 250));
-            // } else {
-            //     world.blood.push(new Blood(this.x - this.width / 2, this.y + this.height / 3, 250, 250));
-            // }
+        } else if ((this instanceof Enemy1 || this instanceof Enemy2 || this instanceof Enemy3 || this instanceof Enemy4) && enableBlood) {
+            if (this.otherDirection) {
+                world.blood.push(new Blood(this.x + this.width / 3, this.y + this.height / 3, 250, 250));
+            } else {
+                world.blood.push(new Blood(this.x - this.width / 2, this.y + this.height / 3, 250, 250));
+            }
+        } else if (this instanceof Character && enableBlood) {
+            console.log(direction);
+            if (!direction) {
+                world.blood.push(new Blood(this.x + this.width / 3, this.y + this.height / 3, 250, 250));
+            } else {
+                world.blood.push(new Blood(this.x - this.width / 2, this.y + this.height / 3, 250, 250));
+            }
         }
     }
 

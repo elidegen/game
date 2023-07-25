@@ -166,7 +166,7 @@ class World {
             this.level.enemies.forEach(enemy => {
                 if (enemy.isColliding(bomb) && enemy.isVulnerable() && bomb.explode) {
                     enemy.bombHit = true;
-                    enemy.takeDamage(this.bombDamage, this.otherDirection);
+                    enemy.takeDamage(this.bombDamage, enemy.otherDirection);
                     enemy.bombHit = false;
                 }
             });
@@ -194,7 +194,7 @@ class World {
         enemy.currentImage = 0;
         enemy.lastAttack = new Date().getTime();
         if (enemy != this.level.enemies[0]) {
-            this.character.takeDamage(this.enemyDamage, this.otherDirection);
+            this.character.takeDamage(this.enemyDamage, enemy.otherDirection);
         }
         // this.setHealthBar();
     }
