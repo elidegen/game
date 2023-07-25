@@ -182,7 +182,7 @@ class World {
     }
 
     hittingEnemy(enemy) {
-        return this.character.isCollidingWithAttack(enemy) && enemy.health > 0 && world.recentAction(this.character.lastAttack, 500);
+        return this.character.isCollidingWithAttack(enemy) && enemy.health > 0 && this.recentAction(this.character.lastAttack, 500);
     }
 
     hurtEndboss() {
