@@ -230,7 +230,7 @@ class World {
         this.addObjectsToMap(this.level.blessings);
         this.addObjectsToMap(this.level.bombs);
 
-        this.ctx.translate(-this.camera_x, 0); //fixed objects after this line
+        this.ctx.translate(-this.camera_x, 0); //fixed objects after this line 
 
         //draw wird immer wieder aufgerufen. innerhalb der funktion funktioniert 'this' nicht.
         let self = this;
