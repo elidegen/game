@@ -24,15 +24,15 @@ class DrawableObject {
     }
 
     drawFrame(ctx) {
-        // if (this instanceof Character || this instanceof Enemy1 || this instanceof Enemy2 || this instanceof Enemy3 || this instanceof Enemy4 || this instanceof Endboss || this instanceof ThrowedBomb) {
-        //     ctx.beginPath();
-        //     ctx.linewidth = '5';
-        //     ctx.strokeStyle = 'blue';
-        //     ctx.rect(this.x + this.offset.left, this.y + this.offset.top, this.width - (this.offset.right + this.offset.left), this.height - (this.offset.bottom + this.offset.top));
-        //     ctx.rect((this.x + this.offset.left + this.range), this.y + this.offset.top, this.width - (this.offset.right + this.offset.left), this.height - (this.offset.bottom + this.offset.top));
-        //     ctx.stroke();
-        // }
-        if(this instanceof Character || this instanceof Enemy1 || this instanceof Enemy2 || this instanceof Endboss){
+        if (this instanceof Character || this instanceof Enemy1 || this instanceof Enemy2 || this instanceof Enemy3 || this instanceof Enemy4 || this instanceof Endboss || this instanceof ThrowedBomb) {
+            ctx.beginPath();
+            ctx.linewidth = '5';
+            ctx.strokeStyle = 'blue';
+            ctx.rect(this.x + this.offset.left, this.y + this.offset.top, this.width - (this.offset.right + this.offset.left), this.height - (this.offset.bottom + this.offset.top));
+            ctx.rect((this.x + this.offset.left + this.range), this.y + this.offset.top, this.width - (this.offset.right + this.offset.left), this.height - (this.offset.bottom + this.offset.top));
+            ctx.stroke();
+        }
+        if (this instanceof Blessing || this instanceof Bomb) {
             ctx.beginPath();
             ctx.linewidth = '5';
             ctx.strokeStyle = 'red';

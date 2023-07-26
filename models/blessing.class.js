@@ -1,6 +1,7 @@
 class Blessing extends MovingObjects {
     height = 80;
     width = 80;
+    feetY = 70;
     offset = {
         top: 5,
         right: 7,

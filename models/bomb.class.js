@@ -1,6 +1,7 @@
 class Bomb extends MovingObjects {
     height = 50;
     width = 45;
+    feetY = 50;
     offset = {
         top: 8,
         right: 0,

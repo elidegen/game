@@ -1,6 +1,6 @@
 class Blood extends MovingObjects {
     bloodSet = false;
-    bloodType
+    bloodType;
     IMAGES_BLOOD_FADE1 = [
         'img/blood/blood1_100.png',
         'img/blood/blood1_90.png',
@@ -68,7 +68,7 @@ class Blood extends MovingObjects {
             const interval = setInterval(() => {
                 if (!pause) {
                     if (i < this.bloodType.length) {
-                        this.loadImage(this.bloodType[i]);
+                        this.playAnimation(this.bloodType);
                         i++;
                     } else {
                         clearInterval(interval); // Schleife beenden, wenn alle Durchläufe abgeschlossen sind

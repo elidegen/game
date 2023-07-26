@@ -14,6 +14,7 @@ class MovingObjects extends DrawableObject {
     startRun = 0;
     alreadyDead = 0;
     animationSpeed = 35;
+    feetY;
 
     applyGravity() {
         setStoppableInterval(() => {
