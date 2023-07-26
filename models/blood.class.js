@@ -75,7 +75,7 @@ class Blood extends MovingObjects {
                         world.blood.splice(0, 1);
                     }
                 }
-            }, 500);
+            }, 50);
             this.bloodSet = true;
         }
     }
