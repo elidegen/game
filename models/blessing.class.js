@@ -16,12 +16,5 @@ class Blessing extends MovingObjects {
         this.loadImages(this.IMAGES_BLESSING);
         this.x = 300 + Math.random() * 2000;
         this.y = 230 + Math.random() * 350;
-        this.animate();
-    }
-
-    animate(){
-        setStoppableInterval(() => {
-            this.playAnimation(this.IMAGES_BLESSING);
-        }, 200)
     }
 }

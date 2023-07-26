@@ -33,6 +33,9 @@ class World {
         this.setCounts(10, 1);
     }
 
+    /**
+     * sets starting bomb and shield depending on chosen hero
+     */
     setBombShield() {
         if (hero == 0) {
             this.setCounts(1, 1);

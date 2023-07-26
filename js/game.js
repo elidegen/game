@@ -11,6 +11,9 @@ let currentLevel = 1;
 let hero;
 startScreen.src = 'img/backgrounds/game_background_1.png';
 
+/**
+ * initialises the game upon loading
+ */
 function init() {
     canvas = document.getElementById('canvas');
     let ctx = canvas.getContext('2d');
@@ -19,10 +22,10 @@ function init() {
     showKing();
 }
 
+/**
+ * checks for pressed keys
+ */
 window.addEventListener("keydown", (e) => {
-    if (e.keyCode == 13) {
-        keyboard.ENTER = true;
-    }
     if (e.keyCode == 87) { //W
         keyboard.UP = true;
     }
@@ -34,9 +37,6 @@ window.addEventListener("keydown", (e) => {
     }
     if (e.keyCode == 68) { //D
         keyboard.RIGHT = true;
-    }
-    if (e.keyCode == 32) {
-        keyboard.SPACE = true;
     }
     if (e.keyCode == 75 && !world.recentAction(world.character.lastAttack, 500)) { //K
         world.character.lastAttack = new Date().getTime();
@@ -57,6 +57,9 @@ window.addEventListener("keydown", (e) => {
     }
 });
 
+/**
+ * checks for released keys
+ */
 window.addEventListener("keyup", (e) => {
     if (e.keyCode == 87) {
         keyboard.UP = false;
@@ -70,31 +73,37 @@ window.addEventListener("keyup", (e) => {
     if (e.keyCode == 68) {
         keyboard.RIGHT = false;
     }
-    if (e.keyCode == 32) {
-        keyboard.SPACE = false;
-    }
-    if (e.keyCode == 13) {
-        keyboard.ENTER = false;
-    }
     if (e.keyCode == 76) {
         keyboard.THROW = false;
     }
 });
 
+/**
+ * shows king as optinal hero
+ */
 function showKing() {
     if (localStorage.getItem('king') == 'unlocked') {
         document.getElementById('king').classList.remove('d-none');
     }
 }
 
+/**
+ * puts canvas in fullscreen
+ */
 async function enterFullscreen() {
     await canvas.requestFullscreen();
 }
 
+/**
+ * exits canvas fullscreen
+ */
 async function closeFullscreen() {
     await canvas.exitFullscreen();
 }
 
+/**
+ * toggle sound mute
+ */
 function toggleMute() {
     volume = !volume;
     if (volume) {
@@ -104,6 +113,9 @@ function toggleMute() {
     }
 }
 
+/**
+ * toggles settings menu and triggers animation
+ */
 function toggleMenu() {
     if (document.getElementById('settingsMenu').classList.contains('closeSettings')) {
         document.getElementById('settingsMenu').classList.add('openSettings');
@@ -118,6 +130,9 @@ function toggleMenu() {
     }
 }
 
+/**
+ * play pause button function and appearance
+ */
 function togglePlayPause() {
     if (gameStarted) {
         pause = !pause;
@@ -131,16 +146,27 @@ function togglePlayPause() {
     }
 }
 
+/**
+ * allows you to set blood splatter on and off
+ */
 function toggleBlood() {
     enableBlood = !enableBlood;
     setBloodButton();
     setLocalStorageBlood();
 }
 
+/**
+ * stops the game by clearing all intervals
+ */
 function stopGame() {
     allInterval.forEach(clearInterval);
 }
 
+/**
+ * gives the ability to pause and stop all intervals at once
+ * @param {function} fn executed function
+ * @param {number} time frequency of intervall in ms
+ */
 function setStoppableInterval(fn, time) {
     let id = setInterval(() => {
         if (!pause) {
@@ -150,15 +176,21 @@ function setStoppableInterval(fn, time) {
     allInterval.push(id);
 }
 
+/**
+ * creating world and make game start
+ */
 function startGame() {
     world = new World(canvas, keyboard);
     console.log('My Character is', world.character);
     pause = false;
     gameStarted = 1;
-    world.keyboard.mobileButtonPress();    
+    world.keyboard.mobileButtonPress();
     document.getElementById('controls').classList.remove('d-none')
 }
 
+/**
+ * sets design of blood button depending on setting of enableBlood
+ */
 function setBloodButton() {
     if (enableBlood == true) {
         document.getElementById('bloodEnable').style = 'background: linear-gradient(to bottom, rgba(255, 0, 0, 0.568), #8B0000);'
@@ -167,10 +199,16 @@ function setBloodButton() {
     }
 }
 
+/**
+ * saves the chosen setting for blood in localstorage
+ */
 function setLocalStorageBlood() {
     localStorage.setItem('enableBlood', enableBlood);
 }
 
+/**
+ * get prefered setting for blood from localstorage
+ */
 function getLocalStorageBlood() {
     if (localStorage.getItem('enableBlood') != undefined) {
         enableBlood = JSON.parse(localStorage.getItem('enableBlood'));
@@ -178,10 +216,16 @@ function getLocalStorageBlood() {
     setBloodButton();
 }
 
+/**
+ * make next level overlay dissapear
+ */
 function hideWinOverlay() {
     document.getElementById('overlayWin').classList.add('d-none');
 }
 
+/**
+ * increases enemy damage per level and sets next level
+ */
 async function loadNextLevel() {
     startGame();
     currentLevel++;
@@ -193,10 +237,13 @@ async function loadNextLevel() {
         document.getElementById('gameEndButton').classList.remove('d-none');
         localStorage.setItem('king', 'unlocked');
     } else {
-        await setLevel();
+        setLevel();
     }
 }
 
+/**
+ * creates next level depending on progress
+ */
 async function setLevel() {
     if (currentLevel == 2) {
         await setLevel2();
@@ -216,10 +263,17 @@ async function setLevel() {
     hideWinOverlay();
 }
 
+/**
+ * makes hero selection disappear
+ */
 function hideHeroSelection() {
     document.getElementById('heroSelection').classList.add('d-none');
 }
 
+/**
+ * 
+ * @param {number} nr indicates which hero was chosen
+ */
 function chooseHero(nr) {
     hero = nr;
     startGame();

@@ -51,6 +51,9 @@ class Blood extends MovingObjects {
         this.setImage();
     }
 
+    /**
+     * randomly sets one of 3 different blood images
+     */
     setBloodType() {
         let numbr = Math.round(Math.random() * 3);
         if (numbr == 2) {
@@ -62,6 +65,9 @@ class Blood extends MovingObjects {
         }
     }
 
+    /**
+     * will animate blood to fade away after occur
+     */
     setImage() {
         if (!this.bloodSet) {
             let i = 0;
