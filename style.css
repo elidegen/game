@@ -71,6 +71,7 @@ canvas {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 #overlayLose {
