@@ -169,7 +169,7 @@ class World {
                     enemy.bombHit = true;
                     enemy.takeDamage(this.bombDamage, enemy.otherDirection);
                     setTimeout(() => {
-                        enemy.bombHit = false;                        
+                        enemy.bombHit = false;
                     }, 700);
                 }
             });
@@ -224,11 +224,13 @@ class World {
 
         this.addObjectsToMap(this.level.background);
         this.addObjectsToMap(this.blood);
-        this.addObjectsToMap(this.throwable);
-        this.addObjectsToMap(this.level.enemies);
-        this.addToMap(this.character);
-        this.addObjectsToMap(this.level.blessings);
-        this.addObjectsToMap(this.level.bombs);
+        this.addObjectsToMap(this.sortObjects());
+
+        // this.addObjectsToMap(this.level.enemies);
+        // this.addToMap(this.character);
+        // this.addObjectsToMap(this.throwable);
+        // this.addObjectsToMap(this.level.blessings);
+        // this.addObjectsToMap(this.level.bombs);
 
         this.ctx.translate(-this.camera_x, 0); //fixed objects after this line 
 
@@ -237,6 +239,25 @@ class World {
         requestAnimationFrame(function () {
             self.draw();
         });
+    }
+
+    sortObjects() {
+        let sprites = [];
+        for (let i = 0; i < this.level.enemies.length; i++) {
+            sprites.push(this.level.enemies[i]);
+        }
+        for (let i = 0; i < this.throwable.length; i++) {
+            sprites.push(this.throwable[i]);
+        }
+        for (let i = 0; i < this.level.blessings.length; i++) {
+            sprites.push(this.level.blessings[i]);
+        }
+        for (let i = 0; i < this.level.bombs.length; i++) {
+            sprites.push(this.level.bombs[i]);
+        }
+        sprites.push(this.character);
+        sprites.sort((a, b) => (a.y + a.feetY) - (b.y + b.feetY));
+        return sprites;
     }
 
     addObjectsToMap(object) {
@@ -252,7 +273,7 @@ class World {
 
         mo.draw(this.ctx);
 
-        // mo.drawFrame(this.ctx);
+        mo.drawFrame(this.ctx);
 
         this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width, mo.height);
         if (mo.otherDirection) {

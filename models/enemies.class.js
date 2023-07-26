@@ -7,6 +7,7 @@ class Enemies extends MovingObjects {
     otherDirection = 1;
     alreadyCollided = 0;
     range = 40;
+    feetY = 165;
     bombHit = false;
     offset = {
         top: 100,
