@@ -217,9 +217,11 @@ class World {
      */
     enemyCharacterCollision(enemy) {
         if (this.hittingCharacter(enemy)) {
+            console.log('hitting character');
             this.collideEnemy(enemy);
         }
         if (this.hittingEnemy(enemy)) {
+            console.log('hitting enemy');
             enemy.takeDamage(this.character.damage, this.otherDirection);
         }
     }

@@ -55,14 +55,15 @@ class Blood extends MovingObjects {
      * randomly sets one of 3 different blood images
      */
     setBloodType() {
-        let numbr = Math.round(Math.random() * 3);
-        if (numbr == 2) {
-            this.bloodType = this.IMAGES_BLOOD_FADE1;
-        } else if (numbr == 1) {
-            this.bloodType = this.IMAGES_BLOOD_FADE2;
-        } else {
-            this.bloodType = this.IMAGES_BLOOD_FADE3;
-        }
+        this.bloodType = this.IMAGES_BLOOD_FADE1;
+        // let numbr = Math.round(Math.random() * 3);
+        // if (numbr == 2) {
+        //     this.bloodType = this.IMAGES_BLOOD_FADE1;
+        // } else if (numbr == 1) {
+        //     this.bloodType = this.IMAGES_BLOOD_FADE2;
+        // } else {
+        //     this.bloodType = this.IMAGES_BLOOD_FADE3;
+        // }
     }
 
     /**
