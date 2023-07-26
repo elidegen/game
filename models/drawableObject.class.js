@@ -6,15 +6,25 @@ class DrawableObject {
     width = 100;
     imageCache = {};
 
+    /**
+     * create new image with certain source
+     * @param {string} path path to certain image
+     */
     loadImage(path) {
         this.img = new Image();
         this.img.src = path;
     }
 
+    /**
+     * gives the ability to draw set image on canvas
+     */
     draw(ctx) {
         ctx.drawImage(this.img, this.x, this.y, this.width, this.height)
     }
 
+    /**
+     * preloads images from array
+     */
     loadImages(array) {
         array.forEach((path) => {
             let img = new Image();
@@ -23,6 +33,9 @@ class DrawableObject {
         });
     }
 
+    /**
+     * for developing use sometimes we need to draw frames and lines around characters
+     */
     drawFrame(ctx) {
         if (this instanceof Character || this instanceof Enemy1 || this instanceof Enemy2 || this instanceof Enemy3 || this instanceof Enemy4 || this instanceof Endboss || this instanceof ThrowedBomb) {
             ctx.beginPath();

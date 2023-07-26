@@ -3,11 +3,12 @@ class Keyboard {
     RIGHT = false;
     UP = false;
     DOWN = false;
-    SPACE = false;
-    ENTER = false;
     THROW = false;
     PAUSE = false;
 
+    /**
+     * checks for pressed buttons on mobile version
+     */
     mobileButtonPress() {
         // dpad
 

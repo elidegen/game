@@ -132,12 +132,13 @@ class Endboss extends MovingObjects {
         this.loadImages(this.IMAGES_ATTACK);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_DYING);
-        // this.loadImages(this.IMAGES_IDLE_BLINKING);
-        //this.x = this.world.level.level_end_x;
         this.x = 2500;
         this.animate();
     }
 
+    /**
+     * animates endboss
+     */
     animate() {
         setStoppableInterval(() => {
             this.speed = 3;
@@ -151,10 +152,7 @@ class Endboss extends MovingObjects {
                 this.playAnimation(this.IMAGES_WALKING);
             } else if (world.recentAction(this.lastAttack, this.animationSpeed * this.IMAGES_ATTACK.length)) {
                 this.playAnimation(this.IMAGES_ATTACK);
-                if (this.currentImage == 8) {
-                    world.character.takeDamage(world.bossDamage, this.otherDirection);
-                    world.setHealthBar();
-                }
+                this.doDamage();
             } else if (this.playerNearby()) {
                 this.speed = 12;
                 this.playAnimation(this.IMAGES_RUNNING);
@@ -162,5 +160,14 @@ class Endboss extends MovingObjects {
                 this.playAnimation(this.IMAGES_WALKING);
             }
         }, this.animationSpeed);
+    }
+
+    /**
+     * character takes damage
+     */
+    doDamage() {
+        if (this.currentImage == 8) {
+            world.character.takeDamage(world.bossDamage, this.otherDirection);
+        }
     }
 }

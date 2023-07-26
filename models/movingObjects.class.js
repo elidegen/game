@@ -16,6 +16,9 @@ class MovingObjects extends DrawableObject {
     animationSpeed = 35;
     feetY;
 
+    /**
+     * makes objects fall to ground
+     */
     applyGravity() {
         setStoppableInterval(() => {
             if (this.isAboveGround() || this.speedY > 0) {
@@ -25,6 +28,9 @@ class MovingObjects extends DrawableObject {
         }, 1000 / 25);
     }
 
+    /**
+     * checks if object is above ground
+     */
     isAboveGround() {
         if (this instanceof ThrowedBomb) {
             return this.y < this.bomb_floor; //throwable object will fall to height where character throwed
@@ -33,23 +39,9 @@ class MovingObjects extends DrawableObject {
         }
     }
 
-    loadImage(path) {
-        this.img = new Image();
-        this.img.src = path;
-    }
-
-    loadImages(array) {
-        array.forEach((path) => {
-            let img = new Image();
-            img.src = path;
-            this.imageCache[path] = img;
-        });
-    }
-
-    draw(ctx) {
-        ctx.drawImage(this.img, this.x, this.y, this.width, this.height)
-    }
-
+    /**
+     * make sprite turn around
+     */
     mirrorSprite(ctx) {
         ctx.save();
         ctx.translate(this.width, 0);
@@ -57,29 +49,49 @@ class MovingObjects extends DrawableObject {
         this.x = this.x * -1;
     }
 
+    /**
+     * reverse turned sprite
+     */
     mirrorSpriteBack(ctx) {
         this.x = this.x * -1;
         ctx.restore();
     }
 
+    /**
+     * moves sprite in direction and make it face correct direction
+     */
     moveRight() {
         this.x += this.speed;
         this.otherDirection = false;
     }
 
+    /**
+     * moves sprite in direction and make it face correct direction
+     */
     moveLeft() {
         this.x -= this.speed;
         this.otherDirection = true;
     }
 
+    /**
+     * make sprite move up
+     */
     moveUp() {
         this.y -= this.speed;
     }
 
+    /**
+     * make sprite move down
+     */
     moveDown() {
         this.y += this.speed;
     }
 
+    /**
+     * if sprite is vulnerable to damage this function will execute damage
+     * @param {number} damage amount of taken damage
+     * @param {boolean} direction sprite mirrored or not
+     */
     takeDamage(damage, direction) {
         if (this.isVulnerable() && !world.gameOver) {
             // console.log(this);
@@ -90,6 +102,9 @@ class MovingObjects extends DrawableObject {
         world.setHealthBar();
     }
 
+    /**
+     * will reduce/set health/shield and create blood splat
+     */
     getHurt(damage, direction) {
         if (this.shield > 0) {
             world.setCounts(0, -1);
@@ -103,6 +118,9 @@ class MovingObjects extends DrawableObject {
         }
     }
 
+    /**
+     * creates blood splatter depending on sprite and direction of hit
+     */
     createBlood(direction) {
         if (this instanceof Endboss && enableBlood) {
             this.endbossBlood();
@@ -113,6 +131,9 @@ class MovingObjects extends DrawableObject {
         }
     }
 
+    /**
+     * blood splat for endboss
+     */
     endbossBlood() {
         if (this.otherDirection) {
             world.blood.push(new Blood(this.x + this.width / 2, this.y + this.height / 2, 250, 250));
@@ -121,6 +142,9 @@ class MovingObjects extends DrawableObject {
         }
     }
 
+    /**
+     * blood splat for enemy
+     */
     enemyBlood() {
         if (this.otherDirection) {
             world.blood.push(new Blood(this.x + this.width / 3, this.y + this.height / 3, 250, 250));
@@ -129,6 +153,9 @@ class MovingObjects extends DrawableObject {
         }
     }
 
+    /**
+     * blood splat for character
+     */
     characterBlood(direction) {
         if (!direction) {
             world.blood.push(new Blood(this.x + this.width / 3, this.y + this.height / 3, 250, 250));
@@ -137,19 +164,31 @@ class MovingObjects extends DrawableObject {
         }
     }
 
+    /**
+     * @returns true if sprite is dead
+     */
     isDead() {
         return this.health < 1;
     }
 
+    /**
+     * @returns true if sprite is hurt in last 500 ms
+     */
     isHurt() {
         let timepassed = new Date().getTime() - this.lastHit; //difference in ms
         return timepassed < 500;
     }
 
+    /**
+     * @returns true if sprite is vulnerable
+     */
     isVulnerable() {
         return !this.isDead() && !this.isHurt();
     }
 
+    /**
+     * will play the next image from certain given array "images"
+     */
     playAnimation(images) {
         let i = this.currentImage % images.length;
         let path = images[i];
@@ -157,7 +196,9 @@ class MovingObjects extends DrawableObject {
         this.currentImage++;
     }
 
-    // Bessere Formel zur Kollisionsberechnung (Genauer)
+    /**
+     * checks if certain sprites (this & mo) are colliding
+     */
     isColliding(mo) {
         return this.x + this.width - this.offset.right > mo.x + mo.offset.right &&
             this.y + this.height - this.offset.bottom > mo.y + mo.offset.top &&
@@ -165,6 +206,9 @@ class MovingObjects extends DrawableObject {
             this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom
     }
 
+    /**
+     * checks if certain sprites (this & mo) are colliding within attack range
+     */
     isCollidingWithAttack(mo) {
         if (this.otherDirection == 0) {
             return this.x + this.width - this.offset.right + this.range > mo.x + mo.offset.left &&
@@ -179,6 +223,9 @@ class MovingObjects extends DrawableObject {
         }
     }
 
+    /**
+     * moves enemy
+     */
     moveEnemy() {
         setStoppableInterval(() => {
             if (!this.isDead() && !world.recentAction(this.lastAttack, 500) && !this.isCollidingWithAttack(world.character)) {
@@ -188,6 +235,9 @@ class MovingObjects extends DrawableObject {
 
     }
 
+    /**
+     * makes sprite follow character
+     */
     followCharacter() {
         if (this.x + this.width / 2 <= world.character.x + world.character.width / 2) {
             this.moveRight();
@@ -205,10 +255,16 @@ class MovingObjects extends DrawableObject {
         }
     }
 
+    /**
+     * @returns true if player within 500 distance
+     */
     playerNearby() {
         return (this.x - world.character.x) < 500;
     }
 
+    /**
+     * @returns true if this is above mo
+     */
     isAbove(mo) {
         return this.y + this.height - this.offset.bottom < mo.y + mo.height - mo.offset.bottom;
     }

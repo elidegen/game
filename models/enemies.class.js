@@ -1,7 +1,7 @@
 class Enemies extends MovingObjects {
     height = 200;
     width = 200;
-    i = 1;
+    // i = 1;
     MAX_HEALTH = 150;
     health = this.MAX_HEALTH;
     otherDirection = 1;
@@ -31,6 +31,9 @@ class Enemies extends MovingObjects {
         this.moveEnemy();
     }
 
+    /**
+     * animate enemies
+     */
     animate() {
         setStoppableInterval(() => {
             this.speed = 3;

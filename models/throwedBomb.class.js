@@ -44,6 +44,9 @@ class ThrowedBomb extends MovingObjects {
         this.applyGravity();
     }
 
+    /**
+     * animates the bomb flying and then exploding and deletes it afterwards
+     */
     throw() {
         let i = 0;
         let interval = setInterval(() => {
@@ -52,20 +55,29 @@ class ThrowedBomb extends MovingObjects {
                     this.x += this.speed;
                     this.playAnimation(this.IMAGES_THROW);
                 } else if (i < 9) {
-                    this.explode = true;
-                    this.height = 100;
-                    this.width = 100;
-                    this.playAnimation(this.IMAGES_EXPLOSION);
+                    this.exploding();
                     i++;
                 } else if (i == 9) {
                     world.throwable.shift();
                     clearInterval(interval);
-                    this.explode = false;
                 }
             }
         }, 50);
     }
 
+    /**
+     * let the bomb explode
+     */
+    exploding() {
+        this.explode = true;
+        this.height = 100;
+        this.width = 100;
+        this.playAnimation(this.IMAGES_EXPLOSION);
+    }
+
+    /**
+     * set direction of bomb depending on direction of character
+     */
     setSpeed() {
         if (world.character.otherDirection == 1) {
             return -15;

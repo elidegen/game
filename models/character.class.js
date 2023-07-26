@@ -183,6 +183,9 @@ class Character extends MovingObjects {
         this.setHero();
     }
 
+    /**
+     * sets specific stats for chosen hero
+     */
     setHero() {
         if (hero == 1) {
             this.damage = this.damage * 1.5;
@@ -199,6 +202,9 @@ class Character extends MovingObjects {
         }
     }
 
+    /**
+     * animate the hero depending on certain activity
+     */
     animate() {
         setStoppableInterval(() => {
             if (this.world.recentAction(this.lastHit, this.animationSpeed * this.IMAGES_DYING.length) && this.isDead()) {
@@ -223,23 +229,20 @@ class Character extends MovingObjects {
         }, this.animationSpeed);
     }
 
+    /**
+     * provides movement for character
+     */
     moveCharacter() {
         setStoppableInterval(() => {
             if (!this.isDead()) {
-                if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x - this.width) {
+                if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x - this.width)
                     this.moveRight();
-                    this.otherDirection = false;
-                }
-                if (this.world.keyboard.LEFT && this.x > this.world.level.level_start_x - this.offset.left) {
+                if (this.world.keyboard.LEFT && this.x > this.world.level.level_start_x - this.offset.left)
                     this.moveLeft();
-                    this.otherDirection = true;
-                }
-                if (this.world.keyboard.UP && this.y > this.world.level.level_top_y) {
+                if (this.world.keyboard.UP && this.y > this.world.level.level_top_y)
                     this.moveUp();
-                }
-                if (this.world.keyboard.DOWN && this.y < this.world.level.level_bottom_y) {
+                if (this.world.keyboard.DOWN && this.y < this.world.level.level_bottom_y)
                     this.moveDown();
-                }
                 if (this.world.recentAction(this.lastHit, 400)) {
                     this.speed = 4 + this.heroSpeedBuff;
                 } else if (this.world.recentAction(this.startRun, 700)) {
@@ -248,8 +251,15 @@ class Character extends MovingObjects {
                     this.speed = 8 + this.heroSpeedBuff;
                 }
             }
-            if (this.x < this.world.level.level_end_x - canvas.width + 100 && this.x > 100)
-                this.world.camera_x = -this.x + 100;
+            this.moveCamera();
         }, 1000 / 60);
+    }
+
+    /**
+     * camera follows character
+     */
+    moveCamera() {
+        if (this.x < this.world.level.level_end_x - canvas.width + 100 && this.x > 100)
+            this.world.camera_x = -this.x + 100;
     }
 }

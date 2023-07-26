@@ -48,11 +48,17 @@ class World {
         }
     }
 
+    /**
+     * lets endboss and character access world
+     */
     setWorld() {
         this.level.enemies[0].world = this;
         this.character.world = this;
     }
 
+    /**
+     * checks for collisions, bomb throws and death
+     */
     run() {
         setStoppableInterval(() => {
             if (this.gameOver != 1) {
@@ -63,6 +69,9 @@ class World {
         }, 50);
     }
 
+    /**
+     * set how many bombs and shields are added/removed
+     */
     setCounts(bomb, shield) {
         this.collectedBombs += bomb;
         this.character.shield += shield;
@@ -75,6 +84,9 @@ class World {
         this.shieldCountFadeRed(shield);
     }
 
+    /**
+     * makes the bombcount fade red upon change
+     */
     bombCountFadeRed(bomb) {
         if (bomb != 0) {
             document.getElementById('bombCount').classList.add('fade-red');
@@ -84,6 +96,9 @@ class World {
         }
     }
 
+    /**
+     * makes the shieldcount fade red upon change
+     */
     shieldCountFadeRed(shield) {
         if (shield != 0) {
             document.getElementById('shieldCount').classList.add('fade-red');
@@ -93,35 +108,61 @@ class World {
         }
     }
 
+    /**
+     * checks if game is over
+     */
     checkEndGame() {
         if (this.character.isDead()) {
-            this.setHealthBar();
-            this.gameOver = 1;
-            setTimeout(() => {
-                stopGame();
-                document.getElementById('overlayLose').classList.remove('d-none');
-            }, 2500);
+            this.setGameOver();
         }
         if (this.level.enemies[0].isDead()) {
-            this.gameOver = 1;
-            setTimeout(() => {
-                pause = true;
-                document.getElementById('overlayWin').classList.remove('d-none');
-            }, 2500);
+            this.setNewLevel();
         }
     }
 
+    /**
+     * sets the game over overlay
+     */
+    setGameOver() {
+        this.setHealthBar();
+        this.gameOver = 1;
+        setTimeout(() => {
+            stopGame();
+            document.getElementById('overlayLose').classList.remove('d-none');
+        }, 2500);
+    }
+
+    /**
+     * sets new level overlay
+     */
+    setNewLevel() {
+        this.gameOver = 1;
+        setTimeout(() => {
+            pause = true;
+            document.getElementById('overlayWin').classList.remove('d-none');
+        }, 2500);
+    }
+
+    /**
+     * @returns true if certain action is executed less than time ms ago
+     */
     recentAction(action, time) { // = maximal time milisekunden sind seit action vergangen. durch ! wird maximal zu mindestens
         let timepassed = new Date().getTime() - action;
         return timepassed < time;
     }
 
+    /**
+     * checks if certain criteria met and initiates bomb throw
+     */
     checkThrowPress() {
         if (this.keyboard.THROW && !this.recentAction(this.lastThrow, 500) && this.collectedBombs > 0) {
             this.throwBomb();
         }
     }
 
+    /**
+     * create new throwed bomb
+     */
     throwBomb() {
         this.setCounts(-1, 0);
         this.lastThrow = new Date().getTime();
@@ -131,6 +172,9 @@ class World {
         }, 400);
     }
 
+    /**
+     * returns position where throwed bomb should spawn
+     */
     setBombPos() {
         if (world.character.otherDirection == 1) {
             return 20;
@@ -139,72 +183,112 @@ class World {
         }
     }
 
+    /**
+     * play sound unless muted
+     */
     playSound(sound) {
         sound.volume = volume;
         sound.currentTime = 0;
         sound.play();
     }
 
+    /**
+     * checks if sprites collide with each other
+     */
     checkCollisions() {
         this.level.enemies.forEach(enemy => {
-            if (this.hittingCharacter(enemy)) {
-                this.collideEnemy(enemy);
-            }
-            if (this.hittingEnemy(enemy)) {
-                enemy.takeDamage(this.character.damage, this.otherDirection);
-            }
+            this.enemyCharacterCollision(enemy);
         });
         this.level.blessings.forEach(blessing => {
-            if (this.character.isColliding(blessing)) {
-                this.collectItem(this.level.blessings, blessing);
-                this.setCounts(0, 1);
-            }
+            this.characterBlessingCollision(blessing);
         });
         this.level.bombs.forEach(bomb => {
             if (this.character.isColliding(bomb)) {
-                this.collectItem(this.level.bombs, bomb);
-                this.setCounts(1, 0);
+                this.characterBombCollision(bomb);
             }
         });
         this.throwable.forEach(bomb => {
-            this.level.enemies.forEach(enemy => {
-                if (enemy.isColliding(bomb) && enemy.isVulnerable() && !enemy.bombHit) {
-                    enemy.bombHit = true;
-                    enemy.takeDamage(this.bombDamage, enemy.otherDirection);
-                    setTimeout(() => {
-                        enemy.bombHit = false;
-                    }, 700);
-                }
-            });
-            if (this.character.isColliding(bomb) && this.character.isVulnerable() && bomb.explode) {
-                this.character.takeDamage(this.bombDamage, this.otherDirection);
-                this.setHealthBar();
-            }
+            this.bombSpriteColliding(bomb);
         });
     }
 
+    /**
+     * checks for enemy and character colliding
+     */
+    enemyCharacterCollision(enemy) {
+        if (this.hittingCharacter(enemy)) {
+            this.collideEnemy(enemy);
+        }
+        if (this.hittingEnemy(enemy)) {
+            enemy.takeDamage(this.character.damage, this.otherDirection);
+        }
+    }
+
+    /**
+     * checks for character and blessing colliding
+     */
+    characterBlessingCollision(blessing) {
+        if (this.character.isColliding(blessing)) {
+            this.collectItem(this.level.blessings, blessing);
+            this.setCounts(0, 1);
+        }
+    }
+
+    /**
+     * checks for character and bomb colliding
+     */
+    characterBombCollision(bomb) {
+        this.collectItem(this.level.bombs, bomb);
+        this.setCounts(1, 0);
+    }
+
+    /**
+     * checks for sprites and throwed bomb colliding
+     */
+    bombSpriteColliding(bomb) {
+        this.level.enemies.forEach(enemy => {
+            if (enemy.isColliding(bomb) && enemy.isVulnerable() && !enemy.bombHit) {
+                enemy.bombHit = true;
+                enemy.takeDamage(this.bombDamage, enemy.otherDirection);
+                setTimeout(() => {
+                    enemy.bombHit = false;
+                }, 700);
+            }
+        });
+        if (this.character.isColliding(bomb) && this.character.isVulnerable() && bomb.explode) {
+            this.character.takeDamage(this.bombDamage, this.otherDirection);
+            this.setHealthBar();
+        }
+    }
+
+    /**
+     * @returns true if character is vulnerable and within attack range of enemy
+     */
     hittingCharacter(enemy) {
         return enemy.isCollidingWithAttack(this.character) && enemy.health > 0 && !this.recentAction(enemy.lastAttack, enemy.animationSpeed * enemy.IMAGES_ATTACK.length + 500);
     }
 
+    /**
+     * @returns true if enemy is vulnerable and within attack range of character
+     */
     hittingEnemy(enemy) {
         return this.character.isCollidingWithAttack(enemy) && enemy.health > 0 && this.recentAction(this.character.lastAttack, 500);
     }
 
-    hurtEndboss() {
-        this.level.enemies[0].health -= this.character.damage;
-        this.lastBossHit = new Date().getTime();
-    }
-
+    /**
+     * character gets hit by enemy
+     */
     collideEnemy(enemy) {
         enemy.currentImage = 0;
         enemy.lastAttack = new Date().getTime();
         if (enemy != this.level.enemies[0]) {
             this.character.takeDamage(this.enemyDamage, enemy.otherDirection);
         }
-        // this.setHealthBar();
     }
 
+    /**
+     * updates health bar
+     */
     setHealthBar() {
         healthBar.style = `width: ${this.character.health / this.character.MAX_HEALTH * 100}%;`;
         if (this.character.isDead()) {
@@ -212,14 +296,16 @@ class World {
         }
     }
 
+    /**
+     * removes certain collected item from canvas
+     */
     collectItem(itemPath, item) {
         itemPath.splice(itemPath.indexOf(item), 1);
     }
 
-    calcPercentage(current, max) {
-        return (current / max * 100);
-    }
-
+    /**
+     * draws all elements on canvas
+     */
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
@@ -238,6 +324,9 @@ class World {
         });
     }
 
+    /**
+     * @returns sorted array of sprites so they will be drawn in correct order to create a 3D depth illusion
+     */
     sortObjects() {
         let sprites = [];
         for (let i = 0; i < this.level.enemies.length; i++) {
@@ -257,12 +346,18 @@ class World {
         return sprites;
     }
 
+    /**
+     * adds objects of a certain array to canvas
+     */
     addObjectsToMap(object) {
         object.forEach(o => {
             this.addToMap(o);
         });
     }
 
+    /**
+     * adds certain object to canvas
+     */
     addToMap(mo) {
         if (mo.otherDirection) {
             mo.mirrorSprite(this.ctx);
@@ -278,6 +373,9 @@ class World {
         }
     }
 
+    /**
+     * activates endboss if character reaches certain position
+     */
     checkCharacterPosition() {
         let interval = setInterval(() => {
             if (this.character.x > 1500) {
