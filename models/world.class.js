@@ -170,7 +170,7 @@ class World {
                     enemy.takeDamage(this.bombDamage, enemy.otherDirection);
                     setTimeout(() => {
                         enemy.bombHit = false;                        
-                    }, 500);
+                    }, 700);
                 }
             });
             if (this.character.isColliding(bomb) && this.character.isVulnerable() && bomb.explode) {

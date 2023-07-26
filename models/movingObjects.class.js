@@ -81,6 +81,7 @@ class MovingObjects extends DrawableObject {
 
     takeDamage(damage, direction) {
         if (this.isVulnerable() && !world.gameOver) {
+            console.log(this);
             this.lastHit = new Date().getTime();
             this.currentImage = 0;
             this.getHurt(damage, direction);
@@ -90,13 +91,13 @@ class MovingObjects extends DrawableObject {
 
     getHurt(damage, direction) {
         if (this.shield > 0) {
-                world.setCounts(0, -1);
+            world.setCounts(0, -1);
         } else {
             this.createBlood(direction);
-                this.health -= damage;
-                if (this.health < 0) {
-                    this.health = 0;
-                }
+            this.health -= damage;
+            if (this.health < 0) {
+                this.health = 0;
+            }
         }
     }
 
@@ -140,7 +141,7 @@ class MovingObjects extends DrawableObject {
 
     isHurt() {
         let timepassed = new Date().getTime() - this.lastHit; //difference in ms
-        return timepassed < 385;
+        return timepassed < 500;
     }
 
     isVulnerable() {
