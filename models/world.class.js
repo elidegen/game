@@ -226,12 +226,6 @@ class World {
         this.addObjectsToMap(this.blood);
         this.addObjectsToMap(this.sortObjects());
 
-        // this.addObjectsToMap(this.level.enemies);
-        // this.addToMap(this.character);
-        // this.addObjectsToMap(this.throwable);
-        // this.addObjectsToMap(this.level.blessings);
-        // this.addObjectsToMap(this.level.bombs);
-
         this.ctx.translate(-this.camera_x, 0); //fixed objects after this line 
 
         //draw wird immer wieder aufgerufen. innerhalb der funktion funktioniert 'this' nicht.
