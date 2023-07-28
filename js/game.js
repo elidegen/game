@@ -91,20 +91,6 @@ function showKing() {
 }
 
 /**
- * puts canvas in fullscreen
- */
-async function enterFullscreen() {
-    await canvas.requestFullscreen();
-}
-
-/**
- * exits canvas fullscreen
- */
-async function closeFullscreen() {
-    await canvas.exitFullscreen();
-}
-
-/**
  * toggle sound mute
  */
 function toggleMute() {
@@ -197,9 +183,9 @@ function startGame() {
  */
 function setBloodButton() {
     if (enableBlood == true) {
-        document.getElementById('bloodEnable').style = 'background: linear-gradient(to bottom, rgba(255, 0, 0, 0.568), #8B0000);'
+        document.getElementById('blood').style = 'background: linear-gradient(to bottom, rgb(255, 0, 0), #8B0000);'
     } else {
-        document.getElementById('bloodEnable').style = 'background: linear-gradient(to top, rgb(202, 202, 202), rgb(155, 155, 155));'
+        document.getElementById('blood').style = 'background: linear-gradient(to bottom, rgb(165, 165, 165), rgb(97, 97, 97));'
     }
 }
 
@@ -220,14 +206,14 @@ function getLocalStorageBlood() {
     setBloodButton();
 }
 /**
- * saves the chosen setting for blood in localstorage
+ * saves the chosen setting for Sound in localstorage
  */
 function setLocalStorageSound() {
     localStorage.setItem('mute', volume);
 }
 
 /**
- * get prefered setting for blood from localstorage
+ * get prefered setting for Sound from localstorage
  */
 function getLocalStorageSound() {
     if (localStorage.getItem('mute') != undefined) {

@@ -45,9 +45,9 @@
 <body onload="init()">
 
     <h1>Knight's Journey</h1>
-    <div class="container">
-        <div class="button" id="fullscreen" onclick="buttonSound(), enterFullscreen()">
-            <img src="./img/fullscreen.png">
+    <div class="container" id="container">
+        <div class="button" id="blood" onclick="buttonSound(), toggleBlood()">
+            <img src="./img/drip.png">
         </div>
         <div class="button" id="sound" onclick="buttonSound(), toggleMute();">
             <img id="soundImg" src="./img/sound.png">
@@ -95,13 +95,6 @@
             </div>
             <p id="text">Each Character has its own unique stats</p>
             <p id="text">Defeat the Skeleton King to unlock a powerful new character</p>
-            <h2>Settings</h2>
-            <div class="settings">
-                <div class="blood">
-                    <p>Enable Blood</p>
-                    <div id="bloodEnable" onclick="buttonSound(), toggleBlood()"></div>
-                </div>
-            </div>
             <h2>Credits</h2>
             <div class="credits">
                 <p>Sprites from CraftPix.net</p>
