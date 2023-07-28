@@ -31,12 +31,8 @@ function setLevel7() {
         [
             new Blessing(),
             new Blessing(),
-            new Blessing(),
-            new Blessing(),
         ],
         [
-            new Bomb(),
-            new Bomb(),
             new Bomb(),
             new Bomb(),
             new Bomb(),

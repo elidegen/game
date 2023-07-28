@@ -32,7 +32,7 @@ class World {
         this.checkCharacterPosition();
         this.setHealthBar();
         this.setBombShield();
-        this.setCounts(10, 1);
+        this.setCounts(0, 0);
     }
 
     /**
@@ -280,6 +280,7 @@ class World {
         enemy.lastAttack = new Date().getTime();
         if (enemy != this.level.enemies[0]) {
             this.character.takeDamage(this.enemyDamage, enemy.otherDirection);
+            console.log(this.enemyDamage);
         }
     }
 

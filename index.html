@@ -115,15 +115,15 @@
         <div id="overlayLose" class="overlay d-none">
             <div id="lose" class="overlayEnd">
                 <h2>You lose!</h2>
-                <div class="button replay" onclick="buttonSound(), location.reload()">Replay</div>
+                <div class="button replay" onclick="location.reload()">Replay</div>
             </div>
         </div>
 
         <div id="overlayWin" class="overlay d-none">
             <div id="win" class="overlayEnd">
                 <h2 id="levelEndText">Level cleared!</h2>
-                <div id="levelEndButton" class="button replay" onclick="buttonSound(), loadNextLevel();">Next Level</div>
-                <div id="gameEndButton" class="button replay d-none" onclick="buttonSound(), location.reload()">Replay</div>
+                <div id="levelEndButton" class="button replay" onclick="loadNextLevel();">Next Level</div>
+                <div id="gameEndButton" class="button replay d-none" onclick="location.reload()">Replay</div>
             </div>
         </div>
 
@@ -131,22 +131,22 @@
             <h2>Choose wisely!</h2>
             <div class="heros">
                 <div id="king" class="hero d-none">
-                    <img id="hero0" onclick="buttonSound(), hideHeroSelection(), chooseHero(0);"
+                    <img id="hero0" onclick="hideHeroSelection(), chooseHero(0);"
                         src="img/characters/Knight_0/Idle/Idle_017.png" alt="">
                     <h3>King Titanus</h3>
                 </div>
                 <div class="hero">
-                    <img id="hero1" onclick="buttonSound(), hideHeroSelection(), chooseHero(1);"
+                    <img id="hero1" onclick="hideHeroSelection(), chooseHero(1);"
                         src="img/characters/Knight_1/Idle/Idle_017.png" alt="">
                     <h3>Duke Hammerstrike</h3>
                 </div>
                 <div class="hero">
-                    <img id="hero2" onclick="buttonSound(), hideHeroSelection(), chooseHero(2);"
+                    <img id="hero2" onclick="hideHeroSelection(), chooseHero(2);"
                         src="img/characters/Knight_2/Idle/Idle_017.png" alt="">
                     <h3>Lord Lightningbolt</h3>
                 </div>
                 <div class="hero">
-                    <img id="hero3" onclick="buttonSound(), hideHeroSelection(), chooseHero(3);"
+                    <img id="hero3" onclick="hideHeroSelection(), chooseHero(3);"
                         src="img/characters/Knight_3/Idle/Idle_017.png" alt="">
                     <h3>Baron Everlast</h3>
                 </div>
