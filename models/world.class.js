@@ -184,15 +184,6 @@ class World {
     }
 
     /**
-     * play sound unless muted
-     */
-    playSound(sound) {
-        sound.volume = volume;
-        sound.currentTime = 0;
-        sound.play();
-    }
-
-    /**
      * checks if sprites collide with each other
      */
     checkCollisions() {

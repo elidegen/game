@@ -54,4 +54,13 @@ class DrawableObject {
             ctx.stroke();
         }
     }
+
+    /**
+     * play sound unless muted
+     */
+    playSound(sound) {
+        sound.volume = volume;
+        // sound.currentTime = 0;
+        sound.play();
+    }
 }

@@ -165,7 +165,9 @@ class Character extends MovingObjects {
         `img/characters/Knight_${hero}/Run Throwing/Run Throwing_010.png`,
         `img/characters/Knight_${hero}/Run Throwing/Run Throwing_011.png`,
     ];
-    JUMP_SOUND = new Audio('audio/jump.mp3');
+    HURT_SOUND = new Audio('audio/manHurt.mp3');
+    ATTACK_SOUND = new Audio('audio/attack.mp3');
+    DYING_SOUND = new Audio('audio/dying.mp3');
 
     constructor() {
         super().loadImage(`img/characters/Knight_${hero}/Idle/Idle_000.png`,);
@@ -208,6 +210,7 @@ class Character extends MovingObjects {
     animate() {
         setStoppableInterval(() => {
             if (this.world.recentAction(this.lastHit, this.animationSpeed * this.IMAGES_DYING.length) && this.isDead()) {
+                this.playSound(this.DYING_SOUND);
                 this.playAnimation(this.IMAGES_DYING);
             } else if (this.isDead() && !this.world.recentAction(this.lastHit, 500)) {
                 this.loadImage(`img/characters/Knight_${hero}/Dying/Dying_014.png`);
@@ -216,8 +219,10 @@ class Character extends MovingObjects {
             } else if (world.recentAction(this.lastAttack, this.animationSpeed * this.IMAGES_RUN_ATTACK.length) && (this.world.keyboard.RIGHT || this.world.keyboard.LEFT)) {
                 this.playAnimation(this.IMAGES_RUN_ATTACK);
             } else if (world.recentAction(this.lastAttack, this.animationSpeed * this.IMAGES_ATTACK.length)) {
+                this.playSound(this.ATTACK_SOUND);
                 this.playAnimation(this.IMAGES_ATTACK);
             } else if (this.world.recentAction(this.lastHit, this.animationSpeed * this.IMAGES_HURT.length)) {
+                this.playSound(this.HURT_SOUND);
                 this.playAnimation(this.IMAGES_HURT);
             } else if ((world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.DOWN) && this.world.recentAction(this.startRun, 700)) {
                 this.playAnimation(this.IMAGES_RUNNING);
