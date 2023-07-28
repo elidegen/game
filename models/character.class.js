@@ -167,7 +167,7 @@ class Character extends MovingObjects {
     ];
     HURT_SOUND = new Audio('audio/manHurt.mp3');
     ATTACK_SOUND = new Audio('audio/attack.mp3');
-    DYING_SOUND = new Audio('audio/dying.mp3');
+    DYING_SOUND = new Audio('audio/dying.mp3');    
 
     constructor() {
         super().loadImage(`img/characters/Knight_${hero}/Idle/Idle_000.png`,);

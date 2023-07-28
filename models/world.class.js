@@ -19,6 +19,8 @@ class World {
     bossDamage = this.bossOriginalDamage;
     enemyDamage = this.enemyOriginalDamage;
     bombDamage = 100;
+    LOSE_SOUND = new Audio('audio/lose.mp3');
+    WIN_SOUND = new Audio('audio/win.mp3');
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -113,9 +115,12 @@ class World {
      */
     checkEndGame() {
         if (this.character.isDead()) {
+            this.character.playSound(this.LOSE_SOUND);
             this.setGameOver();
+            
         }
         if (this.level.enemies[0].isDead()) {
+            this.character.playSound(this.WIN_SOUND);
             this.setNewLevel();
         }
     }

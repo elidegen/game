@@ -10,6 +10,7 @@ let volume = true;
 let currentLevel = 1;
 let hero;
 startScreen.src = 'img/backgrounds/game_background_1.png';
+const BACKGROUND_MUSIC = new Audio('audio/backgroundMusic.mp3');
 
 /**
  * initialises the game upon loading
@@ -139,9 +140,11 @@ function togglePlayPause() {
         if (pause) {
             document.getElementById('playPauseButton').src = 'img/playBlack.png';
             document.getElementById('playPauseButton').style = 'margin-left: 6px';
+            playBackgroundMusic();
         } else {
             document.getElementById('playPauseButton').src = 'img/pause.png';
             document.getElementById('playPauseButton').style = 'margin-left: 0px';
+            playBackgroundMusic();
         }
     }
 }
@@ -185,7 +188,8 @@ function startGame() {
     pause = false;
     gameStarted = 1;
     world.keyboard.mobileButtonPress();
-    document.getElementById('controls').classList.remove('d-none')
+    document.getElementById('controls').classList.remove('d-none');
+    playBackgroundMusic();
 }
 
 /**
@@ -277,4 +281,13 @@ function hideHeroSelection() {
 function chooseHero(nr) {
     hero = nr;
     startGame();
+}
+
+function playBackgroundMusic() {
+    BACKGROUND_MUSIC.volume = volume;
+    if (pause) {
+        BACKGROUND_MUSIC.pause();
+    } else {
+        BACKGROUND_MUSIC.play();
+    }
 }
