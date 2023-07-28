@@ -11,6 +11,7 @@ let currentLevel = 1;
 let hero;
 startScreen.src = 'img/backgrounds/game_background_1.png';
 const BACKGROUND_MUSIC = new Audio('audio/backgroundMusic.mp3');
+const BUTTON_SOUND = new Audio('audio/button.mp3');
 
 /**
  * initialises the game upon loading
@@ -112,6 +113,7 @@ function toggleMute() {
     } else {
         document.getElementById('soundImg').src = ('img/mute.png');
     }
+    playBackgroundMusic();
 }
 
 /**
@@ -283,6 +285,9 @@ function chooseHero(nr) {
     startGame();
 }
 
+/**
+ * plays background music if not paused or muted
+ */
 function playBackgroundMusic() {
     BACKGROUND_MUSIC.volume = volume;
     if (pause) {
@@ -290,4 +295,13 @@ function playBackgroundMusic() {
     } else {
         BACKGROUND_MUSIC.play();
     }
+}
+
+/**
+ * plays button sounds unless muted
+ */
+function buttonSound() {
+    BUTTON_SOUND.volume = volume;
+    BUTTON_SOUND.currentTime = 0;
+    BUTTON_SOUND.play();
 }

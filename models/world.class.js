@@ -117,11 +117,13 @@ class World {
         if (this.character.isDead()) {
             this.character.playSound(this.LOSE_SOUND);
             this.setGameOver();
+            BACKGROUND_MUSIC.pause();
             
         }
         if (this.level.enemies[0].isDead()) {
             this.character.playSound(this.WIN_SOUND);
             this.setNewLevel();
+            BACKGROUND_MUSIC.pause();
         }
     }
 
@@ -213,11 +215,9 @@ class World {
      */
     enemyCharacterCollision(enemy) {
         if (this.hittingCharacter(enemy)) {
-            console.log('hitting character');
             this.collideEnemy(enemy);
         }
         if (this.hittingEnemy(enemy)) {
-            console.log('hitting enemy');
             enemy.takeDamage(this.character.damage, this.otherDirection);
         }
     }

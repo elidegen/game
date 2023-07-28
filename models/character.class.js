@@ -209,6 +209,7 @@ class Character extends MovingObjects {
      */
     animate() {
         setStoppableInterval(() => {
+            playBackgroundMusic();
             if (this.world.recentAction(this.lastHit, this.animationSpeed * this.IMAGES_DYING.length) && this.isDead()) {
                 this.playSound(this.DYING_SOUND);
                 this.playAnimation(this.IMAGES_DYING);
