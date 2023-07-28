@@ -52,8 +52,10 @@ class Keyboard {
 
         document.getElementById('touchHit').addEventListener('touchstart', (e) => {
             e.preventDefault();
-            world.character.lastAttack = new Date().getTime();
-            world.character.currentImage = 0;
+            if (!world.recentAction(world.character.lastAttack, 500)) {
+                world.character.lastAttack = new Date().getTime();
+                world.character.currentImage = 0;
+            }
         });
 
         document.getElementById('touchRun').addEventListener('touchstart', (e) => {

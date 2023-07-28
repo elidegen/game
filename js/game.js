@@ -21,6 +21,7 @@ function init() {
     let ctx = canvas.getContext('2d');
     ctx.drawImage(startScreen, 0, 0, canvas.width, canvas.height);
     getLocalStorageBlood();
+    getLocalStorageSound();
     showKing();
 }
 
@@ -108,11 +109,8 @@ async function closeFullscreen() {
  */
 function toggleMute() {
     volume = !volume;
-    if (volume) {
-        document.getElementById('soundImg').src = ('img/sound.png');
-    } else {
-        document.getElementById('soundImg').src = ('img/mute.png');
-    }
+    setMuteButton();
+    setLocalStorageSound();
     playBackgroundMusic();
 }
 
@@ -220,6 +218,30 @@ function getLocalStorageBlood() {
         enableBlood = JSON.parse(localStorage.getItem('enableBlood'));
     }
     setBloodButton();
+}
+/**
+ * saves the chosen setting for blood in localstorage
+ */
+function setLocalStorageSound() {
+    localStorage.setItem('mute', volume);
+}
+
+/**
+ * get prefered setting for blood from localstorage
+ */
+function getLocalStorageSound() {
+    if (localStorage.getItem('mute') != undefined) {
+        volume = JSON.parse(localStorage.getItem('mute'));
+    }
+    setMuteButton();
+}
+
+function setMuteButton() {
+    if (volume) {
+        document.getElementById('soundImg').src = ('img/sound.png');
+    } else {
+        document.getElementById('soundImg').src = ('img/mute.png');
+    }
 }
 
 /**
