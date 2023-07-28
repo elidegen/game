@@ -158,6 +158,7 @@ class Endboss extends MovingObjects {
             } else if (world.recentAction(this.lastAttack, this.animationSpeed * this.IMAGES_ATTACK.length)) {
                 this.playSound(this.ATTACK_SOUND);
                 this.playAnimation(this.IMAGES_ATTACK);
+                this.doDamage();
             } else if (this.isCollidingWithAttack(world.character) && !world.recentAction(this.lastAttack, this.animationSpeed * this.IMAGES_ATTACK.length)) {
                 this.playAnimation(this.IMAGES_WALKING);
             } else if (this.playerNearby()) {

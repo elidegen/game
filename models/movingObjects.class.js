@@ -15,6 +15,7 @@ class MovingObjects extends DrawableObject {
     alreadyDead = 0;
     animationSpeed = 35;
     feetY;
+    BLOOD_SOUND = new Audio('audio/blood.mp3');
 
     /**
      * makes objects fall to ground
@@ -122,12 +123,15 @@ class MovingObjects extends DrawableObject {
      * creates blood splatter depending on sprite and direction of hit
      */
     createBlood(direction) {
-        if (this instanceof Endboss && enableBlood) {
-            this.endbossBlood();
-        } else if ((this instanceof Enemy1 || this instanceof Enemy2 || this instanceof Enemy3 || this instanceof Enemy4) && enableBlood) {
-            this.enemyBlood();
-        } else if (this instanceof Character && enableBlood) {
-            this.characterBlood(direction);
+        if (enableBlood) {
+            this.playSound(this.BLOOD_SOUND);
+            if (this instanceof Endboss) {
+                this.endbossBlood();
+            } else if ((this instanceof Enemy1 || this instanceof Enemy2 || this instanceof Enemy3 || this instanceof Enemy4)) {
+                this.enemyBlood();
+            } else if (this instanceof Character) {
+                this.characterBlood(direction);
+            }
         }
     }
 
