@@ -118,7 +118,6 @@ class World {
             this.character.playSound(this.LOSE_SOUND);
             this.setGameOver();
             BACKGROUND_MUSIC.pause();
-            
         }
         if (this.level.enemies[0].isDead()) {
             this.character.playSound(this.WIN_SOUND);
