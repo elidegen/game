@@ -10,7 +10,7 @@ class Endboss extends MovingObjects {
     range = 100;
     feetY = 415;
     bombHit = false;
-    // animationSpeed = 50;
+    animationSpeed = 50;
     offset = {
         top: 280,
         right: 180,
@@ -162,7 +162,7 @@ class Endboss extends MovingObjects {
             } else if (this.isCollidingWithAttack(world.character) && !world.recentAction(this.lastAttack, this.animationSpeed * this.IMAGES_ATTACK.length)) {
                 this.playAnimation(this.IMAGES_WALKING);
             } else if (this.playerNearby()) {
-                this.speed = 6;
+                this.speed = 12;
                 this.playAnimation(this.IMAGES_RUNNING);
             } else {
                 this.playAnimation(this.IMAGES_WALKING);
