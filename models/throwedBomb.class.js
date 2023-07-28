@@ -43,6 +43,7 @@ class ThrowedBomb extends MovingObjects {
         this.bomb_floor = world.character.y + world.character.height - world.character.offset.bottom - 100;
         this.applyGravity();
     }
+    EXPLOSION_SOUND = new Audio('audio/explosion.mp3');
 
     /**
      * animates the bomb flying and then exploding and deletes it afterwards
@@ -69,6 +70,7 @@ class ThrowedBomb extends MovingObjects {
      * let the bomb explode
      */
     exploding() {
+        this.playSound(this.EXPLOSION_SOUND);
         this.explode = true;
         this.height = 100;
         this.width = 100;

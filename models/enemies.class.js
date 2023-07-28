@@ -22,6 +22,10 @@ class Enemies extends MovingObjects {
     IMAGE_DEAD;
     IMAGES_RUNNING;
     // IMAGES_IDLE_BLINKING;
+    
+    HURT_SOUND = new Audio('audio/enemyHurt.mp3');
+    ATTACK_SOUND = new Audio('audio/attack.mp3');
+    DYING_SOUND = new Audio('audio/dying2.mp3');
 
     constructor() {
         super();
@@ -38,12 +42,15 @@ class Enemies extends MovingObjects {
         setStoppableInterval(() => {
             this.speed = 3;
             if (this.isDead() && world.recentAction(this.lastHit, this.animationSpeed * this.IMAGES_DYING.length)) {
+                this.playSound(this.DYING_SOUND);
                 this.playAnimation(this.IMAGES_DYING);
             } else if (this.isDead()) {
                 this.loadImage(this.IMAGE_DEAD);
             } else if (world.recentAction(this.lastHit, this.animationSpeed * this.IMAGES_HURT.length)) {
+                this.playSound(this.HURT_SOUND);
                 this.playAnimation(this.IMAGES_HURT);
             } else if (world.recentAction(this.lastAttack, this.animationSpeed * this.IMAGES_ATTACK.length)) {
+                this.playSound(this.ATTACK_SOUND);
                 this.playAnimation(this.IMAGES_ATTACK);
             } else if (this.isCollidingWithAttack(world.character) && !world.recentAction(this.lastAttack, this.animationSpeed * this.IMAGES_ATTACK.length)) {
                 this.playAnimation(this.IMAGES_WALKING);

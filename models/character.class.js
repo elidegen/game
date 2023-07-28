@@ -217,6 +217,7 @@ class Character extends MovingObjects {
             } else if (this.world.recentAction(world.lastThrow, this.animationSpeed * this.IMAGES_THROWING.length)) {
                 this.playAnimation(this.IMAGES_THROWING);
             } else if (world.recentAction(this.lastAttack, this.animationSpeed * this.IMAGES_RUN_ATTACK.length) && (this.world.keyboard.RIGHT || this.world.keyboard.LEFT)) {
+                this.playSound(this.ATTACK_SOUND);
                 this.playAnimation(this.IMAGES_RUN_ATTACK);
             } else if (world.recentAction(this.lastAttack, this.animationSpeed * this.IMAGES_ATTACK.length)) {
                 this.playSound(this.ATTACK_SOUND);

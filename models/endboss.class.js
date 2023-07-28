@@ -122,6 +122,11 @@ class Endboss extends MovingObjects {
     //     `img/enemies/Boss_${currentLevel}/Idle/0_Zombie_Pirate_Idle_016.png`,
     //     `img/enemies/Boss_${currentLevel}/Idle/0_Zombie_Pirate_Idle_017.png`,
     // ];
+    
+    HURT_SOUND = new Audio('audio/enemyHurt.mp3');
+    ATTACK_SOUND = new Audio('audio/attack.mp3');
+    DYING_SOUND = new Audio('audio/dying2.mp3');
+
     IMAGE_DEAD = `img/enemies/Boss_${currentLevel}/Dying/Dying_014.png`;
 
 
@@ -143,18 +148,20 @@ class Endboss extends MovingObjects {
         setStoppableInterval(() => {
             this.speed = 3;
             if (this.isDead() && world.recentAction(this.lastHit, this.animationSpeed * this.IMAGES_DYING.length)) {
+                this.playSound(this.DYING_SOUND);
                 this.playAnimation(this.IMAGES_DYING);
             } else if (this.isDead()) {
                 this.loadImage(this.IMAGE_DEAD);
             } else if (world.recentAction(this.lastHit, this.animationSpeed * this.IMAGES_HURT.length)) {
+                this.playSound(this.HURT_SOUND);
                 this.playAnimation(this.IMAGES_HURT);
+            } else if (world.recentAction(this.lastAttack, this.animationSpeed * this.IMAGES_ATTACK.length)) {
+                this.playSound(this.ATTACK_SOUND);
+                this.playAnimation(this.IMAGES_ATTACK);
             } else if (this.isCollidingWithAttack(world.character) && !world.recentAction(this.lastAttack, this.animationSpeed * this.IMAGES_ATTACK.length)) {
                 this.playAnimation(this.IMAGES_WALKING);
-            } else if (world.recentAction(this.lastAttack, this.animationSpeed * this.IMAGES_ATTACK.length)) {
-                this.playAnimation(this.IMAGES_ATTACK);
-                this.doDamage();
             } else if (this.playerNearby()) {
-                this.speed = 12;
+                this.speed = 6;
                 this.playAnimation(this.IMAGES_RUNNING);
             } else {
                 this.playAnimation(this.IMAGES_WALKING);
