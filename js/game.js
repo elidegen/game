@@ -170,7 +170,6 @@ function setStoppableInterval(fn, time) {
  */
 function startGame() {
     world = new World(canvas, keyboard);
-    console.log('My Character is', world.character);
     pause = false;
     gameStarted = 1;
     world.keyboard.mobileButtonPress();
@@ -182,11 +181,12 @@ function startGame() {
  * sets design of blood button depending on setting of enableBlood
  */
 function setBloodButton() {
-    if (enableBlood == true) {
-        document.getElementById('blood').style = 'background: linear-gradient(to bottom, rgb(255, 0, 0), #8B0000);'
-    } else {
-        document.getElementById('blood').style = 'background: linear-gradient(to bottom, rgb(165, 165, 165), rgb(97, 97, 97));'
-    }
+    document.getElementById('blood').style = enableBlood === true ? 'background: linear-gradient(to bottom, rgb(255, 0, 0), #8B0000);' : 'background: linear-gradient(to bottom, rgb(165, 165, 165), rgb(97, 97, 97));';
+    // if (enableBlood == true) {
+    //     document.getElementById('blood').style = 'background: linear-gradient(to bottom, rgb(255, 0, 0), #8B0000);'
+    // } else {
+    //     document.getElementById('blood').style = 'background: linear-gradient(to bottom, rgb(165, 165, 165), rgb(97, 97, 97));'
+    // }
 }
 
 /**

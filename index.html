@@ -46,16 +46,17 @@
 
     <h1>Knight's Journey</h1>
     <div class="container" id="container">
-        <div class="button" id="blood" onclick="buttonSound(), toggleBlood()">
+        <div class="button" id="blood" title="Enable Blood" onclick="buttonSound(), toggleBlood()">
             <img src="./img/drip.png">
         </div>
-        <div class="button" id="sound" onclick="buttonSound(), toggleMute();">
+        <div class="button" id="sound" title="Mute" onclick="buttonSound(), toggleMute();">
             <img id="soundImg" src="./img/sound.png">
         </div>
-        <div class="button" id="menu" onclick="buttonSound(), toggleMenu()">
-            <img src="img/settings.png">
+        <div class="button" id="menu" title="How To Play" onclick="buttonSound(), toggleMenu()">
+            <!-- <img src="img/settings.png"> -->
+            <img src="img/joystick.png">
         </div>
-        <div class="button" id="playPause" onclick="buttonSound(), togglePlayPause()">
+        <div class="button" id="playPause" title="Pause" onclick="buttonSound(), togglePlayPause()">
             <img id="playPauseButton" src="./img/pause.png">
         </div>
 

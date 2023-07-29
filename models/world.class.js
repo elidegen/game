@@ -280,7 +280,6 @@ class World {
         enemy.lastAttack = new Date().getTime();
         if (enemy != this.level.enemies[0]) {
             this.character.takeDamage(this.enemyDamage, enemy.otherDirection);
-            console.log(this.enemyDamage);
         }
     }
 
